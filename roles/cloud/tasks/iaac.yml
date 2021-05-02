@@ -1,0 +1,12 @@
+- name: Tap into Hashicorp
+  homebrew_tap:
+    tap: hashicorp/tap
+    state: present
+
+- name: Install IaaC utilities
+  homebrew:
+    name: {{ item }}
+    state: present
+    with_items:
+      - hashicorp/tap/packer
+      - hashicorp/tap/terraform

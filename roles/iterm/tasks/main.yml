@@ -1,0 +1,2 @@
+- name: Install iTerm theme
+  command: open {{ dotfiles_home }}/roles/iterm/files/Snazzy.itermcolors

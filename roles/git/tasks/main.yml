@@ -1,0 +1,17 @@
+- name: Symlink editorconfig
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/editorconfig"
+    dest: "{{ dotfiles_user_home }}/.editorconfig"
+    state: link
+
+- name: Symlink global gitignore
+  file:
+    src: "{{ dotfiles_home }}/roles/git/files/gitignore_global.link"
+    dest: "{{ dotfiles_user_home }}/.gitignore"
+    state: link
+    force: yes
+
+- name: Make sure gitconfig is up to date
+  template:
+    src: "gitconfig.j2"
+    dest: "{{ dotfiles_user_home }}/.gitconfig"

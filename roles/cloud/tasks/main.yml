@@ -1,0 +1,13 @@
+- name: Install docker
+  homebrew_cask:
+    name: docker
+    state: present
+
+- name: Install AWS CLI
+  homebrew:
+    name: awscli
+    state: present
+
+- import_tasks: iaac.yml
+
+- import_tasks: containers.yml

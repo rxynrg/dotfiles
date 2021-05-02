@@ -1,0 +1,2 @@
+== Roadmap
+* [ ] Migrate from https://github.com/zplug/zplug[zplug] to https://github.com/zdharma/zinit[zinit]

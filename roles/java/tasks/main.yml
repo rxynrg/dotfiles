@@ -1,0 +1,20 @@
+- name: Install OpenJDK
+  homebrew:
+    name: openjdk
+    state: present
+
+# TODO: symlink via file module
+- name: Symlink OpenJDK
+  become: true
+  become_user: root
+  shell: ln -sfn "$(brew --prefix)"/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+
+- name: Install Maven build tool
+  homebrew:
+    name: maven
+    state: present
+
+- name: Install Gradle build tool
+  homebrew:
+    name: gradle
+    state: present

@@ -1,0 +1,17 @@
+- name: Set system deafults
+  script: set-defaults.sh
+  changed_when: false
+
+- name: Install mac-specific homebrew packages
+  homebrew:
+    name: {{ mac_homebrew_packages }}
+    state: present
+
+- name: Install Mac apps with homebrew cask
+  homebrew_cask:
+    name: {{item}}
+    state: present
+  with_items: {{ mac_cask_packages }}
+
+- name: Install Terminal.app theme
+  command: open {{ dotfiles_home }}/roles/macos/files/Snazzy.terminalcolors
