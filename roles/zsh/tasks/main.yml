@@ -13,13 +13,19 @@
 
 - name: Copy zsh_custom plugin
   copy:
-    src: "{{ dotfiles_home }}/roles/zsh/files/zsh_custom"
+    src: "{{ dotfiles_home }}/roles/zsh/files/zsh_custom/"
     dest: "{{ zsh_custom_plugin_home }}"
 
 - name: Copy zshrc
   copy:
     src: "{{ dotfiles_home }}/roles/zsh/files/zshrc"
     dest: "{{ '~/.zshrc' | expanduser }}"
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ zsh_completion_home }}"
+    state: directory
+    mode: "0755"
 
 - name: Download docker completion
   get_url:

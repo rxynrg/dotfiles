@@ -2,6 +2,8 @@
 
 test -e ~/.dircolors && command -v gdircolors &> /dev/null && eval `gdircolors -b ~/.dircolors`
 
+fpath=(~/.zsh_custom/completion $fpath)
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors $LS_COLORS
@@ -12,7 +14,6 @@ compinit -i
 _comp_options+=(globdots)
 
 for f in ~/.zsh_custom/*; do source "$f"; done
-fpath=(~/.zsh_custom/completion $fpath)
 
 source ~/projects/dotfiles-ansible/roles/zsh/zsh_plugins/z/z.sh
 source ~/projects/dotfiles-ansible/roles/zsh/zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
