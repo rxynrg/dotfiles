@@ -8,6 +8,6 @@
     name: awscli
     state: present
 
-- import_tasks: iaac.yml
+- import_tasks: packer.yml
 
 - import_tasks: containers.yml

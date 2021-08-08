@@ -1,0 +1,4 @@
+- name: Copy k8s aliases into zsh_custom directory
+  copy:
+    src: "{{ dotfiles_home }}/roles/k8s/files/k8s.sh"
+    dest: "{{ zsh_custom_plugin_home }}/k8s.sh"

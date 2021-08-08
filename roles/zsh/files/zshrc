@@ -8,10 +8,11 @@ zstyle ':completion:*' list-colors $LS_COLORS
 
 autoload -Uz compinit
 zmodload zsh/complist
-compinit
+compinit -i
 _comp_options+=(globdots)
 
 for f in ~/.zsh_custom/*; do source "$f"; done
+fpath=(~/.zsh_custom/completion $fpath)
 
 source ~/projects/dotfiles-ansible/roles/zsh/zsh_plugins/z/z.sh
 source ~/projects/dotfiles-ansible/roles/zsh/zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh

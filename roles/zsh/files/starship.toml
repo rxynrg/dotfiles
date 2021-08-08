@@ -8,4 +8,7 @@ fish_style_pwd_dir_length = 3
 # truncate_symbol = '.../'
 
 [kubernetes]
-# disabled = false
+disabled = false
+
+[java]
+symbol = "  "

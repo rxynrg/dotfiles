@@ -27,5 +27,7 @@ else
   echo "Ansible already installed"
 fi
 
-# Runs Ansible playbook using our user.
-ansible-playbook -i "$HOSTS" "$PLAYBOOK" --skip-tags "macos" --ask-become-pass
+# TODO: take as args otherwise use defaults
+SKIPPED_TAGS="macos,slack,zoom"
+
+ansible-playbook -i "$HOSTS" "$PLAYBOOK" --skip-tags "$SKIPPED_TAGS" --ask-become-pass

@@ -17,3 +17,8 @@
   homebrew:
     name: gradle
     state: present
+
+- name: Copy java aliases into zsh_custom directory
+  copy:
+    src: "{{ dotfiles_home }}/roles/java/files/java.sh"
+    dest: "{{ zsh_custom_plugin_home }}/java.sh"

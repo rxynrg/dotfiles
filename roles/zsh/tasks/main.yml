@@ -1,26 +1,35 @@
 #- name: Install fzf completion & key-bindings
 #  shell: $(brew --prefix)/opt/fzf/install --no-bash --no-update-rc --key-bindings --completion
 
-- name: Symlink LS_COLORS
-  file:
-    src: "{{ dotfiles_home }}/roles/zsh/files/dircolors.link"
+- name: Copy LS_COLORS
+  copy:
+    src: "{{ dotfiles_home }}/roles/zsh/files/dircolors"
     dest: "{{ '~/.dircolors' | expanduser }}"
-    state: link
 
-- name: Symlink starship prompt config
-  file:
-    src: "{{ dotfiles_home }}/roles/zsh/files/starship.link"
+- name: Copy starship prompt config
+  copy:
+    src: "{{ dotfiles_home }}/roles/zsh/files/starship.toml"
     dest: "{{ '~/.starship.toml' | expanduser }}"
-    state: link
 
-- name: Symlink zsh_custom plugin
-  file:
+- name: Copy zsh_custom plugin
+  copy:
     src: "{{ dotfiles_home }}/roles/zsh/files/zsh_custom"
-    dest: "{{ '~/.zsh_custom' | expanduser }}"
-    state: link
+    dest: "{{ zsh_custom_plugin_home }}"
 
-- name: Symlink zshrc
-  file:
-    src: "{{ dotfiles_home }}/roles/zsh/files/zshrc.link"
+- name: Copy zshrc
+  copy:
+    src: "{{ dotfiles_home }}/roles/zsh/files/zshrc"
     dest: "{{ '~/.zshrc' | expanduser }}"
-    state: link
+
+- name: Download docker completion
+  get_url:
+    url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+    dest: "{{ zsh_completion_home }}/_docker"
+    mode: "0440"
+
+# TODO: uncomment if docker compose has no completion
+#- name: Download docker-compose completion
+#  get_url:
+#    url: https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose
+#    dest: "{{ zsh_completion_home }}/_docker-compose"
+#    mode: "0440"

@@ -1,0 +1,14 @@
+- name: Tap into Hashicorp
+  homebrew_tap:
+    tap: hashicorp/tap
+    state: present
+
+- name: Install Terraform
+  homebrew:
+    name: hashicorp/tap/terraform
+    state: present
+
+- name: Copy Terraform aliases into zsh_custom directory
+  copy:
+    src: "{{ dotfiles_home }}/roles/terraform/files/terraform.sh"
+    dest: "{{ zsh_custom_plugin_home }}/terraform.sh"

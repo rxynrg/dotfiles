@@ -5,9 +5,11 @@
     - {role: macos, tags: ['macos'], when: ansible_os_family == "Darwin"}
     - {role: zsh, tags: ['zsh']}
     - {role: java, tags: ['java']}
-   # - {role: cloud, tags: ['cloud']}
+   # TODO: split - {role: cloud, tags: ['cloud']}
     - {role: tmux, tags: ['tmux']}
     - {role: vim, tags: ['vim']}
     - {role: git, tags: ['git']}
-   # - {role: slack, tags: ['slack']}
-   # - {role: zoom, tags: ['zoom']}
+    - {role: slack, tags: ['slack']}
+    - {role: zoom, tags: ['zoom']}
+    - {role: k8s, tags: ['k8s']}
+    - {role: terraform, tags: ['terraform']}
