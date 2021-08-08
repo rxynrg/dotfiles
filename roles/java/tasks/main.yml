@@ -6,7 +6,6 @@
 # TODO: symlink via file module
 - name: Symlink OpenJDK
   become: true
-  become_user: root
   shell: ln -sfn "$(brew --prefix)"/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 - name: Install Maven build tool

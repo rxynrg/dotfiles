@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 if [[ "$OSTYPE" != "darwin"*  ]]; then
   echo "OS X config step will be skipped"
@@ -60,17 +59,18 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bo
 # Energy saving                                                               #
 ###############################################################################
 
-# Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
-
-# Sleep the display after 15 minutes
-sudo pmset -a displaysleep 15
-
-# Disable machine sleep while charging
-sudo pmset -c sleep 0
-
-# Set machine sleep to 5 minutes on battery
-sudo pmset -b sleep 5
+### TODO: Should work but throws an exception for now
+## Restart automatically if the computer freezes
+#sudo systemsetup -setrestartfreeze on
+#
+## Sleep the display after 15 minutes
+#sudo pmset -a displaysleep 15
+#
+## Disable machine sleep while charging
+#sudo pmset -c sleep 0
+#
+## Set machine sleep to 15 minutes on battery
+#sudo pmset -b sleep 15
 
 ###############################################################################
 # Screen                                                                      #
@@ -115,12 +115,6 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
-# Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
-
-# Show the /Volumes folder
-sudo chflags nohidden /Volumes
-
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
@@ -136,7 +130,11 @@ defaults write com.apple.dock persistent-apps -array
 # Add Safari to the Dock
 defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Safari.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
 # Add Apple Music to the Dock
-defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Music.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Music.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+# Deny Dock size changing
+defaults write com.apple.Dock size-immutable -bool true
+# Deny Dock icon order changing
+defaults write com.apple.dock contents-immutable -bool true
 # Restart the Dock
 killall Dock
 
@@ -173,7 +171,7 @@ defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
 # Remove useless icons from Safari’s bookmarks bar
-# defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 
 # Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
@@ -217,7 +215,7 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 ###############################################################################
-# Terminal & iTerm 2                                                          #
+# Terminal                                                                    #
 ###############################################################################
 
 # Only use UTF-8 in Terminal.app
@@ -229,13 +227,6 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
 # Disable the annoying line marks
 defaults write com.apple.Terminal ShowLineMarks -int 0
-
-# Install the Snazzy theme for iTerm & Terminal
-open "${HOME}/projects/dotfiles/Snazzy.itermcolors"
-open "${HOME}/projects/dotfiles/Snazzy.terminal"
-
-# Don’t display the annoying prompt when quitting iTerm
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 ###############################################################################
 # Activity Monitor                                                            #
@@ -252,7 +243,7 @@ defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 ###############################################################################
-# TextEdit, and Disk Utility                   #
+# TextEdit, QuickTimePlayer                                                   #
 ###############################################################################
 
 # Use plain text mode for new TextEdit documents
@@ -307,9 +298,8 @@ for app in "Activity Monitor" \
 	"Terminal"; do
 	killall "${app}" &> /dev/null
 done
-echo "Done. Note that some of these changes require a logout/restart to take effect."
 
 ################################################################################
-# Credits ######################################################################
+################################# Credits ######################################
 ########## https://github.com/mathiasbynens/dotfiles/blob/main/.macos ##########
 ################################################################################

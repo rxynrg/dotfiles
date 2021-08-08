@@ -1,14 +1,13 @@
-- name: Set up local.yml development environment
-  hosts: local.yml
+- name: Set up local development environment
+  hosts: local
   roles:
     # Tag each role so that we can select individual roles to run with ansible-playbook --tags
     - {role: macos, tags: ['macos'], when: ansible_os_family == "Darwin"}
-    - {role: zsh, tags: ['zsh', 'bootstrap']}
+    - {role: zsh, tags: ['zsh']}
     - {role: java, tags: ['java']}
-    - {role: cloud, tags: ['cloud']}
+   # - {role: cloud, tags: ['cloud']}
     - {role: tmux, tags: ['tmux']}
     - {role: vim, tags: ['vim']}
     - {role: git, tags: ['git']}
-    - {role: iterm, tags: ['iterm']}
-    - {role: slack, tags: ['slack']}
-    - {role: zoom, tags: ['zoom']}
+   # - {role: slack, tags: ['slack']}
+   # - {role: zoom, tags: ['zoom']}

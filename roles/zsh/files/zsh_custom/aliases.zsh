@@ -8,14 +8,6 @@ function mkcd () {
     cd "$*" || return
 }
 
-# tree
-alias tree1="tree -L 1"
-alias tree1h="tree -L 1 -h"
-alias tree2="tree -L 2"
-alias tree2h="tree -L 2 -h"
-alias tree3="tree -L 3"
-alias tree3h="tree -L 3 -h"
-
 # k8s
 alias k="kubectl"
 alias kaf="kubectl apply -f"

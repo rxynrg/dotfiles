@@ -1,13 +1,16 @@
+#- name: Install fzf completion & key-bindings
+#  shell: $(brew --prefix)/opt/fzf/install --no-bash --no-update-rc --key-bindings --completion
+
 - name: Symlink LS_COLORS
   file:
     src: "{{ dotfiles_home }}/roles/zsh/files/dircolors.link"
     dest: "{{ '~/.dircolors' | expanduser }}"
     state: link
 
-- name: Symlink p10k theme
+- name: Symlink starship prompt config
   file:
-    src: "{{ dotfiles_home }}/roles/zsh/files/p10k.link"
-    dest: "{{ '~/.p10k.zsh' | expanduser }}"
+    src: "{{ dotfiles_home }}/roles/zsh/files/starship.link"
+    dest: "{{ '~/.starship.toml' | expanduser }}"
     state: link
 
 - name: Symlink zsh_custom plugin

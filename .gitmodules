@@ -1,0 +1,9 @@
+[submodule "roles/zsh/zsh_plugins/z"]
+	path = roles/zsh/zsh_plugins/z
+	url = https://github.com/rupa/z
+[submodule "roles/zsh/zsh_plugins/zsh-autosuggestions"]
+	path = roles/zsh/zsh_plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "roles/zsh/zsh_plugins/zsh-syntax-highlighting"]
+	path = roles/zsh/zsh_plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting

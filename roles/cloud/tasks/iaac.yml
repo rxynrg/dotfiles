@@ -5,8 +5,8 @@
 
 - name: Install IaaC utilities
   homebrew:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
-    with_items:
+    loop:
       - hashicorp/tap/packer
       - hashicorp/tap/terraform

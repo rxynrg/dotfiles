@@ -1,3 +1,6 @@
+- import_tasks: macos.yml
+  when: ansible_os_family == "Darwin"
+
 - name: Symlink .tmux.conf
   file:
     src: "{{ dotfiles_home }}/roles/tmux/files/tmux.conf"

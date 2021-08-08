@@ -10,13 +10,13 @@ else
   # Make sure we are using the latest Homebrew
   brew update
   # Upgrade any already-installed formulae
-  brew upgrade --all
+  brew upgrade
 fi
 
 # Dotfiles' project root directory
 ROOTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Host file location
-HOSTS="$ROOTDIR/hosts.ini"
+HOSTS="$ROOTDIR/hosts"
 # Main playbook
 PLAYBOOK="$ROOTDIR/dotfiles.yml"
 
@@ -28,4 +28,4 @@ else
 fi
 
 # Runs Ansible playbook using our user.
-ansible-playbook -i "$HOSTS" "$PLAYBOOK" --ask-become-pass
+ansible-playbook -i "$HOSTS" "$PLAYBOOK" --skip-tags "macos" --ask-become-pass
