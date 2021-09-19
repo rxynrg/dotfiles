@@ -1,5 +1,5 @@
 == Roadmap
-* [ ] Add Docker role
+* [x] Add Docker role
 * [ ] Add containers role
 * [x] Add K8S role
 * [ ] Add Istio role

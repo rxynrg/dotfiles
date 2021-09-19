@@ -4,12 +4,6 @@ function mkcd () {
     cd "$*" || return
 }
 
-alias dis="docker images --format \"{{.ID}}\t{{.Size}}\t{{.Repository}}\" | sort -hk2"
-
-drm() {
-  docker rmi "$(docker images -f 'dangling=true' | awk '{if ($1 == "<none>") {print $3 } ')"
-}
-
 alias ls="exa --icons --git"
 alias la="ls --all"
 alias ll="ls --long"

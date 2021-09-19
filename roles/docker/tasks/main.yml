@@ -1,0 +1,9 @@
+- name: Install docker
+  homebrew_cask:
+    name: docker
+    state: present
+
+- name: Copy docker aliases into zsh_custom directory
+  copy:
+    src: "{{ dotfiles_home }}/roles/docker/files/docker.sh"
+    dest: "{{ zsh_custom_plugin_home }}/docker.sh"
