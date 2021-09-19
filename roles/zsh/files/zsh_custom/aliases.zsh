@@ -1,7 +1,3 @@
-function idea() {
-  open -na IntelliJ\ IDEA.app --args "$@"
-}
-
 # mkdir, cd into it (via http://onethingwell.org/post/586977440/mkcd-improved)
 function mkcd () {
     mkdir -p "$*"
