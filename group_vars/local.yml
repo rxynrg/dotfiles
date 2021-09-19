@@ -19,20 +19,19 @@ mac_homebrew_packages:
   - coreutils
   - starship
 #  - websocat
-#  - glances
-#  - youtube-dl
+  - glances
+  - youtube-dl
   - bat
   - exa
   - fzf
-#  - jq
+  - jq
 #  - yq
 #  - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
 
 # Mac Apps to be installed with homebrew-cask
 mac_cask_packages:
   - rectangle
-  - docker
   - telegram
   - intellij-idea
   - vlc
-#  - windscribe
+  - windscribe
