@@ -5,7 +5,6 @@
     - {role: macos, tags: ['macos'], when: ansible_os_family == "Darwin"}
     - {role: zsh, tags: ['zsh']}
     - {role: java, tags: ['java']}
-   # TODO: split - {role: cloud, tags: ['cloud']}
     - {role: tmux, tags: ['tmux']}
     - {role: vim, tags: ['vim']}
     - {role: git, tags: ['git']}
@@ -15,3 +14,4 @@
     - {role: terraform, tags: ['terraform']}
     - {role: docker, tags: ['docker']}
     - {role: aws, tags: ['aws']}
+    - {role: packer, tags: ['packer']}

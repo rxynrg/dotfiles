@@ -28,6 +28,6 @@ else
 fi
 
 # TODO: take as args otherwise use defaults
-SKIPPED_TAGS="macos,slack,zoom"
+SKIPPED_TAGS="macos,slack,zoom,packer"
 
 ansible-playbook -i "$HOSTS" "$PLAYBOOK" --skip-tags "$SKIPPED_TAGS" --ask-become-pass

@@ -3,7 +3,7 @@
 * [ ] Add containers role
 * [x] Add K8S role
 * [x] Add AWS role
-* [ ] Add Packer role
+* [x] Add Packer role
 * [x] Add Terraform role
 * [ ] Add zsh-plugins auto update to .zshrc / .bootstrap.sh
 * [ ] Solve TODOs
