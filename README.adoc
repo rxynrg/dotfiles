@@ -2,7 +2,6 @@
 * [x] Add Docker role
 * [ ] Add containers role
 * [x] Add K8S role
-* [ ] Add Istio role
 * [ ] Add AWS role
 * [ ] Add Packer role
 * [x] Add Terraform role

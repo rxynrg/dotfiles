@@ -1,9 +1,4 @@
 - name: Install dive
-  homebrew_cask:
+  homebrew:
     name: dive
-    state: present
-
-- name: Install Istio
-  homebrew_cask:
-    name: istioctl
     state: present

@@ -7,3 +7,8 @@
   homebrew:
     name: helm
     state: present
+
+- name: Install Istio
+  homebrew:
+    name: istioctl
+    state: present
