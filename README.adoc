@@ -1,6 +1,5 @@
 == Roadmap
 * [x] Add Docker role
-* [ ] Add containers role
 * [x] Add K8S role
 * [x] Add AWS role
 * [x] Add Packer role
