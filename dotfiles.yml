@@ -14,3 +14,4 @@
     - {role: k8s, tags: ['k8s']}
     - {role: terraform, tags: ['terraform']}
     - {role: docker, tags: ['docker']}
+    - {role: aws, tags: ['aws']}
