@@ -31,7 +31,7 @@
   get_url:
     url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
     dest: "{{ zsh_completion_home }}/_docker"
-    mode: "0440"
+    mode: "0755"
 
 # TODO: uncomment if docker compose has no completion
 #- name: Download docker-compose completion
