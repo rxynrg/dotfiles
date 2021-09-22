@@ -15,3 +15,8 @@
   template:
     src: "gitconfig.j2"
     dest: "{{ dotfiles_user_home }}/.gitconfig"
+
+- name: Copy git aliases into zsh_custom directory
+  copy:
+    src: "{{ dotfiles_home }}/roles/git/files/git.sh"
+    dest: "{{ zsh_custom_plugin_home }}/git.sh"
