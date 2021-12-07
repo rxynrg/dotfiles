@@ -44,6 +44,9 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# Do not display a notification when a new song starts in the Music app
+defaults write com.apple.Music "userWantsPlaybackNotifications" -bool "false"
+
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
@@ -136,7 +139,7 @@ defaults write com.apple.Dock size-immutable -bool true
 # Deny Dock icon order changing
 defaults write com.apple.dock contents-immutable -bool true
 # Restart the Dock
-killall Dock
+# killall Dock
 
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
@@ -292,6 +295,7 @@ for app in "Activity Monitor" \
 	"cfprefsd" \
 	"Dock" \
 	"Finder" \
+	"Music" \
 	"Photos" \
 	"Safari" \
 	"SystemUIServer" \

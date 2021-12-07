@@ -1,10 +1,26 @@
-- name: Set system deafults
-  script: set-defaults.sh
-  register: script_result
-  failed_when: script_result.rc != 1
+- name: Configure MacOS defaults
+  block:
+    - name: Set system defaults
+      script: set-defaults.sh
+      register: set-script_result
+      failed_when: set-script_result.rc != 1
+#    - name: Force a failure
+#      ansible.builtin.command: /bin/false
+  rescue:
+    - name: Print when errors
+        ansible.builtin.debug:
+          var: set-script_result
+    - name: Reset system defaults
+      script: reset-defaults.sh
+      register: reset-script_result
+      failed_when: reset-script_result.rc != 1
+  always:
+    # TODO: think about changed=true always... ansible changedwhen?
+    - name: Install Terminal.app theme
+      ansible.builtin.command: open {{ dotfiles_home }}/roles/macos/files/Snazzy.terminalcolors
 
 - name: Install mac-specific homebrew packages
-  homebrew:
+  ansible.builtin.package:
     name: "{{ mac_homebrew_packages }}"
     state: present
 
@@ -13,7 +29,3 @@
     name: "{{ item }}"
     state: present
   loop: "{{ mac_cask_packages | flatten(levels=1) }}"
-
-- name: Install Terminal.app theme
-  command: open {{ dotfiles_home }}/roles/macos/files/Snazzy.terminalcolors
-  when: false
