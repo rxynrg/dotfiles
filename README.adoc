@@ -1,12 +1,27 @@
+= Dotfiles
+v0.1, December 03, 2021
+:toc:
+:icons: font
+
 == Roadmap
 * [x] Add Docker role
 * [x] Add K8S role
 * [x] Add AWS role
 * [x] Add Packer role
 * [x] Add Terraform role
+* [ ] Add role (homebrew casks: vagrant + virtualbox)
 * [ ] Add zsh-plugins auto update to .zshrc / .bootstrap.sh
 * [ ] Solve TODOs
 * [ ] Add roles documentation
+* [ ] Create role execution order
 
 == Roles
 
+== TODO
+
+=== Test on various platforms
+* [ ] macos
+* [ ] ubuntu
+* [ ] debian
+* [ ] centos
+* [ ] arch
