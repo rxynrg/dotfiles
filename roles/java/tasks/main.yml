@@ -1,20 +1,20 @@
 - name: Install OpenJDK
-  homebrew:
+  ansible.builtin.package:
     name: openjdk
     state: present
 
 # TODO: symlink via file module
 - name: Symlink OpenJDK
-  become: true
+#  become: true
   shell: ln -sfn "$(brew --prefix)"/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 - name: Install Maven build tool
-  homebrew:
+  ansible.builtin.package:
     name: maven
     state: present
 
 - name: Install Gradle build tool
-  homebrew:
+  ansible.builtin.package:
     name: gradle
     state: present
 

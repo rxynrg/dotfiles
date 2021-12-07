@@ -4,6 +4,6 @@
     state: present
 
 - name: Install packer
-  homebrew:
+  ansible.builtin.package:
     name: hashicorp/tap/packer
     state: present

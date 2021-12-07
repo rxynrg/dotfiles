@@ -4,11 +4,13 @@
     dest: "{{ zsh_custom_plugin_home }}/k8s.sh"
 
 - name: Install Helm
-  homebrew:
+  ansible.builtin.package:
     name: helm
     state: present
+  when: helm
 
 - name: Install Istio
-  homebrew:
+  ansible.builtin.package:
     name: istioctl
     state: present
+  when: istio

@@ -4,7 +4,7 @@
     state: present
 
 - name: Install Terraform
-  homebrew:
+  ansible.builtin.package:
     name: hashicorp/tap/terraform
     state: present
 
