@@ -1,7 +1,7 @@
 ### OS X ###
 .DS_Store
 
-## VS code
+## VS code ##
 .vscode
 
 ### IDEA ##
@@ -12,3 +12,13 @@
 .env
 .autoenv
 .autoenv.zsh
+
+### Terraform ##
+.terraform
+*.tfstate
+
+### Maven ##
+target
+
+### Gradle ##
+build
