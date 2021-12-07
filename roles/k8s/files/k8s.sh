@@ -12,4 +12,7 @@ alias kgd="kubectl get deployment"
 alias kga="kubectl get all"
 alias kgaa="kubectl get all --all-namespaces"
 alias kl="kubectl logs"
-alias kgno="kubectl get nodes"
+alias kgn="kubectl get nodes"
+
+# shellcheck source=/dev/null
+command -v kubectl &>/dev/null && source <(kubectl completion zsh)
