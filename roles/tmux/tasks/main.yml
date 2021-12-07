@@ -1,5 +1,7 @@
-- import_tasks: macos.yml
-  when: ansible_os_family == "Darwin"
+- name: Install tmux
+  ansible.builtin.package:
+    name: tmux
+    state: present
 
 - name: Symlink .tmux.conf
   file:
