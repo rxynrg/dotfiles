@@ -1,3 +1,4 @@
+# TODO: figure out what is going on
 #- name: Install fzf completion & key-bindings
 #  shell: $(brew --prefix)/opt/fzf/install --no-bash --no-update-rc --key-bindings --completion
 
@@ -26,16 +27,3 @@
     path: "{{ zsh_completion_home }}"
     state: directory
     mode: "0755"
-
-- name: Download docker completion
-  get_url:
-    url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
-    dest: "{{ zsh_completion_home }}/_docker"
-    mode: "0755"
-
-# TODO: uncomment if docker compose has no completion
-#- name: Download docker-compose completion
-#  get_url:
-#    url: https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose
-#    dest: "{{ zsh_completion_home }}/_docker-compose"
-#    mode: "0440"
