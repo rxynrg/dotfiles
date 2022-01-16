@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-set -Eeuo pipefail # https://www.reddit.com/r/commandline/comments/g1vsxk/comment/fniifmk/?utm_source=share&utm_medium=web2x&context=3
+
+# https://www.reddit.com/r/commandline/comments/g1vsxk/comment/fniifmk/?utm_source=share&utm_medium=web2x&context=3
+set -Eeuo pipefail
 
 # Fail fast with concise message when not using bash
 # Single brackets is needed here for POSIX compatibility
@@ -103,6 +105,7 @@ die() { log_error "${1-}"; exit 1; }
 
 parse_params() {
   # default values of variables set from params
+  defaults=false
   helm=false
   istio=false
   update_brew=false
@@ -111,6 +114,7 @@ parse_params() {
     case "${1-}" in
         --no-color) NO_COLOR=true ;;
         -h | --help) usage ;;
+        --defaults) defaults=true ;;
         --helm) helm=true ;;
         --istio) istio=true ;;
         --brew)
@@ -142,7 +146,7 @@ setup_homebrew() {
     fi
   else
     log_info "Installing Homebrew..."
-    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 }
 
@@ -161,12 +165,12 @@ run_ansible() {
   HOSTS="$ROOTDIR/hosts"
   PLAYBOOK="$ROOTDIR/dotfiles.yml"
 
-  printf -v EXTRA_VARS '{"helm": %s, "istio": %s}' $helm $istio
+  printf -v EXTRA_VARS '{"macos_defaults": %s, "helm": %s, "istio": %s}' $defaults $helm $istio
   # TODO: take as args otherwise use defaults
-  SKIPPED_TAGS="macos,packer"
+  SKIPPED_TAGS="packer,aws,docker,java,k8s,tf"
 
-  ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS"
-  #ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS" --ask-become-pass
+  #ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS"
+  ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS" --ask-become-pass
 }
 
 setup_colors

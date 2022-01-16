@@ -1,44 +1,51 @@
 #  Local home directory.
 dotfiles_user_home: "{{ '~' | expanduser }}"
+
 # Where dotfiles live.
-dotfiles_home: "{{ dotfiles_user_home }}/projects/dotfiles-ansible"
+dotfiles_home: "{{ playbook_dir }}"
+
 # Custom zsh plugin directory with aliases, etc.
 zsh_custom_plugin_home: "{{ dotfiles_user_home }}/.zsh_custom"
+
 # zsh directory with completions.
 zsh_completion_home: "{{ zsh_custom_plugin_home }}/completion"
 
+# zsh directory with plugins.
+zsh_plugin_home: "{{ zsh_custom_plugin_home }}/plugins"
+
 # Name used in commit messages
 full_name: sildvauresberg
+
 # GitHub username
 git_user: sildvauresberg
+
 # If you use GitHub, this should be the same as the email used on Github
 git_email: slickunit4265752@gmail.com
 
 # Utilities that do not get installed by a role
 mac_homebrew_packages:
   - bat
-  - coreutils
-  - direnv
+#  - direnv
 #  - dive
   - exa
   - fzf
-  - glances
+#  - glances
 #  - grpcurl
 #  - jq
 #  - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
-  - starship
 #  - websocat
 #  - wireshark
-  - youtube-dl
+#  - youtube-dl
 #  - yq
 
 # Mac Apps to be installed with homebrew-cask
 mac_cask_packages:
 #  - deepl
-  - intellij-idea
+#  - intellij-idea
 #  - postman
   - rectangle
-  - telegram
+#  - telegram
 #  - tor-browser
-  - vlc
-  - windscribe
+#  - vlc
+#  - windscribe
+

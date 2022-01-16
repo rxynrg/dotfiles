@@ -1,0 +1,34 @@
+[[ $- != *i* ]] && return
+
+fpath=({{ zsh_completion_home }} $fpath)
+
+export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:"
+export EXA_COLORS="uu=38;5;255:gu=38;5;255:ur=38;5;255:uw=38;5;255:ue=38;5;255:wx=38;5;255:gr=38;5;250:gw=38;5;250:gx=38;5;250:tr=38;5;255:tw=38;5;255:tx=38;5;255:da=38;5;250:sn=32:sb=0:di=38;5;105"
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' list-colors $LS_COLORS
+
+autoload -Uz compinit
+zmodload zsh/complist
+compinit -i
+_comp_options+=(globdots)
+
+for f in {{ zsh_custom_plugin_home }}/*; do source "$f"; done
+
+PLUGIN_HOME={{ zsh_plugin_home }}
+
+source $PLUGIN_HOME/z/z.sh
+source $PLUGIN_HOME/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source $PLUGIN_HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
+export FZF_DEFAULT_OPTS="
+  --bind 'ctrl-f:page-down,ctrl-b:page-up,ctrl-o:execute(code {})+abort'
+  --color fg:102,bg:233,hl:65,fg+:15,bg+:234,hl+:108
+  --color info:108,prompt:109,spinner:108,pointer:168,marker:168
+"
+test -f ~/.fzf.zsh && source ~/.fzf.zsh
+
+export STARSHIP_CONFIG=~/.starship.toml
+eval "$(starship init zsh)"
+

@@ -1,5 +1,15 @@
 - name: Set up local development environment
   hosts: local
+  pre_tasks:
+    - name: Create directory structure
+      ansible.builtin.file:
+        path: '{{ item }}'
+        state: directory
+        mode: '0755'
+      loop:
+        - '{{ zsh_custom_plugin_home }}'
+        - '{{ zsh_completion_home }}'
+        - '{{ zsh_plugin_home }}'
   roles:
     # Tag each role so that we can select individual roles to run with ansible-playbook --tags
     - {role: aws, tags: ['aws']}
@@ -9,7 +19,8 @@
     - {role: k8s, tags: ['k8s']}
     - {role: macos, tags: ['macos'], when: ansible_os_family == "Darwin"}
     - {role: packer, tags: ['packer']}
-    - {role: terraform, tags: ['terraform']}
+    - {role: terraform, tags: ['tf']}
     - {role: tmux, tags: ['tmux']}
     - {role: vim, tags: ['vim']}
     - {role: zsh, tags: ['zsh']}
+

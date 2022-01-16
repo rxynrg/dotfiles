@@ -1,15 +1,12 @@
-- name: Symlink editorconfig
-  file:
+- name: Copy editorconfig
+  copy:
     src: "{{ dotfiles_home }}/roles/git/files/editorconfig"
     dest: "{{ dotfiles_user_home }}/.editorconfig"
-    state: link
 
-- name: Symlink global gitignore
-  file:
+- name: Copy global gitignore
+  copy:
     src: "{{ dotfiles_home }}/roles/git/files/gitignore_global.link"
     dest: "{{ dotfiles_user_home }}/.gitignore_global"
-    state: link
-    force: yes
 
 - name: Make sure gitconfig is up to date
   template:

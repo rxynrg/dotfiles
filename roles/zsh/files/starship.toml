@@ -9,6 +9,3 @@ fish_style_pwd_dir_length = 3
 
 [kubernetes]
 disabled = false
-
-[java]
-symbol = "  "

@@ -1,6 +1,7 @@
 alias g="git"
 
-if test "$(which fzf)"; then
+
+if command -v fzf >/dev/null; then
   gli() {
     # param validation
     if [[ ! $(git log -n 1 "$@" | head -n 1) ]] ;then

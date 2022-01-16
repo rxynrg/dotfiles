@@ -9,18 +9,13 @@ fi
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
 
-# Ask for the administrator password upfront
-#sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until it has finished
-#while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
 
 # Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+sudo nvram SystemAudioVolume=%00
+# sudo nvram StartupMute=%01
 
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
@@ -44,9 +39,6 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# Do not display a notification when a new song starts in the Music app
-defaults write com.apple.Music "userWantsPlaybackNotifications" -bool "false"
-
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
@@ -55,8 +47,8 @@ defaults write com.apple.Music "userWantsPlaybackNotifications" -bool "false"
 #defaults write NSGlobalDomain KeyRepeat -int 1
 #defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
-# Show language menu in the top right corner of the boot screen
-sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
+# TODO: Show language menu in the top right corner of the boot screen
+# sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
 
 ###############################################################################
 # Energy saving                                                               #
@@ -164,12 +156,6 @@ defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 # Hide Safari’s bookmarks bar by default
 defaults write com.apple.Safari ShowFavoritesBar -bool false
 
-# Hide Safari’s sidebar in Top Sites
-defaults write com.apple.Safari ShowSidebarInTopSites -bool false
-
-# Enable Safari’s debug menu
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
 # Make Safari’s search banners default to Contains instead of Starts With
 defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
@@ -203,7 +189,7 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 
 # Block pop-up windows
 defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
+write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
 
 # Disable auto-playing video
 defaults write com.apple.Safari WebKitMediaPlaybackAllowsInline -bool false

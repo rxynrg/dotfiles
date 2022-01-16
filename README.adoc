@@ -9,6 +9,7 @@ v0.1, December 03, 2021
 * [x] Add AWS role
 * [x] Add Packer role
 * [x] Add Terraform role
+* [x] Add font configuration
 * [ ] Add role (homebrew casks: vagrant + virtualbox)
 * [ ] Add zsh-plugins auto update to .zshrc / .bootstrap.sh
 * [ ] Solve TODOs
@@ -21,7 +22,5 @@ v0.1, December 03, 2021
 
 === Test on various platforms
 * [ ] macos
-* [ ] ubuntu
-* [ ] debian
-* [ ] centos
 * [ ] arch
+

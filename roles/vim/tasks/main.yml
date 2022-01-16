@@ -1,5 +1,14 @@
-- name: Symlink vimrc
-  file:
+- name: Copy vim config
+  copy:
     src: "{{ dotfiles_home }}/roles/vim/files/vimrc"
     dest: "{{ dotfiles_user_home }}/.vimrc"
-    state: link
+
+- name: Download plugins
+  ansible.builtin.git:
+    repo: "{{ item.url }}"
+    dest: "{{ item.dir }}"
+    single_branch: yes
+    version: master
+  loop:
+    - { url: "https://github.com/preservim/nerdtree.git", dir: "~/.vim/pack/vendor/start/nerdtree" }
+

@@ -1,83 +1,82 @@
 [init]
-		defaultBranch = main
+	defaultBranch = main
 [hub]
-        protocol = https
+	protocol = https
 [user]
-        name = {{ full_name }}
-        email = {{ git_email }}
+	name = {{ full_name }}
+	email = {{ git_email }}
 {% if ansible_os_family == 'Darwin' %}
 [credential]
-        helper = osxkeychain
+	helper = osxkeychain
 {% endif %}
 [alias]
-        a = add
-        st = status
-        co = checkout
-        cob = checkout -b
-        cp = cherry-pick
-        cmt = commit
-        noff = merge --no-ff
-        log-pretty = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
-        graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
-        l = log --graph --decorate --oneline --abbrev-commit --all
-        precommit = diff --cached --diff-algorithm=minimal -w
-        plr = pull --rebase
-        amend = commit --amend
-        wip = !git add -A && git commit -m "WIP" --no-verify
-        br = branch
-        brs = branch -a
-        rn = branch -m
-        stashes = stash list
-        nevermind = !git reset --hard HEAD && git clean -d -f
-        delete-tag="!f() { git push --delete ${2-origin} ${1}; git tag -d ${1}; }; f"
-        up = !git pull --rebase --prune $@ && git submodule update --init --recursive
-        please = push --force-with-lease
+	a = add
+	st = status
+	co = checkout
+	cob = checkout -b
+	cp = cherry-pick
+	cmt = commit
+	noff = merge --no-ff
+	log-pretty = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
+	graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+	l = log --graph --decorate --oneline --abbrev-commit --all
+	precommit = diff --cached --diff-algorithm=minimal -w
+	plr = pull --rebase
+	amend = commit --amend
+	wip = !git add -A && git commit -m "WIP" --no-verify
+	br = branch
+	brs = branch -a
+	rn = branch -m
+	stashes = stash list
+	nevermind = !git reset --hard HEAD && git clean -d -f
+	delete-tag="!f() { git push --delete ${2-origin} ${1}; git tag -d ${1}; }; f"
+	up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+	please = push --force-with-lease
 
-        # publish current branch
-        publish = "!f() { git push -u ${1:-origin} $(git rev-parse --abbrev-ref HEAD); }; f"
+	# publish current branch
+	publish = "!f() { git push -u ${1:-origin} $(git rev-parse --abbrev-ref HEAD); }; f"
 
-        # Nukes a branch locally and on the origin remote.
-        nuke = "!f() { git branch -D $1 && git push origin :$1; }; f"
+	# Nukes a branch locally and on the origin remote.
+	nuke = "!f() { git branch -D $1 && git push origin :$1; }; f"
 
-        # Remove local branches that have been removed upstream
-        cleanup = "!git fetch --all -p && git branch -vv | grep \": gone]\" | awk '{ print $1 }' | xargs -n 1 git branch -D"
+	# Remove local branches that have been removed upstream
+	cleanup = "!git fetch --all -p && git branch -vv | grep \": gone]\" | awk '{ print $1 }' | xargs -n 1 git branch -D"
 
-        # Sync branches and cleanup local branches (depends on above alias)
-        sup = "!hub sync && git checkout $(git remote show origin | grep 'HEAD branch' | sed 's/.*: //') && git cleanup"
+	# Sync branches and cleanup local branches (depends on above alias)
+	sup = "!hub sync && git checkout $(git remote show origin | grep 'HEAD branch' | sed 's/.*: //') && git cleanup"
 
-        # http://gggritso.com/human-git-aliases
-        unstage = reset -q HEAD --
-        discard = checkout --
-        uncommit = reset --mixed HEAD~
+	# http://gggritso.com/human-git-aliases
+	unstage = reset -q HEAD --
+	discard = checkout --
+	uncommit = reset --mixed HEAD~
 
-        issues = !hub browse -- issues
-        url = "!f() { sha=$(git rev-parse ${1:-HEAD}); hub browse -u -- commit/$sha; }; f"
+	issues = !hub browse -- issues
+	url = "!f() { sha=$(git rev-parse ${1:-HEAD}); hub browse -u -- commit/$sha; }; f"
 
-        # Copy current branch name to clipboard (macOS only)
-        cb = "!git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
+	# Copy current branch name to clipboard (macOS only)
+	cb = "!git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
 
-        # Set up your branch to track a remote branch. Assumes you mean `origin/$branch-name`.
-        track = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); git branch $branch --set-upstream-to origin/$branch }; f"
+	# Set up your branch to track a remote branch. Assumes you mean `origin/$branch-name`.
+	track = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); git branch $branch --set-upstream-to origin/$branch }; f"
 [color]
-        diff = auto
-        status = auto
-        branch = auto
-        ui = true
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
 [core]
-        excludesfile = ~/.gitignore_global
-        attributesfile = ~/.gitattributes_global
-        editor = vim
+	excludesfile = ~/.gitignore_global
+	attributesfile = ~/.gitattributes_global
+	editor = vim
 [apply]
-        whitespace = nowarn
+	whitespace = nowarn
 [merge]
-		tool = vimdiff
-		conflictstyle = diff3
+	tool = vimdiff
+	conflictstyle = diff3
 [mergetool]
-        keepBackup = false
+	keepBackup = false
 [difftool]
-        prompt = false
+	prompt = false
 [pull]
-        rebase = true
+	rebase = true
 [github]
-        user = {{ git_user }}
-
+	user = {{ git_user }}
