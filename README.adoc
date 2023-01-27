@@ -54,4 +54,4 @@ Desc
 Desc
 
 == Legal
-Works on My Machine<sup>TM</sup>
+Works on My Machine^TM^
