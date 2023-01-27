@@ -1,51 +1,51 @@
-#  Local home directory.
-dotfiles_user_home: "{{ '~' | expanduser }}"
+# The path to the directory of the current playbook being executed (<PATH>/dotfiles-ansible)
+roles_parent_dir: "{{ playbook_dir }}"
 
-# Where dotfiles live.
-dotfiles_home: "{{ playbook_dir }}"
+user_home_dir: "{{ '~' | ansible.builtin.expanduser }}"
+config_home: "{{ user_home_dir }}/.config"
 
-# Custom zsh plugin directory with aliases, etc.
-zsh_custom_plugin_home: "{{ dotfiles_user_home }}/.zsh_custom"
+zsh_home: "{{ config_home }}/.zsh"
+zsh:
+  plugin_home: "{{ zsh_home }}/plugins"
+  alias_home: "{{ zsh_home }}/aliases"
+  completion_home: "{{ zsh_home }}/completions"
 
-# zsh directory with completions.
-zsh_completion_home: "{{ zsh_custom_plugin_home }}/completion"
+git:
+  name: sildvauresberg
+  email: slickunit4265752@gmail.com
 
-# zsh directory with plugins.
-zsh_plugin_home: "{{ zsh_custom_plugin_home }}/plugins"
-
-# Name used in commit messages
-full_name: sildvauresberg
-
-# GitHub username
-git_user: sildvauresberg
-
-# If you use GitHub, this should be the same as the email used on Github
-git_email: slickunit4265752@gmail.com
-
-# Utilities that do not get installed by a role
-mac_homebrew_packages:
-  - bat
-#  - direnv
-#  - dive
-  - exa
-  - fzf
-#  - glances
-#  - grpcurl
-#  - jq
-#  - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
-#  - websocat
-#  - wireshark
-#  - youtube-dl
-#  - yq
-
+mac:
+  homebrew:
+# Utilities that do not get installed by any role
+    formula:
+      - bat
+    #  - direnv
+    #  - dive
+      - exa
+    #  - ffmpeg
+      - fzf
+    #  - gh
+    #  - glances
+    #  - grpcurl
+    #  - jq
+    #  - lima (https://aws.amazon.com/blogs/opensource/introducing-finch-an-open-source-client-for-container-development)
+    #  - make
+    #  - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
+    #  - websocat
+    #  - wireshark
+    #  - yt-dlp
+    #  - yq
 # Mac Apps to be installed with homebrew-cask
-mac_cask_packages:
-#  - deepl
-#  - intellij-idea
-#  - postman
-  - rectangle
-#  - telegram
-#  - tor-browser
-#  - vlc
-#  - windscribe
-
+    cask:
+      - alacritty
+      - cloudflare-warp
+    #  - deepl
+      - jetbrains-toolbox
+    #  - macfuse
+    #  - postman
+      - rectangle
+    #  - telegram
+    #  - tor-browser
+    #  - vlc
+    #  - veracrypt
+    #  - visual-studio-code

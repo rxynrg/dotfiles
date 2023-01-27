@@ -1,6 +1,6 @@
 - name: Check if a `.fzf.zsh` file exists
   stat:
-    path: "{{ dotfiles_user_home }}/.fzf.zsh"
+    path: "{{ user_home_dir }}/.fzf.zsh"
   register: file_data
 
 - name: Generate fzf completion & key-bindings
@@ -9,15 +9,18 @@
 
 - name: Copy prompt config
   copy:
-    src: "{{ dotfiles_home }}/roles/zsh/files/starship.toml"
-    dest: "{{ '~/.starship.toml' | expanduser }}"
+    src: "{{ roles_parent_dir }}/roles/zsh/files/starship.toml"
+    dest: "{{ config_home }}/starship.toml"
 
-- name: Copy common aliases, functions, etc.
+- name: Copy aliases, functions, etc.
   copy:
-    src: "{{ item }}"
-    dest: "{{ zsh_custom_plugin_home }}"
-  with_fileglob:
-    - "{{ dotfiles_home }}/roles/zsh/files/zsh_custom/*"
+    src: "{{ roles_parent_dir }}/roles/zsh/files/utilities.sh"
+    dest: "{{ zsh.alias_home }}/utilities.sh"
+
+- name: Copy history config file
+  copy:
+    src: "{{ roles_parent_dir }}/roles/zsh/files/history.sh"
+    dest: "{{ zsh_home }}/history.sh"
 
 - name: Create .zshrc
   template:
@@ -27,17 +30,21 @@
 - name: Clone plugins
   ansible.builtin.git:
     repo: "https://github.com/{{ item.uri }}"
-    dest: "{{ zsh_plugin_home }}/{{ item.name }}"
+    dest: "{{ zsh.plugin_home }}/{{ item.name }}"
     single_branch: yes
     version: master
   loop:
     - { uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
     - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
-    - { uri: "rupa/z.git", name: "z"}
 
 - name: Install prompt
   ansible.builtin.package:
     name: starship
+    state: present
+
+- name: Install a smarter cd command, inspired by z and autojump
+  ansible.builtin.package:
+    name: zoxide
     state: present
 
 - name: Download fonts
@@ -46,7 +53,6 @@
     dest: ~/Library/Fonts
     mode: "644"
   loop:
-    - JetBrainsMono/NoLigatures/Bold/complete/JetBrains%20Mono%20NL%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
-    - JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Italic%20Nerd%20Font%20Complete%20Mono.ttf
-    - JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
-
+    - JetBrainsMono/NoLigatures/Bold/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Bold.ttf
+    - JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Italic.ttf
+    - JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Regular.ttf

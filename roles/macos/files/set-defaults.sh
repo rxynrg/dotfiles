@@ -47,23 +47,16 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 #defaults write NSGlobalDomain KeyRepeat -int 1
 #defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
-# TODO: Show language menu in the top right corner of the boot screen
-# sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
-
 ###############################################################################
 # Energy saving                                                               #
 ###############################################################################
 
-### TODO: Should work but throws an exception for now
-## Restart automatically if the computer freezes
-#sudo systemsetup -setrestartfreeze on
-#
 ## Sleep the display after 15 minutes
 #sudo pmset -a displaysleep 15
-#
+
 ## Disable machine sleep while charging
 #sudo pmset -c sleep 0
-#
+
 ## Set machine sleep to 15 minutes on battery
 #sudo pmset -b sleep 15
 

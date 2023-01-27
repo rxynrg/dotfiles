@@ -1,26 +1,57 @@
 = Dotfiles
-v0.1, December 03, 2021
+v0.2.0, February 01, 2023
 :toc:
-:icons: font
+
+== Prerequsites
+- bash version 4 or more
 
 == Roadmap
-* [x] Add Docker role
-* [x] Add K8S role
-* [x] Add AWS role
-* [x] Add Packer role
-* [x] Add Terraform role
-* [x] Add font configuration
-* [ ] Add role (homebrew casks: vagrant + virtualbox)
-* [ ] Add zsh-plugins auto update to .zshrc / .bootstrap.sh
-* [ ] Solve TODOs
-* [ ] Add roles documentation
-* [ ] Create role execution order
+* [ ] Add zsh-plugins auto update to `.zshrc` or `.bootstrap.sh`
+* [ ] Add SDKMAN! role
+* [ ] Actualize docs (bootstrap script usage)
+* [ ] Add 'dev_machine' role
+** [ ] general: make, jq,
+** [ ] jvm: sdk install mvnd, gradle, java, kotlin,
+* [ ] Add 'web_server' role (docker compose, certbot, nginx)
+* [ ] Create role execution order if needed (add dependency grapth between roles)
+* [ ] https://www.redhat.com/sysadmin/faster-ansible-playbook-execution
+* [ ] Add distribution matrix support
+* [ ] Add support to target remote environment
+* [ ] Add interactive mode like in JHipster for humans
+
+== Usage
+Works only on localhost, i.e. it means that repository should be cloned to target machine to be used
+
+[source,console]
+$ ./bootstrap.sh
 
 == Roles
+=== docker
+Desc
 
-== TODO
+=== git
+Desc
 
-=== Test on various platforms
-* [ ] macos
-* [ ] arch
+=== k8s
+Desc
 
+=== macos
+Desc
+
+=== packer
+Desc
+
+=== terraform
+Desc
+
+=== tmux
+Desc
+
+=== vim
+Desc
+
+=== zsh
+Desc
+
+== Legal
+Works on My Machine<sup>TM</sup>

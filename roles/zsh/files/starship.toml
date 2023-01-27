@@ -1,11 +1,13 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 [character]
 success_symbol = '[\$](bold green)'
 error_symbol = '[\$](bold red)'
+
+[cmd_duration]
+show_milliseconds = true
 
 [directory]
 truncate_to_repo = false
 fish_style_pwd_dir_length = 3
 # truncate_symbol = '.../'
-
-[kubernetes]
-disabled = false

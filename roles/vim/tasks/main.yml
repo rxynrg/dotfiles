@@ -1,14 +1,4 @@
 - name: Copy vim config
   copy:
-    src: "{{ dotfiles_home }}/roles/vim/files/vimrc"
-    dest: "{{ dotfiles_user_home }}/.vimrc"
-
-- name: Download plugins
-  ansible.builtin.git:
-    repo: "{{ item.url }}"
-    dest: "{{ item.dir }}"
-    single_branch: yes
-    version: master
-  loop:
-    - { url: "https://github.com/preservim/nerdtree.git", dir: "~/.vim/pack/vendor/start/nerdtree" }
-
+    src: "{{ roles_parent_dir }}/roles/vim/files/vimrc"
+    dest: "{{ user_home_dir }}/.vimrc"

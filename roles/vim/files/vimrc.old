@@ -1,7 +1,9 @@
+" Stops odd issues
+set nocompatible
+
 " Sets how many lines of history VIM has to remember
 set history=10
 
-" Disable swap file
 set noswapfile
 
 " Set to auto read when a file is changed from the outside
@@ -10,9 +12,10 @@ au FocusGained,BufEnter * checktime
 
 syntax on
 
-" Turn on the Wild menu
+" Turn on command line completion (:<something> + <Tab>)
 set wildmenu
 
+set visualbell
 set number
 set hlsearch
 set encoding=utf-8
@@ -27,16 +30,12 @@ set incsearch
 set autoindent
 set smartindent
 set fileformat=unix
+" Autoset UTF-8 file encoding when opening a file
 set fencs=utf-8
 set relativenumber
-set colorcolumn=100
-
-augroup vimrc_autocmds
-au!
-    autocmd BufRead * highlight ColorColumn ctermbg=Gray
-    autocmd BufRead * highlight OverLength ctermbg=Red ctermfg=White guibg=#592929
-    autocmd BufRead * match OverLength /\%101v.*/
-augroup END
 
 autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
+
+" Autodelete .netrwhist because it is so annoying and seems useless
+au VimLeave * if filereadable("[path here]/.netrwhist")|call delete("[path here]/.netrwhist")|endif

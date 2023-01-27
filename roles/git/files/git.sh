@@ -1,20 +1,17 @@
 alias g="git"
 
-
 if command -v fzf >/dev/null; then
   gli() {
     # param validation
     if [[ ! $(git log -n 1 "$@" | head -n 1) ]] ;then
       return
     fi
-
     # filter by file string
     local filter
     # param existed, git log for file if existed
     if [ -n "$*" ] && [ -f "$*" ]; then
       filter="-- $*"
     fi
-
     # git command
     local gitlog=(
       git log
@@ -23,7 +20,6 @@ if command -v fzf >/dev/null; then
       --format='%C(auto)%h%d %an %C(blue)%s %C(yellow)%C(bold)%cr'
       "$@"
     )
-
     # fzf command
     local fzf=(
       fzf
@@ -36,7 +32,6 @@ if command -v fzf >/dev/null; then
                   FZF-EOF"
      --preview-window=right:60%
     )
-
     # piping them
     "${gitlog[@]}" | "${fzf[@]}"
   }

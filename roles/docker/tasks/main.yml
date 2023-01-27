@@ -5,18 +5,11 @@
 
 - name: Copy docker aliases into zsh_custom directory
   copy:
-    src: "{{ dotfiles_home }}/roles/docker/files/docker.sh"
-    dest: "{{ zsh_custom_plugin_home }}/docker.sh"
+    src: "{{ roles_parent_dir }}/roles/docker/files/docker.sh"
+    dest: "{{ zsh.alias_home }}/docker.sh"
 
 - name: Download docker completion
   get_url:
     url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
-    dest: "{{ zsh_completion_home }}/_docker"
+    dest: "{{ zsh.completion_home }}/_docker"
     mode: "0755"
-
-# TODO: uncomment if docker compose has no completion
-#- name: Download docker-compose completion
-#  get_url:
-#    url: https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose
-#    dest: "{{ zsh_completion_home }}/_docker-compose"
-#    mode: "0440"

@@ -16,10 +16,10 @@
   when: profiles.results | selectattr('value', '==', 'Snazzy') | list | length == 0
   block:
     - name: Allow unverified app
-      ansible.builtin.command: xattr -dr com.apple.quarantine {{ dotfiles_home}}/roles/macos/files/Snazzy.terminal
+      ansible.builtin.command: xattr -dr com.apple.quarantine {{ roles_parent_dir}}/roles/macos/files/Snazzy.terminal
       register: xattr_result
     - name: Open theme via Terminal.app
-      ansible.builtin.command: open {{ dotfiles_home }}/roles/macos/files/Snazzy.terminal
+      ansible.builtin.command: open {{ roles_parent_dir }}/roles/macos/files/Snazzy.terminal
     - name: Override Default & Startup theme
       community.general.osx_defaults:
         domain: com.apple.Terminal
@@ -35,12 +35,12 @@
 
 - name: Install mac-specific homebrew packages
   ansible.builtin.package:
-    name: "{{ mac_homebrew_packages }}"
+    name: "{{ mac.homebrew.formula }}"
     state: present
 
 - name: Install Mac apps with homebrew cask
   homebrew_cask:
     name: "{{ item }}"
     state: present
-  loop: "{{ mac_cask_packages | flatten(levels=1) }}"
+  loop: "{{ mac.homebrew.cask | flatten(levels=1) }}"
 

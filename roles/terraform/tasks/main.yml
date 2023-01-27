@@ -10,5 +10,5 @@
 
 - name: Copy Terraform aliases into zsh_custom directory
   copy:
-    src: "{{ dotfiles_home }}/roles/terraform/files/terraform.sh"
-    dest: "{{ zsh_custom_plugin_home }}/terraform.sh"
+    src: "{{ roles_parent_dir }}/roles/terraform/files/terraform.sh"
+    dest: "{{ zsh.alias_home }}/terraform.sh"

@@ -1,3 +1,5 @@
+# https://editorconfig.org
+
 root = true
 
 [*]
@@ -6,20 +8,30 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 indent_style = space
+indent_size = 4
 
 [{*.bat,*.cmd}]
 end_of_line = crlf
+indent_style = tab
 
+# Makefiles always use tabs for indentation
 [Makefile]
 indent_style = tab
+
+[*.json]
+indent_size = 2
+insert_final_newline = ignore
 
 [*.yml]
 indent_size = 2
 
+[*.py]
+max_line_length = 80
+indent_size = 2
+
 [*.java]
 indent_size = 2
-tab_width = 2
-max_line_length = 100
+max_line_length = 80
 ij_any_spaces_around_additive_operators = true
 ij_any_spaces_around_assignment_operators = true
 ij_any_spaces_around_bitwise_operators = true

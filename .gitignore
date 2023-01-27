@@ -1,2 +1,28 @@
-.idea
+# OS X
 .DS_Store
+
+# VSCode
+.vscode
+bin
+
+# Fleet
+.fleet
+
+# IntelliJ IDEA
+.idea
+*.iml
+
+# autoenv
+.env
+.autoenv
+.autoenv.zsh
+
+# Terraform
+.terraform
+*.tfstate
+
+# Maven
+target
+
+# Gradle
+build

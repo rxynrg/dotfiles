@@ -5,5 +5,5 @@
 
 - name: Copy tmux config 
   copy:
-    src: "{{ dotfiles_home }}/roles/tmux/files/tmux.conf"
-    dest: "{{ dotfiles_user_home }}/.tmux.conf"
+    src: "{{ roles_parent_dir }}/roles/tmux/files/tmux.conf"
+    dest: "{{ user_home_dir }}/.tmux.conf"

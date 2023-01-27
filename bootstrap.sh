@@ -6,22 +6,37 @@ set -Eeuo pipefail
 # Fail fast with concise message when not using bash
 # Single brackets is needed here for POSIX compatibility
 # shellcheck disable=SC2292
-if [ -z "${BASH_VERSION:-}" ]; then echo "Error: Bash is required to run." >&2; exit 1; fi
+if [ -z "${BASH_VERSION:-}" ]; then
+  echo "Error: Bash is required to run." >&2
+  exit 1
+elif [ "${BASH_VERSION::1}" -lt 4 ]; then
+  # https://stackoverflow.com/questions/1494178/how-to-define-hash-tables-in-bash
+  echo "Error: Please update Bash to version 4 or higher, then try again." >&2
+  exit 1
+fi
 
-set +o posix # as we are using bash now
+# As we are using bash now
+set +o posix
+
+DEBUG_ENABLED=false
 
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [-f] -p param_value arg1 [arg2...]
+usage: ./$(basename "${BASH_SOURCE[0]}") [-h | --help] [-macos[=defaults]]
+                      [-git] [-docker] [-k8s[=helm,istio]] [-macos] [-packer]
+                      [-terraform] [-tmux] [-vim] [-zsh] [--debug]
 
-Script description here.
+This script will install or update brew, install ansible if not installed,
+and then run the playbook, which will set up the system so it is ready to go.
 
 Available options:
 
+--debug         Enable debug output
 -h, --help      Print this help and exit
--v, --verbose   Print script debug info
--f, --flag      Some flag description
--p, --param     Some param description
+-defaults       Configure MacOS system defaults
+-macos          Configure MacOS
+-docker         Install docker
+-packer         Install packer
 EOF
   exit
 }
@@ -96,7 +111,7 @@ log() {
   shift
   printf "$(date '+%Y/%m/%d %H:%M:%S') ($$) ($level): %s\n" "${1-}" >&2
 }
-log_debug() { log "${fg_blue}DEBUG${ta_none}" "$@"; }
+log_debug() { [[ $DEBUG_ENABLED == "true" ]] && log "${fg_blue}DEBUG${ta_none}" "$@" || return 0; }
 log_info() { log "INFO" "$@"; }
 log_warning() { log "${fg_yellow}WARNING${ta_none}" "$@"; }
 log_error() { log "${fg_red}ERROR${ta_none}" "$@"; }
@@ -104,22 +119,17 @@ log_error() { log "${fg_red}ERROR${ta_none}" "$@"; }
 die() { log_error "${1-}"; exit 1; }
 
 parse_params() {
-  # default values of variables set from params
-  defaults=false
-  helm=false
-  istio=false
-  update_brew=false
-  upgrade_brew=false
+  # https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
   while [[ $# -gt 0 ]]; do
     case "${1-}" in
         --no-color) NO_COLOR=true ;;
+        --debug) DEBUG_ENABLED=true ;;
         -h | --help) usage ;;
-        --defaults) defaults=true ;;
-        --helm) helm=true ;;
-        --istio) istio=true ;;
-        --brew)
-          update_brew=true
-          upgrade_brew=true
+        -macos | -docker | -packer) roles["${1:1}"]=true ;;
+        -k8s*)
+          rolename=${1:1:3}
+          option_length=5
+          handle_extras $rolename $option_length $1
           ;;
         -*) die "Unknown option ${ta_uscore}$1${ta_none}" ;;
         *) die "Unknown command ${ta_uscore}$1${ta_none}" ;;
@@ -129,24 +139,37 @@ parse_params() {
   return 0
 }
 
+# DESC: Enable role and set extra variables
+# ARGS: $1 (required): Rolename
+#       $2 (required): Option Length
+#       $3 (required): Whole option value (--<rolename>*)
+# OUTS: None
+handle_extras() {
+  user_defined_extras=($(echo ${3:$2} | tr ',' ' '))
+  for extra in ${user_defined_extras[@]}; do
+    if [[ " ${available_extras[$rolename]} " =~ " ${extra} " ]]; then
+      REQUIRED_EXTRAS+="\"$extra\":true,"
+    elif [[ ! " ${available_extras[$rolename]} " =~ " ${extra} " ]]; then
+      die "Unknown extra [$extra] for [$rolename] option. Available list of extras: [${available_extras["k8s"]}]"
+    fi
+  done
+  roles[$rolename]=true
+  return 0
+}
+
 # Script logic
 ##############
 setup_homebrew() {
   if hash brew 2>/dev/null; then
     log_info "Homebrew already installed"
-    if [[ $update_brew == true ]]; then
-      log_info "Updating Homebrew..."
-      # Make sure we are using the latest Homebrew
-      brew update >/dev/null && log_info "Brew updated"
-    fi
-    if [[ $upgrade_brew == true ]]; then
-      log_info "Upgrading Homebrew..."
-      # Upgrade any already-installed formulae
-      brew upgrade >/dev/null && log_info "Brew upgraded"
-    fi
+    # Make sure we are using the latest Homebrew
+    log_info "Updating Homebrew..." && brew update >/dev/null && log_info "Brew updated"
+    # Upgrade any already-installed formulae
+    log_info "Upgrading Homebrew..." && brew upgrade >/dev/null && log_info "Brew upgraded"
   else
     log_info "Installing Homebrew..."
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    log_info "Homebrew installed"
   fi
 }
 
@@ -164,19 +187,42 @@ run_ansible() {
   ROOTDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
   HOSTS="$ROOTDIR/hosts"
   PLAYBOOK="$ROOTDIR/dotfiles.yml"
-
-  printf -v EXTRA_VARS '{"macos_defaults": %s, "helm": %s, "istio": %s}' $defaults $helm $istio
-  # TODO: take as args otherwise use defaults
-  SKIPPED_TAGS="packer,aws,docker,java,k8s,tf"
-
-  #ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS"
-  ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS" --ask-become-pass
+  SKIPPED_TAGS=""
+  for role in ${!roles[@]}; do
+    if [[ "${roles[$role]}" == "false" ]]; then
+      SKIPPED_TAGS+="$role,"
+    fi
+  done
+  # Remove the trailing comma
+  [[ "${#REQUIRED_EXTRAS}" -eq 0 ]] && REQUIRED_EXTRAS="" || REQUIRED_EXTRAS="${REQUIRED_EXTRAS::-1}"
+  SKIPPED_TAGS="${SKIPPED_TAGS::-1}"
+  printf -v EXTRA_VARS '{%s}' $REQUIRED_EXTRAS
+  log_debug "EXTRA_VARS: $EXTRA_VARS"
+  log_debug "SKIPPED_TAGS: $SKIPPED_TAGS"
+  ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS" #--ask-become-pass
 }
 
+# All roles are disabled by default
+declare -A roles=(
+  ["docker"]=false
+  ["git"]=false
+  ["k8s"]=false
+  ["macos"]=false
+  ["packer"]=false
+  ["terraform"]=false
+  ["tmux"]=false
+  ["vim"]=false
+  ["zsh"]=false
+)
+declare -A available_extras=(
+  ["k8s"]="istio helm"
+  ["macos"]="defaults"
+)
+REQUIRED_EXTRAS=""
 setup_colors
 parse_params "$@"
-setup_homebrew
-setup_ansible
+#setup_homebrew
+#setup_ansible
 run_ansible
 
 ######################################################

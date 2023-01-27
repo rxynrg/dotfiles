@@ -1,14 +1,12 @@
 [init]
 	defaultBranch = main
-[hub]
-	protocol = https
-[user]
-	name = {{ full_name }}
-	email = {{ git_email }}
-{% if ansible_os_family == 'Darwin' %}
 [credential]
-	helper = osxkeychain
-{% endif %}
+  helper = osxkeychain
+[github]
+  user = sildvauresberg
+[user]
+	name = {{ git.name }}
+	email = {{ git.email }}
 [alias]
 	a = add
 	st = status
@@ -18,7 +16,6 @@
 	cmt = commit
 	noff = merge --no-ff
 	log-pretty = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
-	graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
 	l = log --graph --decorate --oneline --abbrev-commit --all
 	precommit = diff --cached --diff-algorithm=minimal -w
 	plr = pull --rebase
@@ -42,16 +39,12 @@
 	# Remove local branches that have been removed upstream
 	cleanup = "!git fetch --all -p && git branch -vv | grep \": gone]\" | awk '{ print $1 }' | xargs -n 1 git branch -D"
 
-	# Sync branches and cleanup local branches (depends on above alias)
-	sup = "!hub sync && git checkout $(git remote show origin | grep 'HEAD branch' | sed 's/.*: //') && git cleanup"
+  clear = "git branch | grep -v 'main' | xargs git branch -D"
 
 	# http://gggritso.com/human-git-aliases
 	unstage = reset -q HEAD --
 	discard = checkout --
 	uncommit = reset --mixed HEAD~
-
-	issues = !hub browse -- issues
-	url = "!f() { sha=$(git rev-parse ${1:-HEAD}); hub browse -u -- commit/$sha; }; f"
 
 	# Copy current branch name to clipboard (macOS only)
 	cb = "!git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
@@ -59,24 +52,36 @@
 	# Set up your branch to track a remote branch. Assumes you mean `origin/$branch-name`.
 	track = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); git branch $branch --set-upstream-to origin/$branch }; f"
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	ui = true
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
 [core]
-	excludesfile = ~/.gitignore_global
-	attributesfile = ~/.gitattributes_global
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
 	editor = vim
-[apply]
-	whitespace = nowarn
+  pager = less
 [merge]
 	tool = vimdiff
-	conflictstyle = diff3
+	conflictstyle = merge
 [mergetool]
 	keepBackup = false
 [difftool]
 	prompt = false
+[branch]
+  autoSetupRebase = always
 [pull]
 	rebase = true
-[github]
-	user = {{ git_user }}
+[push]
+  default = upstream
+  autoSetupRemote = true
+[rebase]
+  autosquash = true
+[pager]
+  status = true
+[help]
+  autocorrect = 1
+[advice]
+  statusHints = false

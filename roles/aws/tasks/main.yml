@@ -1,4 +1,0 @@
-- name: Install AWS CLI
-  ansible.builtin.package:
-    name: awscli
-    state: present
