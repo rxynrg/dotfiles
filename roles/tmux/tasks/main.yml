@@ -3,7 +3,12 @@
     name: tmux
     state: present
 
+- name: Ensure tmux dir exists
+  file:
+    path: "{{ config_home }}/tmux"
+    state: directory
+
 - name: Copy tmux config 
   copy:
     src: "{{ roles_parent_dir }}/roles/tmux/files/tmux.conf"
-    dest: "{{ user_home_dir }}/.tmux.conf"
+    dest: "{{ config_home }}/tmux/tmux.conf"

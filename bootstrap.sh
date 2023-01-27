@@ -125,7 +125,12 @@ parse_params() {
         --no-color) NO_COLOR=true ;;
         --debug) DEBUG_ENABLED=true ;;
         -h | --help) usage ;;
-        -macos | -docker | -packer) roles["${1:1}"]=true ;;
+        -docker | -git | -packer | -terraform | -tmux | -vim | -zsh) roles["${1:1}"]=true ;;
+        -macos*)
+          rolename=${1:1:5}
+          option_length=7
+          handle_extras $rolename $option_length $1
+          ;;
         -k8s*)
           rolename=${1:1:3}
           option_length=5
@@ -157,8 +162,6 @@ handle_extras() {
   return 0
 }
 
-# Script logic
-##############
 setup_homebrew() {
   if hash brew 2>/dev/null; then
     log_info "Homebrew already installed"

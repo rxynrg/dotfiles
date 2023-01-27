@@ -8,7 +8,7 @@
     name: hashicorp/tap/terraform
     state: present
 
-- name: Copy Terraform aliases into zsh_custom directory
+- name: Copy Terraform aliases into zsh alias directory
   copy:
     src: "{{ roles_parent_dir }}/roles/terraform/files/terraform.sh"
     dest: "{{ zsh.alias_home }}/terraform.sh"

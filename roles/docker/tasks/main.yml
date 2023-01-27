@@ -3,7 +3,7 @@
     name: docker
     state: present
 
-- name: Copy docker aliases into zsh_custom directory
+- name: Copy docker aliases into zsh alias directory
   copy:
     src: "{{ roles_parent_dir }}/roles/docker/files/docker.sh"
     dest: "{{ zsh.alias_home }}/docker.sh"

@@ -1,4 +1,4 @@
-- name: Copy k8s aliases into zsh_custom directory
+- name: Copy k8s aliases into zsh alias directory
   copy:
     src: "{{ roles_parent_dir }}/roles/k8s/files/k8s.sh"
     dest: "{{ zsh.alias_home }}/k8s.sh"

@@ -6,6 +6,9 @@ v0.2.0, February 01, 2023
 - bash version 4 or more
 
 == Roadmap
+* [ ] Make sure zsh role works perfectly
+* [ ] Make sure git role works perfectly
+* [ ] Make sure macos role works perfectly
 * [ ] Add zsh-plugins auto update to `.zshrc` or `.bootstrap.sh`
 * [ ] Add SDKMAN! role
 * [ ] Actualize docs (bootstrap script usage)

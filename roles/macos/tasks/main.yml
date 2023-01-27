@@ -1,7 +1,7 @@
 - name: Set MacOS defaults
   ansible.builtin.script: set-defaults.sh
   become: yes
-  when: macos_defaults
+  when: defaults
 
 - name: Check if Terminal.app theme is Snazzy
   community.general.osx_defaults:
@@ -33,14 +33,13 @@
       ansible.builtin.debug:
         var: xattr_result
 
-- name: Install mac-specific homebrew packages
+- name: Install packages with homebrew formula
   ansible.builtin.package:
     name: "{{ mac.homebrew.formula }}"
     state: present
 
-- name: Install Mac apps with homebrew cask
+- name: Install applications with homebrew cask
   homebrew_cask:
     name: "{{ item }}"
     state: present
   loop: "{{ mac.homebrew.cask | flatten(levels=1) }}"
-

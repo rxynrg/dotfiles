@@ -7,10 +7,10 @@
         state: directory
         mode: "0755"
       loop:
-        - zsh_home
-        - zsh.plugin_home
-        - zsh.alias_home
-        - zsh.completion_home
+        - "{{ zsh_home }}"
+        - "{{ zsh.plugin_home }}"
+        - "{{ zsh.alias_home }}"
+        - "{{ zsh.completion_home }}"
   roles:
     # Tag each role so that we can select individual roles to run with ansible-playbook --tags
     - {role: docker, tags: ["docker"]}

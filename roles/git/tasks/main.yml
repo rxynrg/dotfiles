@@ -13,7 +13,7 @@
     src: "gitconfig.j2"
     dest: "{{ user_home_dir }}/.gitconfig"
 
-- name: Copy git aliases into zsh_custom directory
+- name: Copy git aliases into zsh alias directory
   copy:
     src: "{{ roles_parent_dir }}/roles/git/files/git.sh"
     dest: "{{ zsh.alias_home }}/git.sh"
