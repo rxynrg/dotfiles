@@ -2,7 +2,7 @@
 v0.2.0, February 01, 2023
 :toc:
 
-== Prerequsites
+== Prerequisites
 - bash version 4 or more
 
 == Roadmap
