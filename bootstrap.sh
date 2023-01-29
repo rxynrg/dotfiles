@@ -174,9 +174,9 @@ setup_homebrew() {
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     log_info "Homebrew installed"
     if [[ $(uname) == "Linux" ]]; then
-      profile_path="/home/$(id -u -n)/.profile"
-      echo '# Set PATH, MANPATH, etc., for Homebrew.' >> $profile_path
-      echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $profile_path
+      config_file_path="/home/$(id -u -n)/.bashrc"
+      echo '# Set PATH, MANPATH, etc., for Homebrew' >> $config_file_path
+      echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $config_file_path
       eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
   fi

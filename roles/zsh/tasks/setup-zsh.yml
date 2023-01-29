@@ -1,0 +1,9 @@
+- name: Install zsh
+  community.general.homebrew:
+    name: zsh
+    state: present
+
+- name: Make zsh default shell for current user
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: /home/linuxbrew/.linuxbrew/bin/zsh
