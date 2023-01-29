@@ -1,4 +1,4 @@
-- name: Check if a `.fzf.zsh` file exists
+- name: Check if a `~/.fzf.zsh` file exists
   stat:
     path: "{{ user_home_dir }}/.fzf.zsh"
   register: file_data
@@ -47,7 +47,7 @@
     name: zoxide
     state: present
 
-- name: Download fonts
+- name: Download JetBrainsMono NL fonts
   ansible.builtin.get_url:
     url: "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/{{ item }}"
     dest: ~/Library/Fonts
@@ -56,3 +56,4 @@
     - JetBrainsMono/NoLigatures/Bold/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Bold.ttf
     - JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Italic.ttf
     - JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Regular.ttf
+  when: ansible_os_family == "Darwin"

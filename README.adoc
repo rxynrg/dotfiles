@@ -6,11 +6,11 @@ v0.2.0, February 01, 2023
 - bash version 4 or more
 
 == Roadmap
-* [ ] Make sure zsh role works perfectly
-* [ ] Make sure git role works perfectly
+* [ ] Make sure zsh role works on Linux
+* [ ] Make sure git role works on Linux
 * [ ] Make sure macos role works perfectly
-* [ ] Add zsh-plugins auto update to `.zshrc` or `.bootstrap.sh`
 * [ ] Add SDKMAN! role
+* [ ] Add plugins auto update to `~/.zshrc` or as a part of zsh role (preferable)
 * [ ] Actualize docs (bootstrap script usage)
 * [ ] Add 'dev_machine' role
 ** [ ] general: make, jq,
@@ -21,6 +21,7 @@ v0.2.0, February 01, 2023
 * [ ] Add distribution matrix support
 * [ ] Add support to target remote environment
 * [ ] Add interactive mode like in JHipster for humans
+* [ ] https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46
 
 == Usage
 Works only on localhost, i.e. it means that repository should be cloned to target machine to be used
