@@ -224,8 +224,8 @@ declare -A available_extras=(
 REQUIRED_EXTRAS=""
 setup_colors
 parse_params "$@"
-#setup_homebrew
-#setup_ansible
+setup_homebrew
+setup_ansible
 run_ansible
 
 ######################################################
