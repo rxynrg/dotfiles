@@ -208,7 +208,7 @@ run_ansible() {
   printf -v EXTRA_VARS '{%s}' $REQUIRED_EXTRAS
   log_debug "EXTRA_VARS: $EXTRA_VARS"
   log_debug "SKIPPED_TAGS: $SKIPPED_TAGS"
-  ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS" #--ask-become-pass
+  ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS" --ask-become-pass
 }
 
 # All roles are disabled by default
