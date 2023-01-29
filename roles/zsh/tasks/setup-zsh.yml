@@ -7,3 +7,4 @@
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     shell: /home/linuxbrew/.linuxbrew/bin/zsh
+  become: yes
