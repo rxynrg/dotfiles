@@ -5,35 +5,35 @@
 - name: Configure fzf
   ansible.builtin.import_tasks: fzf.yml
 
-#- name: Copy prompt config
-#  copy:
-#    src: "{{ roles_parent_dir }}/roles/zsh/files/starship.toml"
-#    dest: "{{ config_home }}/starship.toml"
-#
-#- name: Copy aliases, functions, etc.
-#  copy:
-#    src: "{{ roles_parent_dir }}/roles/zsh/files/utilities.sh"
-#    dest: "{{ zsh.alias_home }}/utilities.sh"
-#
-#- name: Copy history config file
-#  copy:
-#    src: "{{ roles_parent_dir }}/roles/zsh/files/history.sh"
-#    dest: "{{ zsh_home }}/history.sh"
-#
-#- name: Create .zshrc
-#  template:
-#    src: "zshrc.j2"
-#    dest: "{{ '~/.zshrc' | expanduser }}"
-#
-#- name: Clone plugins
-#  ansible.builtin.git:
-#    repo: "https://github.com/{{ item.uri }}"
-#    dest: "{{ zsh.plugin_home }}/{{ item.name }}"
-#    single_branch: yes
-#    version: master
-#  loop:
-#    - { uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
-#    - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
+- name: Copy prompt config
+  copy:
+    src: "{{ roles_parent_dir }}/roles/zsh/files/starship.toml"
+    dest: "{{ config_home }}/starship.toml"
+
+- name: Copy aliases, functions, etc.
+  copy:
+    src: "{{ roles_parent_dir }}/roles/zsh/files/utilities.sh"
+    dest: "{{ zsh.alias_home }}/utilities.sh"
+
+- name: Copy history config file
+  copy:
+    src: "{{ roles_parent_dir }}/roles/zsh/files/history.sh"
+    dest: "{{ zsh_home }}/history.sh"
+
+- name: Create .zshrc
+  template:
+    src: "zshrc.j2"
+    dest: "{{ '~/.zshrc' | expanduser }}"
+
+- name: Clone plugins
+  ansible.builtin.git:
+    repo: "https://github.com/{{ item.uri }}"
+    dest: "{{ zsh.plugin_home }}/{{ item.name }}"
+    single_branch: yes
+    version: master
+  loop:
+    - { uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
+    - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
 
 - name: Configure prompt
   community.general.homebrew:
@@ -45,13 +45,13 @@
     name: zoxide
     state: present
 
-#- name: Download JetBrainsMono NL fonts
-#  ansible.builtin.get_url:
-#    url: "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/{{ item }}"
-#    dest: ~/Library/Fonts
-#    mode: "644"
-#  loop:
-#    - JetBrainsMono/NoLigatures/Bold/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Bold.ttf
-#    - JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Italic.ttf
-#    - JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Regular.ttf
-#  when: ansible_os_family == "Darwin"
+- name: Download JetBrainsMono NL fonts
+  ansible.builtin.get_url:
+    url: "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/{{ item }}"
+    dest: ~/Library/Fonts
+    mode: "644"
+  loop:
+    - JetBrainsMono/NoLigatures/Bold/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Bold.ttf
+    - JetBrainsMono/NoLigatures/Italic/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Italic.ttf
+    - JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Nerd%20Font%20Complete%20Mono%20Regular.ttf
+  when: ansible_os_family == "Darwin"
