@@ -34,17 +34,17 @@
 #  loop:
 #    - { uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
 #    - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
-#
-#- name: Install prompt
-#  community.general.homebrew:
-#    name: starship
-#    state: present
-#
-#- name: Install a smarter cd command, inspired by z and autojump
-#  community.general.homebrew:
-#    name: zoxide
-#    state: present
-#
+
+- name: Configure prompt
+  community.general.homebrew:
+    name: starship
+    state: present
+
+- name: Configure a smarter cd command, inspired by z and autojump
+  community.general.homebrew:
+    name: zoxide
+    state: present
+
 #- name: Download JetBrainsMono NL fonts
 #  ansible.builtin.get_url:
 #    url: "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/{{ item }}"

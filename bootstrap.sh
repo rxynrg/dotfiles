@@ -184,6 +184,7 @@ setup_homebrew() {
         echo '# Set PATH, MANPATH, etc., for Homebrew' >> $config_file_path
         echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $config_file_path
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        log_info "Restart terminal or source $config_file_path in order to use brew command"
       fi
     elif [[ $is_brew_installable == "n" ]]; then
       die "Homebrew is required, confirm installation or install manually."

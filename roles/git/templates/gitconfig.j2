@@ -1,7 +1,10 @@
 [init]
   defaultBranch = main
+{% if ansible_os_family == "Darwin" %}
 [credential]
   helper = osxkeychain
+{% else %}
+{% endif %}
 [github]
   user = sildvauresberg
 [user]
