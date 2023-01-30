@@ -1,0 +1,13 @@
+- name: Make sure fzf is present
+  community.general.homebrew:
+    name: fzf
+    state: present
+
+- name: Check if fzf completion & key-bindings exists
+  stat:
+    path: "{{ user_home_dir }}/.fzf.zsh"
+  register: file_data
+
+- name: Generate fzf completion & key-bindings if not exists
+  shell: $(brew --prefix)/opt/fzf/install --no-bash --no-update-rc --key-bindings --completion
+  when: not file_data.stat.exists

@@ -23,7 +23,6 @@ mac:
     #  - dive
       - exa
     #  - ffmpeg
-      - fzf
     #  - gh
     #  - glances
     #  - grpcurl

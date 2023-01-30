@@ -30,7 +30,7 @@ if command -v fzf >/dev/null; then
                   xargs -I % sh -c 'git show --color=always % $filter | less -R') << 'FZF-EOF'
                   {}
                   FZF-EOF"
-     --preview-window=right:60%
+      --preview-window=right:60%
     )
     # piping them
     "${gitlog[@]}" | "${fzf[@]}"

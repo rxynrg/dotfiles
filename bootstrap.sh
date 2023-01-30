@@ -170,14 +170,23 @@ setup_homebrew() {
     # Upgrade any already-installed formulae
     log_info "Upgrading Homebrew..." && brew upgrade >/dev/null && log_info "Brew upgraded"
   else
-    log_info "Installing Homebrew..."
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    log_info "Homebrew installed"
-    if [[ $(uname) == "Linux" ]]; then
-      config_file_path="/home/$(id -u -n)/.bashrc"
-      echo '# Set PATH, MANPATH, etc., for Homebrew' >> $config_file_path
-      echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $config_file_path
-      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    is_brew_installable=""
+    until [[ $is_brew_installable == "y" || $is_brew_installable == "n" ]]
+    do
+      read -p "Failed to detect homebrew on the system. Would you like to install? [y/n] " is_brew_installable
+    done
+    if [[ $is_brew_installable == "y" ]]; then
+      log_info "Installing Homebrew..."
+      bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      log_info "Homebrew installed"
+      if [[ $(uname) == "Linux" ]]; then
+        config_file_path="/home/$(id -u -n)/.bashrc"
+        echo '# Set PATH, MANPATH, etc., for Homebrew' >> $config_file_path
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $config_file_path
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      fi
+    elif [[ $is_brew_installable == "n" ]]; then
+      die "Homebrew is required, confirm installation or install manually."
     fi
   fi
 }
