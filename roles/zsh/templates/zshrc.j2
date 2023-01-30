@@ -35,6 +35,9 @@ export FZF_DEFAULT_OPTS="
 "
 test -f ~/.fzf.zsh && source ~/.fzf.zsh
 
+{% if ansible_os_family == "Linux" %}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{% endif %}
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
