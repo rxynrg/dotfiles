@@ -1,6 +1,6 @@
-#- name: Setup ZSH on Linux
-#  ansible.builtin.import_tasks: setup-zsh.yml
-#  when: ansible_system == "Linux" # ansible_os_family == "Debian" and ansible_distribution == "Ubuntu"
+- name: Setup ZSH on Linux
+  ansible.builtin.import_tasks: setup-zsh.yml
+  when: ansible_system == "Linux" # ansible_os_family == "Debian" and ansible_distribution == "Ubuntu"
 
 - name: Configure fzf
   ansible.builtin.import_tasks: fzf.yml
