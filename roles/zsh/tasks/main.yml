@@ -33,7 +33,9 @@
     version: master
   loop:
     - { uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
-    - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
+#    - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
+    - { uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
+
 
 - name: Configure prompt
   community.general.homebrew:

@@ -8,7 +8,6 @@ zsh_home: "{{ config_home }}/.zsh"
 zsh:
   plugin_home: "{{ zsh_home }}/plugins"
   alias_home: "{{ zsh_home }}/aliases"
-  completion_home: "{{ zsh_home }}/completions"
 
 git:
   name: sildvauresberg
@@ -27,11 +26,11 @@ mac:
     #  - glances
     #  - grpcurl
     #  - jq
+#      - jless
     #  - lima (https://aws.amazon.com/blogs/opensource/introducing-finch-an-open-source-client-for-container-development)
     #  - make
     #  - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
     #  - websocat
-    #  - wireshark
     #  - yt-dlp
     #  - yq
 # Mac Apps to be installed with homebrew-cask
@@ -48,3 +47,4 @@ mac:
     #  - vlc
     #  - veracrypt
     #  - visual-studio-code
+#      - wireshark
