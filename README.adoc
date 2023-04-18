@@ -49,9 +49,6 @@ Desc
 === packer
 Desc
 
-=== terraform
-Desc
-
 === tmux
 Desc
 

@@ -36,13 +36,12 @@
 #    - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
     - { uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
 
-
-- name: Configure prompt
+- name: Install prompt
   community.general.homebrew:
     name: starship
     state: present
 
-- name: Configure a smarter cd command, inspired by z and autojump
+- name: Install a smarter cd command, inspired by z and autojump
   community.general.homebrew:
     name: zoxide
     state: present

@@ -26,25 +26,21 @@ mac:
     #  - glances
     #  - grpcurl
     #  - jq
-#      - jless
-    #  - lima (https://aws.amazon.com/blogs/opensource/introducing-finch-an-open-source-client-for-container-development)
+    #  - jless
     #  - make
     #  - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
     #  - websocat
     #  - yt-dlp
-    #  - yq
 # Mac Apps to be installed with homebrew-cask
     cask:
       - alacritty
       - cloudflare-warp
-    #  - deepl
       - jetbrains-toolbox
     #  - macfuse
-    #  - postman
       - rectangle
     #  - telegram
     #  - tor-browser
     #  - vlc
     #  - veracrypt
     #  - visual-studio-code
-#      - wireshark
+    #  - wireshark

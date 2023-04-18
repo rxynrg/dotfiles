@@ -24,7 +24,7 @@ usage() {
   cat <<EOF
 usage: ./$(basename "${BASH_SOURCE[0]}") [-h | --help] [-macos[=defaults]]
                       [-git] [-docker] [-k8s[=helm,istio]] [-macos] [-packer]
-                      [-terraform] [-tmux] [-vim] [-zsh] [--debug]
+                      [-tmux] [-vim] [-zsh] [--debug]
 
 This script will install or update brew, install ansible if not installed,
 and then run the playbook, which will set up the system so it is ready to go.
@@ -125,7 +125,7 @@ parse_params() {
         --no-color) NO_COLOR=true ;;
         --debug) DEBUG_ENABLED=true ;;
         -h | --help) usage ;;
-        -docker | -git | -packer | -terraform | -tmux | -vim | -zsh) roles["${1:1}"]=true ;;
+        -docker | -git | -packer | -tmux | -vim | -zsh) roles["${1:1}"]=true ;;
         -macos*)
           rolename=${1:1:5}
           option_length=7
@@ -228,7 +228,6 @@ declare -A roles=(
   ["k8s"]=false
   ["macos"]=false
   ["packer"]=false
-  ["terraform"]=false
   ["tmux"]=false
   ["vim"]=false
   ["zsh"]=false

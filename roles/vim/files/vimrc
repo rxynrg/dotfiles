@@ -31,14 +31,5 @@ set smartindent
 set fileformat=unix
 set fencs=utf-8
 set relativenumber
-set colorcolumn=100
-
-augroup vimrc_autocmds
-au!
-    autocmd BufRead * highlight ColorColumn ctermbg=Gray
-    autocmd BufRead * highlight OverLength ctermbg=Red ctermfg=White guibg=#592929
-    autocmd BufRead * match OverLength /\%101v.*/
-augroup END
 
 autocmd FileType make setlocal noexpandtab
-autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby

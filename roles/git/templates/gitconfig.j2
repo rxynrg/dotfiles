@@ -1,12 +1,12 @@
 [init]
-  defaultBranch = main
+	defaultBranch = main
 {% if ansible_system == "Darwin" %}
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
 {% else %}
 {% endif %}
 [github]
-  user = sildvauresberg
+	user = sildvauresberg
 [user]
 	name = {{ git.name }}
 	email = {{ git.email }}
@@ -42,7 +42,7 @@
 	# Remove local branches that have been removed upstream
 	cleanup = "!git fetch --all -p && git branch -vv | grep \": gone]\" | awk '{ print $1 }' | xargs -n 1 git branch -D"
 
-  clear = "git branch | grep -v 'main' | xargs git branch -D"
+	clear = "git branch | grep -v 'main' | xargs git branch -D"
 
 	# http://gggritso.com/human-git-aliases
 	unstage = reset -q HEAD --
@@ -65,7 +65,7 @@
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 	editor = vim
-  pager = less
+	pager = less
 [merge]
 	tool = vimdiff
 	conflictstyle = merge
@@ -74,17 +74,17 @@
 [difftool]
 	prompt = false
 [branch]
-  autoSetupRebase = always
+	autoSetupRebase = always
 [pull]
 	rebase = true
 [push]
-  default = upstream
-  autoSetupRemote = true
+	default = upstream
+	autoSetupRemote = true
 [rebase]
-  autosquash = true
+	autosquash = true
 [pager]
-  status = true
+	status = true
 [help]
-  autocorrect = 1
+	autocorrect = 1
 [advice]
-  statusHints = false
+	statusHints = false

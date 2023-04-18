@@ -34,7 +34,7 @@
         var: xattr_result
 
 - name: Install packages with homebrew formula
-  ansible.builtin.package:
+  community.general.homebrew:
     name: "{{ mac.homebrew.formula }}"
     state: present
 

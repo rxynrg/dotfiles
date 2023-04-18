@@ -1,12 +1,12 @@
 [[ $- != *i* ]] && return
 
 # https://wiki.archlinux.org/title/XDG_Base_Directory
-XDG_DATA_HOME=$HOME/.local/share
-XDG_CONFIG_HOME={{ config_home }}
-XDG_STATE_HOME=$HOME/.local/state
-XDG_DATA_DIRS=/usr/local/share/:/usr/share
-XDG_CONFIG_DIRS=/etc/xdg
-XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME={{ config_home }}
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_DATA_DIRS=/usr/local/share/:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
+export XDG_CACHE_HOME=$HOME/.cache
 
 export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:"
 export EXA_COLORS="uu=38;5;255:gu=38;5;255:ur=38;5;255:uw=38;5;255:ue=38;5;255:wx=38;5;255:gr=38;5;250:gw=38;5;250:gx=38;5;250:tr=38;5;255:tw=38;5;255:tx=38;5;255:da=38;5;250:sn=32:sb=0:di=38;5;105"
@@ -21,7 +21,7 @@ autoload -Uz colors && colors
 # Configure zsh compsys to show hidden files
 _comp_options+=(globdots)
 
-for f in $(find {{ zsh_home }} -maxdepth 2 -type f -name "*.sh"); do source "$f"; done
+for f in $(find "{{ zsh_home }}" -maxdepth 2 -type f -name "*.sh"); do source "$f"; done
 
 PLUGIN_HOME={{ zsh.plugin_home }}
 for plugin in $(find $PLUGIN_HOME -mindepth 1 -maxdepth 1 -type d);
