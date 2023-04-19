@@ -1,6 +1,6 @@
 - name: Set MacOS defaults
   ansible.builtin.script: set-defaults.sh
-  become: yes
+  become: true
   when: defaults
 
 - name: Check if Terminal.app theme is Snazzy
