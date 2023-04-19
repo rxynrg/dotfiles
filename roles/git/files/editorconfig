@@ -22,7 +22,7 @@ indent_style = tab
 indent_size = 2
 insert_final_newline = ignore
 
-[*.yml]
+[{*.yml,*.yaml}]
 indent_size = 2
 
 [*.py]
