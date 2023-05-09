@@ -38,13 +38,13 @@ $ ./bootstrap.sh
 === docker
 Desc
 
+=== frontend
+Desc
+
 === git
 Desc
 
 === k8s
-Desc
-
-=== macos
 Desc
 
 === packer

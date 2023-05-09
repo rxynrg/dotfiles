@@ -1,0 +1,17 @@
+- name: Ensure alacritty directory exists
+  ansible.builtin.file:
+    path: "{{ alacritty_config_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Clone themes repository
+  ansible.builtin.git:
+    repo: "https://github.com/alacritty/alacritty-theme"
+    dest: "{{ alacritty_config_dir }}/themes"
+    single_branch: yes
+    version: master
+
+- name: Copy config to user home
+  copy:
+    src: "{{ roles_parent_dir }}/roles/frontend/files/alacritty.yml"
+    dest: "{{ alacritty_config_dir }}/alacritty.yml"

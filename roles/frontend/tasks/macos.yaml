@@ -1,0 +1,15 @@
+- name: Set MacOS defaults
+  ansible.builtin.script: macos/set-defaults.sh
+  become: true
+  when: defaults
+
+- name: Install packages with homebrew formula
+  community.general.homebrew:
+    name: "{{ mac.homebrew.formula }}"
+    state: present
+
+- name: Install applications with homebrew cask
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ mac.homebrew.cask | flatten(levels=1) }}"

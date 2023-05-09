@@ -6,10 +6,9 @@ function mkcd () {
 
 if command -v exa >/dev/null; then
   alias ls="exa --icons --git"
-  alias la="ls --all"
-  alias ll="ls --long"
-  alias lla="ll --all"
-  alias tree="ls --tree"
+  alias ll="exa --icons --git --long"
+  alias la="exa --icons --git --long --all"
+  alias lt="exa --icons --git --tree"
 fi
 
 function whereami () {

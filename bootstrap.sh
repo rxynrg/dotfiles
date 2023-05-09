@@ -22,8 +22,8 @@ DEBUG_ENABLED=false
 
 usage() {
   cat <<EOF
-usage: ./$(basename "${BASH_SOURCE[0]}") [-h | --help] [-macos[=defaults]]
-                      [-git] [-docker] [-k8s[=helm,istio]] [-macos] [-packer]
+usage: ./$(basename "${BASH_SOURCE[0]}") [-h | --help] [-frontend[=defaults]]
+                      [-git] [-docker] [-k8s[=helm,istio]] [-packer]
                       [-tmux] [-vim] [-zsh] [--debug]
 
 This script will install or update brew, install ansible if not installed,
@@ -33,8 +33,8 @@ Available options:
 
 --debug         Enable debug output
 -h, --help      Print this help and exit
--defaults       Configure MacOS system defaults
--macos          Configure MacOS
+-defaults       Configure host system with defaults
+-frontend       Configure host system
 -docker         Install docker
 -packer         Install packer
 EOF
@@ -126,9 +126,9 @@ parse_params() {
         --debug) DEBUG_ENABLED=true ;;
         -h | --help) usage ;;
         -docker | -git | -packer | -tmux | -vim | -zsh) roles["${1:1}"]=true ;;
-        -macos*)
-          rolename=${1:1:5}
-          option_length=7
+        -frontend*)
+          rolename=${1:1:8}
+          option_length=10
           handle_extras $rolename $option_length $1
           ;;
         -k8s*)
@@ -218,7 +218,7 @@ run_ansible() {
   printf -v EXTRA_VARS '{%s}' $REQUIRED_EXTRAS
   log_debug "EXTRA_VARS: $EXTRA_VARS"
   log_debug "SKIPPED_TAGS: $SKIPPED_TAGS"
-  ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS" --ask-become-pass
+  ansible-playbook -i "$HOSTS" "$PLAYBOOK" --extra-vars "$EXTRA_VARS" --skip-tags "$SKIPPED_TAGS" # --ask-become-pass
 }
 
 # All roles are disabled by default
@@ -226,7 +226,7 @@ declare -A roles=(
   ["docker"]=false
   ["git"]=false
   ["k8s"]=false
-  ["macos"]=false
+  ["frontend"]=false
   ["packer"]=false
   ["tmux"]=false
   ["vim"]=false
@@ -234,7 +234,7 @@ declare -A roles=(
 )
 declare -A available_extras=(
   ["k8s"]="istio helm"
-  ["macos"]="defaults"
+  ["frontend"]="defaults"
 )
 REQUIRED_EXTRAS=""
 setup_colors

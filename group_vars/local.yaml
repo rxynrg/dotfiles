@@ -10,7 +10,7 @@ zsh:
   alias_home: "{{ zsh_home }}/aliases"
 
 git:
-  name: sildvauresberg
+  name: Kirill Osintsev
   email: slickunit4265752@gmail.com
 
 mac:
