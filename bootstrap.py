@@ -1,44 +1,23 @@
+#!/usr/bin/env python3
+
 import click as cli
 import subprocess
+import platform
+import pathlib
+import getpass
 import sys
 
 
-@cli.command()
-@cli.option("--update", is_flag=True, show_default=True, default=False,
-            help="Update homebrew")
-@cli.option("--upgrade", is_flag=True, show_default=True, default=False,
+@cli.group()
+def ansible() -> None:
+    pass
+
+
+@ansible.command()
+@cli.option("--brew-upgrade", is_flag=True, show_default=True, default=False,
             help="Upgrade homebrew")
-def setup_homebrew(update: bool, upgrade: bool) -> None:
-    if subprocess.run(["hash", "brew", "2>/dev/null"]).returncode == 0:
-        cli.echo("Homebrew already installed")
-        if update:
-            cli.echo("Updating Homebrew")
-            if subprocess.run(["brew", "update"]).returncode == 0:
-                cli.echo("Homebrew updated")
-        if upgrade:
-            cli.echo("Upgrading Homebrew")
-            if subprocess.run(["brew", "upgrade"]).returncode == 0:
-                cli.echo("Homebrew upgraded")
-    else:
-        if cli.confirm(
-            "Failed to detect homebrew on the system. Would you like to install?"):
-            cli.echo("Installing Homebrew...")
-            # bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            cli.echo("Homebrew installed")
-            # if [[ $(uname) == "Linux" ]]; then
-            #     config_file_path="/home/$(id -u -n)/.bashrc"
-            #     echo '# Set PATH, MANPATH, etc., for Homebrew' >> $config_file_path
-            #     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $config_file_path
-            #     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            #     log_info "Restart terminal or source $config_file_path in order to use brew command"
-            # fi
-        else:
-            cli.secho(
-                "Homebrew is required, confirm installation or install manually.",
-                fg="red")
-
-
-@cli.command()
+@cli.option("--brew-update", is_flag=True, show_default=True, default=False,
+            help="Update homebrew")
 @cli.option("--dry-run", is_flag=True, show_default=True, default=False,
             help="List roles that will be executed")
 @cli.option("--only",
@@ -46,10 +25,78 @@ def setup_homebrew(update: bool, upgrade: bool) -> None:
 @cli.option("-s", "--skip", multiple=True,
             help="Remove the role from the execution. "
                  "Ignores invalid role names.")
-def run_ansible(only: str, skip: tuple, dry_run: bool) -> None:
+def play(brew_upgrade: bool,
+         brew_update: bool,
+         only: str,
+         skip: tuple,
+         dry_run: bool) -> None:
+    install_ansible(brew_upgrade, brew_update)
+    run_playbook(only, skip, dry_run)
+
+
+def install_ansible(brew_upgrade: bool, brew_update: bool) -> None:
+    if is_command_available("ansible"):
+        cli.echo("Ansible already installed")
+    elif cli.confirm("Failed to detect ansible on the system. Would you like to install?"):
+        if is_command_available("brew"):
+            if brew_upgrade:
+                cli.echo("Upgrading Homebrew")
+                if subprocess.run(["brew", "upgrade"]).returncode == 0:
+                    cli.echo("Homebrew upgraded")
+            if brew_update:
+                cli.echo("Updating Homebrew")
+                if subprocess.run(["brew", "update"]).returncode == 0:
+                    cli.echo("Homebrew updated")
+            subprocess.run(["brew", "install", "ansible", ">/dev/null"])
+            cli.echo("Ansible installed")
+        elif ask_brew_install():
+            install_ansible(brew_upgrade, brew_update)
+        else:
+            sys.exit(1)
+
+
+def is_command_available(command: str) -> bool:
+    return subprocess.run(["hash", command, "2>/dev/null"]).returncode == 0
+
+
+def ask_brew_install() -> bool:
+    if cli.confirm(
+        "Failed to detect homebrew on the system. Would you like to install?"):
+        cli.echo("Installing Homebrew...")
+        try:
+            subprocess.run("bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"", shell=True)
+            cli.echo("Homebrew installed")
+            if platform.system() == "Linux":
+                config_file_path = f"/home/{getpass.getuser()}/.bashrc"
+                subprocess.run(f"echo '# Set PATH, MANPATH, etc., for Homebrew' >> {config_file_path}", shell=True)
+                subprocess.run(f'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" >> {config_file_path}', shell=True)
+                subprocess.run("eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"")
+                cli.echo(f"Restart terminal or source {config_file_path} in order to use brew command")
+        except KeyboardInterrupt:
+            return False
+        return True
+    else:
+        cli.secho(
+            "Homebrew is required, confirm installation or install manually.",
+            fg="red")
+        return False
+
+
+def run_playbook(only: str, skip: tuple, dry_run: bool) -> None:
+    root_dir = pathlib.Path(__file__).parent.resolve()
+    hosts = root_dir / "hosts"
+    playbook = root_dir / "dotfiles.yaml"
     roles_to_execute = build_roles_to_execute(only, skip)
     if dry_run:
         cli.echo(f"Roles to be executed: {roles_to_execute}")
+    else:
+        cmd = [
+            "ansible-playbook",
+            "-i", hosts,
+            playbook,
+            "--tags", ','.join(roles_to_execute)
+        ]
+        subprocess.run(cmd)
 
 
 def build_roles_to_execute(only: str | None, skip: tuple) -> list[str]:
@@ -67,6 +114,7 @@ def build_roles_to_execute(only: str | None, skip: tuple) -> list[str]:
         return [r for r in roles if r not in skip]
 
 
+app = cli.CommandCollection(sources=[ansible])
+
 if __name__ == "__main__":
-    setup_homebrew()
-    # run_ansible()
+    app()
