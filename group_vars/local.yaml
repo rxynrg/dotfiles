@@ -4,15 +4,6 @@ roles_parent_dir: "{{ playbook_dir }}"
 user_home_dir: "{{ '~' | ansible.builtin.expanduser }}"
 config_home: "{{ user_home_dir }}/.config"
 
-zsh_home: "{{ config_home }}/.zsh"
-zsh:
-  plugin_home: "{{ zsh_home }}/plugins"
-  alias_home: "{{ zsh_home }}/aliases"
-
-git:
-  name: Kirill Osintsev
-  email: slickunit4265752@gmail.com
-
 mac:
   homebrew:
 # Utilities that do not get installed by any role
@@ -25,6 +16,7 @@ mac:
     #  - gh
     #  - glances
     #  - grpcurl
+      - helix
     #  - jq
     #  - jless
     #  - make

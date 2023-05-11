@@ -1,6 +1,6 @@
 - name: Copy editorconfig
   copy:
-    src: "{{ roles_parent_dir }}.editorconfig"
+    src: "{{ roles_parent_dir }}/.editorconfig"
     dest: "{{ user_home_dir }}/.editorconfig"
 
 - name: Copy global gitignore

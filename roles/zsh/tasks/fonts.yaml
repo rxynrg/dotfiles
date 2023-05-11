@@ -1,0 +1,23 @@
+- name: Download JetBrainsMono NL font
+  ansible.builtin.get_url:
+    url: "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/{{ item }}/JetBrainsMonoNLNerdFontMono-{{ item }}.ttf"
+    dest: ~/Library/Fonts
+    mode: "644"
+  loop:
+    - Bold
+    - BoldItalic
+    - ExtraBold
+    - ExtraBoldItalic
+    - ExtraLight
+    - ExtraLightItalic
+    - Italic
+    - Light
+    - LightItalic
+    - Medium
+    - MediumItalic
+    - Regular
+    - SemiBold
+    - SemiBoldItalic
+    - Thin
+    - ThinItalic
+  when: ansible_os_family == "Darwin"

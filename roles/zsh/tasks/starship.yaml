@@ -1,0 +1,9 @@
+- name: Install prompt
+  community.general.homebrew:
+    name: starship
+    state: present
+
+- name: Copy prompt config
+  copy:
+    src: "{{ roles_parent_dir }}/roles/zsh/files/starship.toml"
+    dest: "{{ config_home }}/starship.toml"

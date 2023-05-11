@@ -4,10 +4,10 @@ import:
 window:
   dynamic_title: true
   dynamic_padding: true
+  option_as_alt: OnlyLeft
   padding:
     x: 3
     y: 3
-  option_as_alt: OnlyLeft
 font:
   size: 13.0
   normal:

@@ -5,10 +5,15 @@
 - name: Configure fzf
   ansible.builtin.import_tasks: fzf.yaml
 
-- name: Copy prompt config
-  copy:
-    src: "{{ roles_parent_dir }}/roles/zsh/files/starship.toml"
-    dest: "{{ config_home }}/starship.toml"
+- name: Create directory structure
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ zsh_home }}"
+    - "{{ zsh.plugin_home }}"
+    - "{{ zsh.alias_home }}"
 
 - name: Copy aliases, functions, etc.
   copy:
@@ -36,36 +41,13 @@
 #    - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
     - { uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
 
-- name: Install prompt
-  community.general.homebrew:
-    name: starship
-    state: present
+- name: Configure prompt
+  ansible.builtin.import_tasks: starship.yaml
 
 - name: Install a smarter cd command, inspired by z and autojump
   community.general.homebrew:
     name: zoxide
     state: present
 
-- name: Download JetBrainsMono NL font
-  ansible.builtin.get_url:
-    url: "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/{{ item }}/JetBrainsMonoNLNerdFontMono-{{ item }}.ttf"
-    dest: ~/Library/Fonts
-    mode: "644"
-  loop:
-    - Bold
-    - BoldItalic
-    - ExtraBold
-    - ExtraBoldItalic
-    - ExtraLight
-    - ExtraLightItalic
-    - Italic
-    - Light
-    - LightItalic
-    - Medium
-    - MediumItalic
-    - Regular
-    - SemiBold
-    - SemiBoldItalic
-    - Thin
-    - ThinItalic
-  when: ansible_os_family == "Darwin"
+- name: Configure fonts
+  ansible.builtin.import_tasks: fonts.yaml

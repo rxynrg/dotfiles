@@ -12,23 +12,5 @@
       - docker-compose
     state: present
 
-- name: Ensure a CLI plugins directory exists
-  file:
-    path: "{{ user_home_dir }}/.docker/cli-plugins"
-    state: directory
-
-- name: Find out a homebrew prefix
-  ansible.builtin.command: brew --prefix
-  register: brew_prefix
-
-- name: Create a symbolic link
-  ansible.builtin.file:
-    src: "{{ brew_prefix }}/opt/docker-compose/bin/docker-compose"
-    dest: "{{ user_home_dir }}/.docker/cli-plugins/docker-compose"
-    state: link
-    force: true
-
-- name: Copy docker aliases into zsh alias directory
-  copy:
-    src: "{{ roles_parent_dir }}/roles/docker/files/docker.sh"
-    dest: "{{ zsh.alias_home }}/docker.sh"
+- name: Enable docker CLI compose plugin
+  ansible.builtin.import_tasks: compose.yaml
