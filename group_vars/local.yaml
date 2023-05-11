@@ -3,36 +3,3 @@ roles_parent_dir: "{{ playbook_dir }}"
 
 user_home_dir: "{{ '~' | ansible.builtin.expanduser }}"
 config_home: "{{ user_home_dir }}/.config"
-
-mac:
-  homebrew:
-# Utilities that do not get installed by any role
-    formula:
-      - bat
-    #  - direnv
-    #  - dive
-      - exa
-    #  - ffmpeg
-    #  - gh
-    #  - glances
-    #  - grpcurl
-      - helix
-    #  - jq
-    #  - jless
-    #  - make
-    #  - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
-    #  - websocat
-    #  - yt-dlp
-# Mac Apps to be installed with homebrew-cask
-    cask:
-      - alacritty
-      - cloudflare-warp
-      - jetbrains-toolbox
-    #  - macfuse
-      - rectangle
-    #  - telegram
-    #  - tor-browser
-    #  - vlc
-    #  - veracrypt
-    #  - visual-studio-code
-    #  - wireshark

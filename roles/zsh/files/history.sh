@@ -1,5 +1,5 @@
 # History settings
-export HISTFILE="$XDG_DATA_HOME/.zsh_history"
+export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=5000
 export SAVEHIST=5000
 export HISTCONTROL=ignoredups

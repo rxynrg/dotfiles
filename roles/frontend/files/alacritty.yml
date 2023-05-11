@@ -1,6 +1,6 @@
 import:
-#  - ~/.config/alacritty/themes/themes/solarized_light.yaml
-  - ~/.config/alacritty/themes/themes/solarized_dark.yaml
+  - ~/.config/alacritty/themes/themes/solarized_light.yaml
+#  - ~/.config/alacritty/themes/themes/solarized_dark.yaml
 window:
   dynamic_title: true
   dynamic_padding: true
