@@ -1,63 +1,30 @@
 = Dotfiles
-v0.2.0, February 01, 2023
+v0.3.0, May 11, 2023
 :toc:
 
-== Prerequisites
-- bash version 4 or more
-
 == Roadmap
+* [ ] https://actuated.dev/blog/kvm-in-github-actions
 * [ ] Make sure zsh role works on Linux
-* [ ] Make sure git role works on Linux
-* [ ] Make sure macos role works perfectly
 * [ ] Add plugins auto update to `~/.zshrc` or as a part of zsh role (preferable)
-* [ ] Actualize docs (bootstrap script usage)
 * [ ] Add 'remote_machine' role (configure UFW)
 * [ ] Add 'dev_machine' role
 ** [ ] SDKMAN! / snap
 ** [ ] general: make, jq,
-** [ ] jvm: sdk install mvnd, gradle, java, kotlin,
+** [ ] jvm: sdk install mvnd, gradle, java
 * [ ] Add 'web_server' role (docker compose, certbot, nginx)
-* [ ] Create role execution order if needed (add dependency grapth between roles)
-* [ ] https://actuated.dev/blog/kvm-in-github-actions
 
 # https://docs.brew.sh/FAQ#why-does-homebrew-say-sudo-is-bad
 * [ ] Forbid running as root (`adduser <username>` && `usermod -aG sudo <username>` && `deluser -r <username>`)
 * [ ] https://www.redhat.com/sysadmin/faster-ansible-playbook-execution
-* [ ] Add distribution matrix support
 * [ ] Add support to target remote environment
-* [ ] Add interactive mode like in JHipster for humans
-* [ ] https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46
+* [ ] Add interactive mode like in JHipster for humans (w/o flags/options, choose brew upgrade/update, ansible install, roles to run)
 
 == Usage
 Works only on localhost, i.e. it means that repository should be cloned to target machine to be used
 
 [source,console]
-$ ./bootstrap.sh
-
-== Roles
-=== docker
-Desc
-
-=== frontend
-Desc
-
-=== git
-Desc
-
-=== k8s
-Desc
-
-=== packer
-Desc
-
-=== tmux
-Desc
-
-=== vim
-Desc
-
-=== zsh
-Desc
+$ make install
+$ make help
 
 == Legal
 Works on My Machine^TM^
