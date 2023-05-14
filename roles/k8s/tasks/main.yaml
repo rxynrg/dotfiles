@@ -1,16 +1,9 @@
+- name: Install Kubernetes CLI
+  community.general.homebrew:
+    name: kubernetes-cli
+    state: present
+
 - name: Copy k8s aliases into zsh alias directory
   copy:
     src: "{{ roles_parent_dir }}/roles/k8s/files/k8s.sh"
     dest: "{{ zsh.alias_home }}/k8s.sh"
-
-- name: Install Helm
-  community.general.homebrew:
-    name: helm
-    state: present
-  when: helm
-
-- name: Install Istio
-  community.general.homebrew:
-    name: istioctl
-    state: present
-  when: istio

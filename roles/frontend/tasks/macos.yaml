@@ -1,4 +1,4 @@
 - name: Set MacOS defaults
   ansible.builtin.script: macos/set-defaults.sh
   become: true
-  when: defaults
+  when: set_macos_defaults

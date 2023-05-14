@@ -1,9 +1,9 @@
-- name: Setup Alacritty terminal
-  ansible.builtin.import_tasks: alacritty.yaml
-
 - name: Setup MacOS
   ansible.builtin.import_tasks: macos.yaml
   when: ansible_os_family == "Darwin"
 
 - name: Install additional software
   ansible.builtin.import_tasks: software.yaml
+
+- name: Configure Alacritty terminal
+  ansible.builtin.import_tasks: alacritty.yaml

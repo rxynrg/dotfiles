@@ -1,14 +1,21 @@
----
 - name: Set up local development environment
   hosts: local
   become: false
   roles:
     # Tag each role so that we can select individual roles to run with ansible-playbook --tags
     - {role: docker, tags: ["docker"]}
+    - {role: firewall, tags: ["firewall"]}
     - {role: frontend, tags: ["frontend"]}
     - {role: git, tags: ["git"]}
+    - {role: jvm, tags: ["jvm"]}
     - {role: k8s, tags: ["k8s"]}
     - {role: packer, tags: ["packer"]}
+    - {role: remote_dev_machine, tags: ["remote_dev_machine"]}
     - {role: tmux, tags: ["tmux"]}
     - {role: vim, tags: ["vim"]}
+    - {role: web_server, tags: ["web_server"]}
     - {role: zsh, tags: ["zsh"]}
+  post_tasks:
+    - name: Print all available facts
+      ansible.builtin.debug:
+        var: ansible_facts

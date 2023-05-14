@@ -1,0 +1,34 @@
+- name: Install Snapcraft
+  community.general.homebrew:
+    name: snapd
+    state: present
+  when: ansible_system == "Linux"
+
+- name: Install, configure & enable Uncomplicated Firewall
+  block:
+    - name: UFW::Install
+      community.general.snap:
+        name: ufw
+        state: present
+    - name: UFW::Configure default rules
+      community.general.ufw:
+        default: "{{ item.default }}"
+        direction: "{{ item.direction }}"
+      loop:
+        - { default: 'deny', direction: 'incoming' }
+        - { default: 'allow', direction: 'outgoing' }
+    - name: UFW::Allow ssh connection initiation
+      community.general.ufw:
+        rule: allow
+        port: ssh
+        proto: tcp
+    - name: UFW::Allow all access to TCP port 8080
+      community.general.ufw:
+        rule: allow
+        port: 8080
+        proto: tcp
+  always:
+    - name: UFW::Enable
+      community.general.ufw:
+        state: enabled
+  when: ansible_system == "Linux"

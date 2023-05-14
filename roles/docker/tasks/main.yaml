@@ -1,15 +1,15 @@
-# TODO: should be optional
+# TODO: Should be optional
 - name: Install colima
   community.general.homebrew:
     name: colima
     state: present
 
-# TODO: should be optional
-- name: Install docker & docker-compose
+- name: Install docker related things
   community.general.homebrew:
     name:
       - docker
       - docker-compose
+      - dive
     state: present
 
 - name: Enable docker CLI compose plugin

@@ -1,0 +1,9 @@
+- name: Install NGINX
+  community.general.homebrew:
+    name: nginx
+    state: present
+
+- name: Install certbot
+  community.general.homebrew:
+    name: certbot
+    state: present

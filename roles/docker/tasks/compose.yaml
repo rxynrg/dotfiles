@@ -9,7 +9,7 @@
 
 - name: Create a symbolic link
   ansible.builtin.file:
-    src: "{{ brew_prefix }}/opt/docker-compose/bin/docker-compose"
+    src: "{{ brew_prefix }}/opt/docker-compodse/bin/docker-compose"
     dest: "{{ user_home_dir }}/.docker/cli-plugins/docker-compose"
     state: link
     force: true

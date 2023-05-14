@@ -89,6 +89,14 @@ def run_playbook(only: str, skip: tuple, dry_run: bool) -> None:
     roles_to_execute = build_roles_to_execute(only, skip)
     if dry_run:
         cli.echo(f"Roles to be executed: {roles_to_execute}")
+        cmd = [
+            "ansible-playbook",
+            "-i", hosts,
+            playbook,
+            "--tags", ','.join(roles_to_execute),
+            "--check", "--diff", #"-vvvv"
+        ]
+        subprocess.run(cmd)
     else:
         cmd = [
             "ansible-playbook",
@@ -105,7 +113,20 @@ def build_roles_to_execute(only: str | None, skip: tuple) -> list[str]:
             "Options --only and --skip are not supported together for use.",
             fg="red")
         sys.exit(1)
-    roles = ["docker", "git", "k8s", "frontend", "packer", "tmux", "vim", "zsh"]
+    roles = [
+        "docker",
+        "firewall",
+        "frontend",
+        "git",
+        "jvm",
+        "k8s",
+        "packer",
+        "remote_dev_machine",
+        "tmux",
+        "vim",
+        "web_server",
+        "zsh",
+    ]
     if only is not None and len(skip) == 0:
         return [r for r in roles if r == only]
     if only is None and len(skip) == 0:
