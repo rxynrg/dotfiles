@@ -4,7 +4,7 @@ function mkcd () {
   cd "$*" || return
 }
 
-if command -v exa >/dev/null; then
+if command -v exa > /dev/null; then
   alias ls="exa --icons --git"
   alias ll="exa --icons --git --long"
   alias la="exa --icons --git --long --all"
