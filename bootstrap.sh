@@ -205,7 +205,7 @@ run_ansible() {
   # https://stackoverflow.com/questions/59895/how-can-i-get-the-source-directory-of-a-bash-script-from-within-the-script-itsel/246128#246128
   ROOTDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
   HOSTS="$ROOTDIR/hosts"
-  PLAYBOOK="$ROOTDIR/dotfiles.yaml"
+  PLAYBOOK="$ROOTDIR/dotfiles.yml"
   SKIPPED_TAGS=""
   for role in ${!roles[@]}; do
     if [[ "${roles[$role]}" == "false" ]]; then

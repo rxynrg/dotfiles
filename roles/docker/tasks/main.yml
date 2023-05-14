@@ -13,4 +13,4 @@
     state: present
 
 - name: Enable docker CLI compose plugin
-  ansible.builtin.import_tasks: compose.yaml
+  ansible.builtin.import_tasks: compose.yml

@@ -12,5 +12,5 @@
     sdkman_install_packages:
       - { candidate: java, version: 19-librca }
       - { candidate: gradle, version: 8.1.1 }
-      - mvnd
-#      - { candidate: maven, version: 3.9.2 }
+      - { candidate: maven, version: 3.9.2 }
+#      - { candidate: mvnd, version: 1.0 }

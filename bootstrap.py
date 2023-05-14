@@ -84,24 +84,23 @@ def ask_brew_install() -> bool:
 
 def run_playbook(only: str, skip: tuple, dry_run: bool) -> None:
     root_dir = pathlib.Path(__file__).parent.resolve()
-    hosts = root_dir / "hosts"
-    playbook = root_dir / "dotfiles.yaml"
+    # hosts = root_dir / "hosts"
+    playbook = root_dir / "dotfiles.yml"
     roles_to_execute = build_roles_to_execute(only, skip)
     if dry_run:
         cli.echo(f"Roles to be executed: {roles_to_execute}")
         cmd = [
-            "ansible-playbook",
-            "-i", hosts,
-            playbook,
+            "ansible-playbook", playbook,
+            # "-i", hosts,
             "--tags", ','.join(roles_to_execute),
-            "--check", "--diff", #"-vvvv"
+            "--check", "--diff", #"-vvvv",
+            "--skip-tags", "sdkman_privilege"
         ]
         subprocess.run(cmd)
     else:
         cmd = [
-            "ansible-playbook",
-            "-i", hosts,
-            playbook,
+            "ansible-playbook", playbook,
+            # "-i", hosts,
             "--tags", ','.join(roles_to_execute)
         ]
         subprocess.run(cmd)

@@ -15,7 +15,3 @@
     - {role: vim, tags: ["vim"]}
     - {role: web_server, tags: ["web_server"]}
     - {role: zsh, tags: ["zsh"]}
-  post_tasks:
-    - name: Print all available facts
-      ansible.builtin.debug:
-        var: ansible_facts

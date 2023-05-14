@@ -1,9 +1,9 @@
 - name: Setup ZSH on Linux
-  ansible.builtin.import_tasks: setup-zsh.yaml
+  ansible.builtin.import_tasks: setup-zsh.yml
   when: ansible_system == "Linux"
 
 - name: Configure fzf
-  ansible.builtin.import_tasks: fzf.yaml
+  ansible.builtin.import_tasks: fzf.yml
 
 - name: Create directory structure
   ansible.builtin.file:
@@ -43,7 +43,7 @@
     - { uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
 
 - name: Configure prompt
-  ansible.builtin.import_tasks: starship.yaml
+  ansible.builtin.import_tasks: starship.yml
 
 - name: Install a smarter cd command, inspired by z and autojump
   community.general.homebrew:
@@ -51,4 +51,4 @@
     state: present
 
 - name: Configure fonts
-  ansible.builtin.import_tasks: fonts.yaml
+  ansible.builtin.import_tasks: fonts.yml
