@@ -19,9 +19,10 @@ def ansible() -> None:
 @cli.option("--brew-update", is_flag=True, show_default=True, default=False,
             help="Update homebrew")
 @cli.option("--dry-run", is_flag=True, show_default=True, default=False,
-            help="List roles that will be executed")
-@cli.option("--only",
-            help="Add a role to the execution. Ignores invalid role names.")
+            help="Whether or not to run playbook in check mode.")
+@cli.option("--verbose", is_flag=True, show_default=True, default=False,
+            help="Whether to print debugging information.")
+@cli.option("--only", help="Add a role to the execution. Ignores invalid role names.")
 @cli.option("-s", "--skip", multiple=True,
             help="Remove the role from the execution. "
                  "Ignores invalid role names.")
@@ -29,9 +30,10 @@ def play(brew_upgrade: bool,
          brew_update: bool,
          only: str,
          skip: tuple,
-         dry_run: bool) -> None:
+         dry_run: bool,
+         verbose: bool) -> None:
     install_ansible(brew_upgrade, brew_update)
-    run_playbook(only, skip, dry_run)
+    run_playbook(only, skip, dry_run, verbose)
 
 
 def install_ansible(brew_upgrade: bool, brew_update: bool) -> None:
@@ -82,28 +84,13 @@ def ask_brew_install() -> bool:
         return False
 
 
-def run_playbook(only: str, skip: tuple, dry_run: bool) -> None:
+def run_playbook(only: str, skip: tuple, dry_run: bool, verbose: bool) -> None:
     root_dir = pathlib.Path(__file__).parent.resolve()
-    # hosts = root_dir / "hosts"
+    inventory = root_dir / "hosts"
     playbook = root_dir / "dotfiles.yml"
-    roles_to_execute = build_roles_to_execute(only, skip)
-    if dry_run:
-        cli.echo(f"Roles to be executed: {roles_to_execute}")
-        cmd = [
-            "ansible-playbook", playbook,
-            # "-i", hosts,
-            "--tags", ','.join(roles_to_execute),
-            "--check", "--diff", #"-vvvv",
-            "--skip-tags", "sdkman_privilege"
-        ]
-        subprocess.run(cmd)
-    else:
-        cmd = [
-            "ansible-playbook", playbook,
-            # "-i", hosts,
-            "--tags", ','.join(roles_to_execute)
-        ]
-        subprocess.run(cmd)
+    roles = build_roles_to_execute(only, skip)
+    cmd = build_command(playbook, inventory, roles, dry_run, verbose)
+    subprocess.run(cmd)
 
 
 def build_roles_to_execute(only: str | None, skip: tuple) -> list[str]:
@@ -132,6 +119,23 @@ def build_roles_to_execute(only: str | None, skip: tuple) -> list[str]:
         return roles
     if only is None and len(skip) > 0:
         return [r for r in roles if r not in skip]
+
+
+def build_command(playbook: pathlib.Path,
+                  inventory: pathlib.Path,
+                  roles: list[str],
+                  dry_run: bool,
+                  verbose: bool) -> list[str]:
+    cmd = [
+        "ansible-playbook", playbook,
+        "-i", inventory,
+        "--tags", ','.join(roles),
+    ]
+    if dry_run:
+        cmd.extend(["--check", "--skip-tags", "sdkman_privilege"])
+    if verbose:
+        cmd.extend(["--diff", "-vvvv"])
+    return cmd
 
 
 app = cli.CommandCollection(sources=[ansible])
