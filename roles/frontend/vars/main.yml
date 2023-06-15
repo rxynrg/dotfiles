@@ -6,7 +6,6 @@ mac:
       - bat
 #      - direnv
       - exa
-#      - ffmpeg
 #      - gh
 #      - glances
 #      - grpcurl
@@ -15,7 +14,6 @@ mac:
 #      - jless
 #      - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
 #      - websocat
-#      - yt-dlp
 #      - yq
     cask:
       - alacritty

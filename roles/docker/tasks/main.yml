@@ -1,16 +1,25 @@
-# TODO: Should be optional
 - name: Install colima
   community.general.homebrew:
     name: colima
     state: present
+  when: ansible_os_family == "Darwin"
 
 - name: Install docker related things
   community.general.homebrew:
     name:
       - docker
+      - docker-buildx
       - docker-compose
       - dive
     state: present
 
 - name: Enable docker CLI compose plugin
   ansible.builtin.import_tasks: compose.yml
+
+- name: Enable docker CLI buildx plugin
+  ansible.builtin.import_tasks: buildx.yml
+
+- name: Copy docker aliases into zsh alias directory
+  copy:
+   src: "{{ roles_parent_dir }}/roles/docker/files/docker.sh"
+   dest: "{{ zsh.alias_home }}/docker.sh"
