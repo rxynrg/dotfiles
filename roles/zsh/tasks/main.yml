@@ -28,7 +28,7 @@
 - name: Create .zshrc
   template:
     src: "zshrc.j2"
-    dest: "{{ '~/.zshrc' | expanduser }}"
+    dest: "{{ '~/.zshrc' | ansible.builtin.expanduser }}"
 
 # TODO: Add auto update support
 - name: Clone plugins
