@@ -5,9 +5,11 @@ mac:
     formula:
       - bat
 #      - direnv
+      - duf
       - exa
 #      - gh
 #      - glances
+      - gping
 #      - grpcurl
       - helix
 #      - jq
@@ -20,6 +22,7 @@ mac:
 #      - cloudflare-warp
       - jetbrains-toolbox
 #      - macfuse
+      - notion
       - rectangle
 #      - telegram
 #      - tor-browser
@@ -27,3 +30,4 @@ mac:
 #      - veracrypt
 #      - visual-studio-code
 #      - wireshark
+      - zed

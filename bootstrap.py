@@ -28,7 +28,7 @@ def ansible() -> None:
                  "Ignores invalid role names.")
 def play(brew_upgrade: bool,
          brew_update: bool,
-         only: str,
+         only: str | None,
          skip: tuple,
          dry_run: bool,
          verbose: bool) -> None:
@@ -49,7 +49,7 @@ def install_ansible(brew_upgrade: bool, brew_update: bool) -> None:
                 cli.echo("Updating Homebrew")
                 if subprocess.run(["brew", "update"]).returncode == 0:
                     cli.echo("Homebrew updated")
-            subprocess.run(["brew", "install", "ansible", ">/dev/null"])
+            subprocess.run(["brew", "install", "ansible", "&>", "/dev/null"])
             cli.echo("Ansible installed")
         elif ask_brew_install():
             install_ansible(brew_upgrade, brew_update)
@@ -58,7 +58,11 @@ def install_ansible(brew_upgrade: bool, brew_update: bool) -> None:
 
 
 def is_command_available(command: str) -> bool:
-    return subprocess.run(["hash", command, "2>/dev/null"]).returncode == 0
+    return subprocess.call(
+        ["command", "-v", command],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.STDOUT
+    ) == 0
 
 
 def ask_brew_install() -> bool:
@@ -84,7 +88,7 @@ def ask_brew_install() -> bool:
         return False
 
 
-def run_playbook(only: str, skip: tuple, dry_run: bool, verbose: bool) -> None:
+def run_playbook(only: str | None, skip: tuple, dry_run: bool, verbose: bool) -> None:
     root_dir = pathlib.Path(__file__).parent.resolve()
     inventory = root_dir / "hosts"
     playbook = root_dir / "dotfiles.yml"
