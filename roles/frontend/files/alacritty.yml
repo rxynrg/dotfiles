@@ -5,13 +5,17 @@ window:
   opacity: 1.0
   decorations: buttonless
   dynamic_title: true
-  dynamic_padding: true
+  # Spread additional padding evenly around the terminal content
+  dynamic_padding: true 
   option_as_alt: OnlyLeft
   padding:
     x: 3
     y: 3
+  dimensions:
+    columns: 160
+    lines: 48
 font:
-  size: 13.0
+  size: 15.0
   normal:
     family: JetBrainsMonoNL Nerd Font Mono
     style: Regular
@@ -24,7 +28,16 @@ font:
   bold_italic:
     family: JetBrainsMonoNL Nerd Font Mono
     style: Bold Italic
-draw_bold_text_with_bright_colors: false
+  debug:
+    render_timer: false
+draw_bold_text_with_bright_colors: true
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 10000
+  # Number of lines the viewport will move for every line scrolled when
+  # scrollback is enabled (history > 0).
+  multiplier: 3
 #colors:
 #  primary:
 #    foreground: "0xaaaaaa"
@@ -70,3 +83,13 @@ cursor:
 key_bindings:
   - { key: Right, mods: Alt, chars: "\x1BF" }
   - { key: Left,  mods: Alt, chars: "\x1BB" }
+shell:
+  program: /usr/local/bin/tmux
+  # If there is no session available, create a new one,
+  # if there is already a session, detach all other clients and attach to it
+  args:
+    - new-session
+    - -A
+    - -D
+    - -s
+    - main

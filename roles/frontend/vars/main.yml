@@ -4,6 +4,7 @@ mac:
   homebrew:
     formula:
       - bat
+      - btop
 #      - direnv
       - duf
       - exa
@@ -21,13 +22,11 @@ mac:
       - alacritty
 #      - cloudflare-warp
       - jetbrains-toolbox
-#      - macfuse
       - notion
       - rectangle
+      - rio
 #      - telegram
 #      - tor-browser
 #      - vlc
-#      - veracrypt
 #      - visual-studio-code
 #      - wireshark
-      - zed
