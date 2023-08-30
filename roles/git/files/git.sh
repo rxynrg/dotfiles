@@ -3,7 +3,7 @@ alias g="git"
 if command -v fzf > /dev/null; then
   gli() {
     # param validation
-    if [[ ! $(git log -n 1 "$@" | head -n 1) ]] ;then
+    if [[ ! $(git log -n 1 "$@" | head -n 1) ]]; then
       return
     fi
     # filter by file string
@@ -36,3 +36,14 @@ if command -v fzf > /dev/null; then
     "${gitlog[@]}" | "${fzf[@]}"
   }
 fi
+
+git_update_pat() {
+  # TODO: read from stdin
+  token=$1
+  [ -z "$token" ] && echo "Token cannot be empty" && exit || shift
+  repo_url=$(git remote get-url origin)
+  username=$(git config github.user)
+  credentials="${username}:${token}@"
+  new_remote="${repo_url/https:\/\//https://$credentials}"
+  git remote set-url origin "$new_remote"
+}
