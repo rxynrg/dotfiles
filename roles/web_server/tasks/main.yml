@@ -1,9 +1,2 @@
-- name: Install NGINX
-  community.general.homebrew:
-    name: nginx
-    state: present
-
-- name: Install certbot
-  community.general.homebrew:
-    name: certbot
-    state: present
+- ansible.builtin.import_tasks: certbot.yml
+- ansible.builtin.import_tasks: nginx.yml

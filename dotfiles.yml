@@ -4,7 +4,6 @@
   roles:
     # Tag each role so that one can select individual roles to run with ansible-playbook --tags
     - {role: docker, tags: ["docker"]}
-    - {role: firewall, tags: ["firewall"]}
     - {role: frontend, tags: ["frontend"]}
     - {role: git, tags: ["git"]}
     - {role: jvm, tags: ["jvm"]}
@@ -12,6 +11,6 @@
     - {role: media, tags: ["media"]}
     - {role: remote_dev_machine, tags: ["remote_dev_machine"]}
     - {role: toolbox, tags: ["toolbox"]}
-    - {role: vim, tags: ["vim"]}
     - {role: web_server, tags: ["web_server"]}
+    - {role: zig, tags: ["zig"]}
     - {role: zsh, tags: ["zsh"]}

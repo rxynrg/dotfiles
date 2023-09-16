@@ -1,2 +1,8 @@
 - ansible.builtin.import_tasks: helix.yml
+
 - ansible.builtin.import_tasks: tmux.yml
+
+- name: Configure VIM
+  ansible.builtin.copy:
+    src: ".vimrc"
+    dest: "{{ user_home_dir }}/.vimrc"

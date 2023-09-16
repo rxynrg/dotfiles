@@ -1,4 +1,0 @@
-- name: Copy vim config
-  ansible.builtin.copy:
-    src: "vimrc"
-    dest: "{{ user_home_dir }}/.vimrc"
