@@ -11,7 +11,7 @@
     single_branch: yes
     version: master
 
-- name: Copy config to user home
-  copy:
-    src: "{{ roles_parent_dir }}/roles/frontend/files/alacritty.yml"
+- name: Make sure Alacritty is configured
+  ansible.builtin.copy:
+    src: "alacritty.yml"
     dest: "{{ alacritty_config_dir }}/alacritty.yml"

@@ -111,9 +111,8 @@ def build_roles_to_execute(only: str | None, skip: tuple) -> list[str]:
         "jvm",
         "k8s",
         "media",
-        "packer",
         "remote_dev_machine",
-        "tmux",
+        "toolbox"
         "vim",
         "web_server",
         "zsh",

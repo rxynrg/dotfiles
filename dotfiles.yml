@@ -10,9 +10,8 @@
     - {role: jvm, tags: ["jvm"]}
     - {role: k8s, tags: ["k8s"]}
     - {role: media, tags: ["media"]}
-    - {role: packer, tags: ["packer"]}
     - {role: remote_dev_machine, tags: ["remote_dev_machine"]}
-    - {role: tmux, tags: ["tmux"]}
+    - {role: toolbox, tags: ["toolbox"]}
     - {role: vim, tags: ["vim"]}
     - {role: web_server, tags: ["web_server"]}
     - {role: zsh, tags: ["zsh"]}

@@ -16,17 +16,17 @@
     - "{{ zsh.alias_home }}"
 
 - name: Copy aliases, functions, etc.
-  copy:
-    src: "{{ roles_parent_dir }}/roles/zsh/files/utilities.sh"
+  ansible.builtin.copy:
+    src: "utilities.sh"
     dest: "{{ zsh.alias_home }}/utilities.sh"
 
 - name: Copy history config file
-  copy:
-    src: "{{ roles_parent_dir }}/roles/zsh/files/history.sh"
+  ansible.builtin.copy:
+    src: "history.sh"
     dest: "{{ zsh_home }}/history.sh"
 
 - name: Create .zshrc
-  template:
+  ansible.builtin.template:
     src: "zshrc.j2"
     dest: "{{ '~/.zshrc' | ansible.builtin.expanduser }}"
 

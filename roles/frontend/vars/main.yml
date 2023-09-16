@@ -12,7 +12,6 @@ mac:
 #      - glances
       - gping
 #      - grpcurl
-      - helix
 #      - jq
 #      - jless
 #      - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube

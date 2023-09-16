@@ -1,4 +1,4 @@
 - name: Copy vim config
-  copy:
-    src: "{{ roles_parent_dir }}/roles/vim/files/vimrc"
+  ansible.builtin.copy:
+    src: "vimrc"
     dest: "{{ user_home_dir }}/.vimrc"

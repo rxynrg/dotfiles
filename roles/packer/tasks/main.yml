@@ -1,9 +1,0 @@
-- name: Tap into Hashicorp
-  homebrew_tap:
-    tap: hashicorp/tap
-    state: present
-
-- name: Install packer
-  community.general.homebrew:
-    name: hashicorp/tap/packer
-    state: present

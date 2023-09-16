@@ -1,19 +1,19 @@
 - name: Copy editorconfig
-  copy:
+  ansible.builtin.copy:
     src: "{{ roles_parent_dir }}/.editorconfig"
     dest: "{{ user_home_dir }}/.editorconfig"
 
 - name: Copy global gitignore
-  copy:
+  ansible.builtin.copy:
     src: "{{ roles_parent_dir }}/.gitignore"
     dest: "{{ user_home_dir }}/.gitignore"
 
 - name: Make sure gitconfig is up to date
-  template:
+  ansible.builtin.template:
     src: "gitconfig.j2"
     dest: "{{ user_home_dir }}/.gitconfig"
 
 - name: Copy git aliases into zsh alias directory
-  copy:
-    src: "{{ roles_parent_dir }}/roles/git/files/git.sh"
+  ansible.builtin.copy:
+    src: "git.sh"
     dest: "{{ zsh.alias_home }}/git.sh"
