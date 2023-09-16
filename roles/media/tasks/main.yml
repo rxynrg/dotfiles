@@ -2,3 +2,7 @@
   ansible.builtin.template:
     src: "ytdlp_ffmpeg.j2"
     dest: "{{ zsh.alias_home }}/ytdlp_ffmpeg.sh"
+
+- name: Install VHS
+  community.general.homebrew:
+    name: vhs
