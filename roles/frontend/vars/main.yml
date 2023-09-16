@@ -4,19 +4,10 @@ mac:
   homebrew:
     formula:
       - bat
-      - btop
-#      - direnv
       - duf
       - exa
-#      - gh
-#      - glances
-      - gping
-#      - grpcurl
-#      - jq
-#      - jless
-#      - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
-#      - websocat
-#      - yq
+      - helix
+      - tmux
     cask:
       - alacritty
 #      - cloudflare-warp

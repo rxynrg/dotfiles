@@ -1,18 +1,24 @@
-- name: Install zig
-  community.general.snap:
-    name: zig
-    state: present
-    classic: true
-    channel: beta
+- name: Install brew packages
+  community.general.homebrew:
+    name:
+      - zig
+      - zls
 
-- name: Install ZLS [refactor me]
-  ansible.builtin.shell: |
-    set -eux -o pipefail
-    test -f /usr/bin/zls && exit 0
-    curl -LO https://github.com/zigtools/zls/releases/download/0.11.0/x86_64-linux.tar.zst
-    sudo apt-get install zstd
-    tar --use-compress-program=unzstd -xvf x86_64-linux.tar.zst
-    sudo mv bin/zls /usr/bin/zls
-    rm -rf bin x86_64-linux.tar.zst
-  args:
-    executable: /usr/bin/bash
+#- name: Install zig
+#  community.general.snap:
+#    name: zig
+#    state: present
+#    classic: true
+#    channel: beta
+
+#- name: Install ZLS [refactor me]
+#  ansible.builtin.shell: |
+#    set -eux -o pipefail
+#    test -f /usr/bin/zls && exit 0
+#    curl -LO https://github.com/zigtools/zls/releases/download/0.11.0/x86_64-linux.tar.zst
+#    sudo apt-get install zstd
+#    tar --use-compress-program=unzstd -xvf x86_64-linux.tar.zst
+#    sudo mv bin/zls /usr/bin/zls
+#    rm -rf bin x86_64-linux.tar.zst
+#  args:
+#    executable: /usr/bin/bash

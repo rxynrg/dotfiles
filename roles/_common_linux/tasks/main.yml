@@ -1,2 +1,0 @@
-- ansible.builtin.import_tasks: snapcraft.yml
-  when: ansible_system == "Linux"

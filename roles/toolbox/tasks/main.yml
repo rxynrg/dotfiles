@@ -1,8 +1,40 @@
-- ansible.builtin.import_tasks: helix.yml
+- name: Install brew packages
+  community.general.homebrew:
+    name:
+      - bat
+#      - btop
+#      - duf
+      - exa
+#      - glances
+      - gping
+      - helix
+      - tmux
+#      - direnv
+      - gh
+#      - grpcurl
+#      - jq
+#      - jless
+#      - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
+#      - websocat
+#      - yq
 
-- ansible.builtin.import_tasks: tmux.yml
+- name: Configure Helix Editor
+  ansible.builtin.copy:
+    src: "config.toml"
+    dest: "{{ helix_config_dir }}/config.toml"
 
-- name: Configure VIM
+- name: Configure tmux
+  block:
+    - name: Ensure tmux dir exists
+      ansible.builtin.file:
+        path: "{{ config_home }}/tmux"
+        state: directory
+    - name: Copy tmux config
+      ansible.builtin.copy:
+        src: "tmux.conf"
+        dest: "{{ config_home }}/tmux/tmux.conf"
+
+- name: Configure vim
   ansible.builtin.copy:
     src: ".vimrc"
     dest: "{{ user_home_dir }}/.vimrc"

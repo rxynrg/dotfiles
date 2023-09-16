@@ -1,4 +1,4 @@
 dependencies:
-  - role: _common_linux
   - role: _firewall
+  - role: _snapcraft
   - role: docker

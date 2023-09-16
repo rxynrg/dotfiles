@@ -105,7 +105,6 @@ def build_roles_to_execute(only: str | None, skip: tuple) -> list[str]:
         sys.exit(1)
     roles = [
         "docker",
-        "firewall",
         "frontend",
         "git",
         "jvm",
@@ -113,8 +112,8 @@ def build_roles_to_execute(only: str | None, skip: tuple) -> list[str]:
         "media",
         "remote_dev_machine",
         "toolbox"
-        "vim",
         "web_server",
+        "zig"
         "zsh",
     ]
     if only is not None and len(skip) == 0:

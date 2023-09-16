@@ -23,8 +23,8 @@ DEBUG_ENABLED=false
 usage() {
   cat <<EOF
 usage: ./$(basename "${BASH_SOURCE[0]}") [-h | --help] [-frontend[=defaults]]
-                      [-git] [-docker] [-k8s[=helm,istio]] [-packer]
-                      [-tmux] [-vim] [-zsh] [--debug]
+                      [-git] [-docker] [-k8s[=helm,istio]]
+                      [-zsh] [--debug]
 
 This script will install or update brew, install ansible if not installed,
 and then run the playbook, which will set up the system so it is ready to go.
@@ -36,7 +36,6 @@ Available options:
 -defaults       Configure host system with defaults
 -frontend       Configure host system
 -docker         Install docker
--packer         Install packer
 EOF
   exit
 }
@@ -125,7 +124,7 @@ parse_params() {
         --no-color) NO_COLOR=true ;;
         --debug) DEBUG_ENABLED=true ;;
         -h | --help) usage ;;
-        -docker | -git | -packer | -tmux | -vim | -zsh) roles["${1:1}"]=true ;;
+        -docker | -git | -zsh) roles["${1:1}"]=true ;;
         -frontend*)
           rolename=${1:1:8}
           option_length=10
@@ -227,9 +226,6 @@ declare -A roles=(
   ["git"]=false
   ["k8s"]=false
   ["frontend"]=false
-  ["packer"]=false
-  ["tmux"]=false
-  ["vim"]=false
   ["zsh"]=false
 )
 declare -A available_extras=(
