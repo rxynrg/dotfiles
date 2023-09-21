@@ -1,0 +1,3 @@
+# Ansible Galaxy
+- src: comcast.sdkman
+  version: '1.7.0'
