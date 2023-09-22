@@ -1,10 +1,5 @@
-- name: Install packages with homebrew formula
-  community.general.homebrew:
-    name: "{{ mac.homebrew.formula }}"
-    state: present
-
 - name: Install applications with homebrew cask
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: "{{ item }}"
     state: present
   loop: "{{ mac.homebrew.cask | flatten(levels=1) }}"
