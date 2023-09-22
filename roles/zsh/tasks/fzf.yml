@@ -4,10 +4,14 @@
     state: present
 
 - name: Check if fzf completion & key-bindings exist
-  stat:
+  ansible.builtin.stat:
     path: "{{ user_home_dir }}/.fzf.zsh"
   register: file_data
 
 - name: Generate fzf completion & key-bindings if they don't exist
-  shell: $(brew --prefix)/opt/fzf/install --no-bash --no-update-rc --key-bindings --completion
+  ansible.builtin.shell: |
+    $(brew --prefix)/opt/fzf/install \
+      --no-fish --no-bash \
+      --no-update-rc \
+      --key-bindings --completion
   when: not file_data.stat.exists
