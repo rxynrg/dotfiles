@@ -1,6 +1,7 @@
+# TODO: needs refactoring
 - name: Setup ZSH on Linux
   ansible.builtin.import_tasks: setup-zsh.yml
-  when: ansible_system == "Linux"
+  when: ansible_system == "Linux" and never
 
 - name: Configure fzf
   ansible.builtin.import_tasks: fzf.yml
@@ -44,5 +45,6 @@
     name: zoxide
     state: present
 
-- name: Configure fonts
+- name: Add custom fonts
   ansible.builtin.import_tasks: fonts.yml
+  when: ansible_os_family == "Darwin" or ansible_distribution == "Ubuntu"

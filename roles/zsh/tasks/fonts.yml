@@ -1,7 +1,12 @@
-- name: Download JetBrainsMono NL font
+- name: Ensure fonts home exists
+  ansible.builtin.file:
+    path: "{{ fonts_home }}"
+    state: directory
+
+- name: Install JetBrainsMono NL font
   ansible.builtin.get_url:
     url: "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/NoLigatures/{{ item }}/JetBrainsMonoNLNerdFontMono-{{ item }}.ttf"
-    dest: ~/Library/Fonts
+    dest: "{{ fonts_home }}"
     mode: "644"
   loop:
     - Bold
@@ -20,4 +25,3 @@
     - SemiBoldItalic
     - Thin
     - ThinItalic
-  when: ansible_os_family == "Darwin"
