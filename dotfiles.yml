@@ -1,6 +1,23 @@
 - name: Set up a local development environment
   hosts: local
   become: false
+  pre_tasks:
+    - name: Ensure essential directories exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - "{{ config_home }}"
+        - "{{ alias_home }}"
+      tags:
+        - always
+    - name: Enable aliases in bash
+      ansible.builtin.lineinfile:
+        path: "{{ user_home_dir }}/.bashrc"
+        line: "for i in $(find {{ alias_home }} -mindepth 1 -maxdepth 1 -type f); do source $i; done"
+      tags:
+        - always
   roles:
     # Tag each role so that one can select individual roles to run with ansible-playbook --tags
     - {role: docker, tags: ["docker"]}

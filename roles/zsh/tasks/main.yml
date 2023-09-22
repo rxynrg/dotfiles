@@ -13,12 +13,6 @@
   loop:
     - "{{ zsh_home }}"
     - "{{ zsh.plugin_home }}"
-    - "{{ zsh.alias_home }}"
-
-- name: Copy aliases, functions, etc.
-  ansible.builtin.copy:
-    src: "utilities.sh"
-    dest: "{{ zsh.alias_home }}/utilities.sh"
 
 - name: Copy history config file
   ansible.builtin.copy:

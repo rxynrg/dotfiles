@@ -1,7 +1,7 @@
 - name: Copy yt-dlp & ffmpeg shortcuts
   ansible.builtin.template:
     src: "ytdlp_ffmpeg.j2"
-    dest: "{{ zsh.alias_home }}/ytdlp_ffmpeg.sh"
+    dest: "{{ alias_home }}/ytdlp_ffmpeg.sh"
 
 - name: Install VHS
   community.general.homebrew:

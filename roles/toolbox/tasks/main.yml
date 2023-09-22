@@ -18,10 +18,21 @@
 #      - websocat
 #      - yq
 
-- name: Configure Helix Editor
+- name: Copy aliases, functions, etc.
   ansible.builtin.copy:
-    src: "config.toml"
-    dest: "{{ helix_config_dir }}/config.toml"
+    src: "utilities.sh"
+    dest: "{{ alias_home }}/utilities.sh"
+
+- name: Configure Helix Editor
+  block:
+    - name: Ensure helix config dir exists
+      ansible.builtin.file:
+        path: "{{ helix_config_dir }}"
+        state: directory
+    - name: Copy helix config
+      ansible.builtin.copy:
+        src: "config.toml"
+        dest: "{{ helix_config_dir }}/config.toml"
 
 - name: Configure tmux
   block:
@@ -34,7 +45,7 @@
         src: "tmux.conf"
         dest: "{{ config_home }}/tmux/tmux.conf"
 
-- name: Configure vim
+- name: Copy vim config
   ansible.builtin.copy:
     src: ".vimrc"
     dest: "{{ user_home_dir }}/.vimrc"

@@ -2,4 +2,7 @@
 roles_parent_dir: "{{ playbook_dir }}"
 
 user_home_dir: "{{ '~' | ansible.builtin.expanduser }}"
+
 config_home: "{{ user_home_dir }}/.config"
+
+alias_home: "{{ config_home }}/aliases"

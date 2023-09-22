@@ -19,7 +19,7 @@
 - name: Enable docker CLI buildx plugin
   ansible.builtin.import_tasks: buildx.yml
 
-- name: Copy docker aliases into zsh alias directory
+- name: Copy docker aliases into alias home
   ansible.builtin.copy:
    src: "docker.sh"
-   dest: "{{ zsh.alias_home }}/docker.sh"
+   dest: "{{ alias_home }}/docker.sh"

@@ -13,7 +13,7 @@
     src: "gitconfig.j2"
     dest: "{{ user_home_dir }}/.gitconfig"
 
-- name: Copy git aliases into zsh alias directory
+- name: Copy git aliases into alias home
   ansible.builtin.copy:
     src: "git.sh"
-    dest: "{{ zsh.alias_home }}/git.sh"
+    dest: "{{ alias_home }}/git.sh"

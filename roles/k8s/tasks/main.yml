@@ -4,7 +4,7 @@
     state: present
   when: ansible_os_family == "Darwin"
 
-- name: Copy k8s aliases into zsh alias directory
+- name: Copy k8s aliases into alias home
   ansible.builtin.copy:
     src: "k8s.sh"
-    dest: "{{ zsh.alias_home }}/k8s.sh"
+    dest: "{{ alias_home }}/k8s.sh"
