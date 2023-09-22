@@ -6,3 +6,7 @@ user_home_dir: "{{ '~' | ansible.builtin.expanduser }}"
 config_home: "{{ user_home_dir }}/.config"
 
 alias_home: "{{ config_home }}/aliases"
+
+completions:
+  zsh: "{{ config_home }}/completions/zsh"
+  bash: "{{ config_home }}/completions/bash"

@@ -18,6 +18,12 @@
 #      - websocat
 #      - yq
 
+- name: Sync eza completions
+  ansible.builtin.get_url:
+    url: "https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza"
+    dest: "{{ completions.zsh }}/_eza"
+    mode: "644"
+
 - name: Copy aliases, functions, etc.
   ansible.builtin.copy:
     src: "utilities.sh"
