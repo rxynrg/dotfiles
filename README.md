@@ -14,8 +14,6 @@ $ make help
 	- `adduser <username>` && `usermod -aG sudo <username>` && `deluser -r <username>`
 - [Measure the performance of the execution](https://www.redhat.com/sysadmin/faster-ansible-playbook-execution)
 - Add an interactive mode like in JHipster
-	- w/o flags/options
-	- whether to update/upgrade brew
 	- which roles to run
 
 ## Legal
