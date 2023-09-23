@@ -10,7 +10,7 @@
 
 - name: Generate fzf completion & key-bindings if they don't exist
   ansible.builtin.shell: |
-    $(brew --prefix)/opt/fzf/install \
+    {{ brew_prefix }}/opt/fzf/install \
       --no-fish --no-bash \
       --no-update-rc \
       --key-bindings --completion
