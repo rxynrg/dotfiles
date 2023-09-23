@@ -2,36 +2,28 @@
   hosts: local
   become: false
   pre_tasks:
-    - name: Setup HOMEBREW_PREFIX
-      ansible.builtin.command: brew --prefix
-      register: brew_prefix_data
-      tags: ['always']
-      changed_when: false
-    - ansible.builtin.set_fact:
-        brew_prefix: "{{ brew_prefix_data.stdout }}"
-      tags: ['always']
-    - name: Ensure essential directories exist
-      ansible.builtin.file:
-        path: "{{ item }}"
-        state: directory
-        mode: "0755"
-      loop:
-        - "{{ config_home }}"
-        - "{{ alias_home }}"
-        - "{{ completions.zsh }}"
-      tags:
-        - always
-    - name: Enable aliases & completions in bash
-      ansible.builtin.lineinfile:
-        path: "{{ user_home_dir }}/.bashrc"
-        line: "{{ item }}"
-      loop:
-        - "for i in $(find {{ alias_home }} -mindepth 1 -maxdepth 1 -type f); do source $i; done"
-        - "for comp in {{ brew_prefix }}/etc/bash_completion.d/*; do source $comp; done"
+    - block:
+        - name: Retrieve HOMEBREW_PREFIX
+          ansible.builtin.command: brew --prefix
+          register: brew_prefix_data
+          changed_when: false
+        - name: Register HOMEBREW_PREFIX
+          ansible.builtin.set_fact:
+            brew_prefix: "{{ brew_prefix_data.stdout }}"
+        - name: Ensure essential directories exist
+          ansible.builtin.file:
+            path: "{{ item }}"
+            state: directory
+            mode: "0755"
+          loop:
+            - "{{ config_home }}"
+            - "{{ alias_home }}"
+            - "{{ completions.zsh }}"
       tags:
         - always
   roles:
     # Tag each role so that one can select individual roles to run with ansible-playbook --tags
+    - {role: bash, tags: ["bash"]}
     - {role: docker, tags: ["docker"]}
     - {role: frontend, tags: ["frontend"]}
     - {role: git, tags: ["git"]}

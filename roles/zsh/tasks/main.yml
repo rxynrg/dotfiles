@@ -1,49 +1,49 @@
 - name: Setup ZSH on Linux
-  ansible.builtin.import_tasks: setup-zsh.yml
+  ansible.builtin.include_tasks: setup-zsh.yml
   when: ansible_system == "Linux"
 
 - name: Configure fzf
   ansible.builtin.import_tasks: fzf.yml
 
-# - name: Create directory structure
-#   ansible.builtin.file:
-#     path: "{{ item }}"
-#     state: directory
-#     mode: "0755"
-#   loop:
-#     - "{{ zsh_home }}"
-#     - "{{ zsh.plugin_home }}"
+- name: Create directory structure
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ zsh_home }}"
+    - "{{ zsh.plugin_home }}"
 
-# - name: Copy history config file
-#   ansible.builtin.copy:
-#     src: "history.sh"
-#     dest: "{{ zsh_home }}/history.sh"
+- name: Copy history config file
+  ansible.builtin.copy:
+    src: "history.sh"
+    dest: "{{ zsh_home }}/history.sh"
 
-# - name: Create .zshrc
-#   ansible.builtin.template:
-#     src: "zshrc.j2"
-#     dest: "{{ '~/.zshrc' | ansible.builtin.expanduser }}"
+- name: Create .zshrc
+  ansible.builtin.template:
+    src: "zshrc.j2"
+    dest: "{{ '~/.zshrc' | ansible.builtin.expanduser }}"
 
-# # TODO: Add auto update support
-# - name: Clone plugins
-#   ansible.builtin.git:
-#     repo: "https://github.com/{{ item.uri }}"
-#     dest: "{{ zsh.plugin_home }}/{{ item.name }}"
-#     single_branch: yes
-#     version: master
-#   loop:
-#     - { uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
-# #    - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
-#     - { uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
+# TODO: Add auto update support
+- name: Clone plugins
+  ansible.builtin.git:
+    repo: "https://github.com/{{ item.uri }}"
+    dest: "{{ zsh.plugin_home }}/{{ item.name }}"
+    single_branch: yes
+    version: master
+  loop:
+    - { uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
+#    - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
+    - { uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
 
-# - name: Configure prompt
-#   ansible.builtin.import_tasks: starship.yml
+- name: Configure prompt
+  ansible.builtin.import_tasks: starship.yml
 
-# - name: Install a smarter cd command, inspired by z and autojump
-#   community.general.homebrew:
-#     name: zoxide
-#     state: present
+- name: Install a smarter cd command, inspired by z and autojump
+  community.general.homebrew:
+    name: zoxide
+    state: present
 
-# - name: Add custom fonts
-#   ansible.builtin.import_tasks: fonts.yml
-#   when: ansible_os_family == "Darwin" or ansible_distribution == "Ubuntu"
+- name: Add custom fonts
+  ansible.builtin.import_tasks: fonts.yml
+  when: ansible_os_family == "Darwin" or ansible_distribution == "Ubuntu"

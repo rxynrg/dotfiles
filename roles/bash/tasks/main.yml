@@ -1,17 +1,24 @@
+- name: Enable aliases & completions in bash
+  ansible.builtin.lineinfile:
+    path: "{{ user_home_dir }}/.bashrc"
+    line: "{{ item }}"
+  loop:
+    - "for i in $(find {{ alias_home }} -mindepth 1 -maxdepth 1 -type f); do source $i; done"
+    - "for comp in {{ brew_prefix }}/etc/bash_completion.d/*; do source $comp; done"
+
 - name: Make sure fzf is present
   community.general.homebrew:
     name: fzf
 
 - name: Check if fzf completion & key-bindings exist
   ansible.builtin.stat:
-    path: "{{ user_home_dir }}/.fzf.zsh"
+    path: "{{ user_home_dir }}/.fzf.bash"
   register: fzf_file_data
   changed_when: false
 
 - name: Generate fzf completion & key-bindings if they don't exist
   ansible.builtin.shell: |
     {{ brew_prefix }}/opt/fzf/install \
-      --no-fish --no-bash \
-      --no-update-rc \
+      --no-fish --no-zsh \
       --key-bindings --completion
   when: not fzf_file_data.stat.exists
