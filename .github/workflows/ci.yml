@@ -25,6 +25,5 @@ jobs:
             truthy:
               ignore: |
                 .github/workflows/ci.yml
-
           EOT
       - run: pip install yamllint && yamllint .
