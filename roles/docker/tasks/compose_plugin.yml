@@ -3,10 +3,6 @@
     path: "{{ user_home_dir }}/.docker/cli-plugins"
     state: directory
 
-- name: '[compose] Find out a homebrew prefix'
-  ansible.builtin.command: brew --prefix
-  register: brew_prefix
-
 - name: '[compose] Create a symbolic link'
   ansible.builtin.file:
     src: "{{ brew_prefix }}/opt/docker-compodse/bin/docker-compose"
