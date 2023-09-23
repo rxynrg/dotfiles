@@ -10,8 +10,8 @@
         default: "{{ item.default }}"
         direction: "{{ item.direction }}"
       loop:
-        - { default: 'deny', direction: 'incoming' }
-        - { default: 'allow', direction: 'outgoing' }
+        - {default: 'deny', direction: 'incoming'}
+        - {default: 'allow', direction: 'outgoing'}
     - name: UFW::Allow ssh connection initiation
       community.general.ufw:
         rule: allow

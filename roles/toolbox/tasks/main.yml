@@ -2,21 +2,21 @@
   community.general.homebrew:
     name:
       - bat
-#      - btop
-#      - duf
+      # - btop
+      # - duf
       - eza
-#      - glances
+      # - glances
       - gping
       - helix
       - tmux
-#      - direnv
+      # - direnv
       - gh
-#      - grpcurl
-#      - jq
-#      - jless
-#      - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
-#      - websocat
-#      - yq
+      # - grpcurl
+      # - jq
+      # - jless
+      # - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
+      # - websocat
+      # - yq
 
 - name: Sync eza completions
   ansible.builtin.get_url:

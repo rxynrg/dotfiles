@@ -1,16 +1,17 @@
+# TODO: migrate from this role because it is no longer maintainable
 - name: Install SDKMAN! role from Galaxy
   community.general.ansible_galaxy_install:
     type: role
     name: comcast.sdkman
 
 - name: Install JDKs & SDKs
-  import_role:
+  ansible.builtin.import_role:
     name: comcast.sdkman
   vars:
     sdkman_auto_answer: true
     sdkman_update: true
     sdkman_install_packages:
-      - { candidate: java, version: '21-graalce' }
-      - { candidate: gradle, version: '8.3' }
-      - { candidate: maven, version: '3.9.2' }
-#      - { candidate: mvnd, version: '1.0' }
+      - {candidate: java, version: '21-graalce'}
+      - {candidate: gradle, version: '8.3'}
+      - {candidate: maven, version: '3.9.2'}
+#      - {candidate: mvnd, version: '1.0'}

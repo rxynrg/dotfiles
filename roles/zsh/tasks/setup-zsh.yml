@@ -11,6 +11,6 @@
 - name: Make zsh default shell for current user
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
-    shell: /home/linuxbrew/.linuxbrew/bin/zsh # TODO: use output from zsh_cmd_data
+    shell: /home/linuxbrew/.linuxbrew/bin/zsh   # TODO: use output from zsh_cmd_data
   become: true
-  tags: never # TODO: test
+  tags: never   # TODO: test

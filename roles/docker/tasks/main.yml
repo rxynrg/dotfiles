@@ -40,5 +40,5 @@
 
 - name: Copy docker aliases into alias home
   ansible.builtin.copy:
-   src: "docker.sh"
-   dest: "{{ alias_home }}/docker.sh"
+    src: "docker.sh"
+    dest: "{{ alias_home }}/docker.sh"

@@ -4,13 +4,13 @@ mac:
   homebrew:
     cask:
       - alacritty
-#      - cloudflare-warp
+      # - cloudflare-warp
       - jetbrains-toolbox
       - notion
       - rectangle
       - rio
-#      - telegram
-#      - tor-browser
-#      - vlc
-#      - visual-studio-code
-#      - wireshark
+      - telegram
+      # - tor-browser
+      # - vlc
+      # - visual-studio-code
+      # - wireshark

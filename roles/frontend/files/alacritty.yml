@@ -6,7 +6,7 @@ window:
   decorations: buttonless
   dynamic_title: true
   # Spread additional padding evenly around the terminal content
-  dynamic_padding: true 
+  dynamic_padding: true
   option_as_alt: OnlyLeft
   padding:
     x: 3
@@ -38,7 +38,7 @@ scrolling:
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
   multiplier: 3
-#colors:
+# colors:
 #  primary:
 #    foreground: "0xaaaaaa"
 #    background: "0x181818"
@@ -81,8 +81,8 @@ cursor:
   style: Underline
   vi_mode_style: Block
 key_bindings:
-  - { key: Right, mods: Alt, chars: "\x1BF" }
-  - { key: Left,  mods: Alt, chars: "\x1BB" }
+  - {key: Right, mods: Alt, chars: "\x1BF"}
+  - {key: Left, mods: Alt, chars: "\x1BB"}
 shell:
   program: /usr/local/bin/tmux
   # If there is no session available, create a new one,

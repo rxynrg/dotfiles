@@ -29,12 +29,12 @@
   ansible.builtin.git:
     repo: "https://github.com/{{ item.uri }}"
     dest: "{{ zsh.plugin_home }}/{{ item.name }}"
-    single_branch: yes
+    single_branch: true
     version: master
   loop:
-    - { uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
-#    - { uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
-    - { uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
+    - {uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
+    # - {uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
+    - {uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
 
 - name: Configure prompt
   ansible.builtin.import_tasks: starship.yml

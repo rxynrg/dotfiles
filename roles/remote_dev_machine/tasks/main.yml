@@ -1,8 +1,8 @@
 - name: Install build-essential
   ansible.builtin.apt:
-    autoclean: yes # Remove undownloadable packages from the cache
-    autoremove: yes # Remove dependencies that are no longer required
-    update_cache: yes
+    autoclean: true   # Remove undownloadable packages from the cache
+    autoremove: true  # Remove dependencies that are no longer required
+    update_cache: true
     upgrade: dist
     name: build-essential
     state: latest
@@ -16,6 +16,6 @@
     line: "{{ item.line }}"
     state: present
   loop:
-    - { regexp: '^AllowTcpForwarding', line: 'AllowTcpForwarding yes' }
-    - { regexp: '^AllowAgentForwarding', line: 'AllowAgentForwarding yes' }
+    - {regexp: '^AllowTcpForwarding', line: 'AllowTcpForwarding yes'}
+    - {regexp: '^AllowAgentForwarding', line: 'AllowAgentForwarding yes'}
   when: ansible_system == "Linux"

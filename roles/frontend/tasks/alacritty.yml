@@ -8,7 +8,7 @@
   ansible.builtin.git:
     repo: "https://github.com/alacritty/alacritty-theme"
     dest: "{{ alacritty_config_dir }}/themes"
-    single_branch: yes
+    single_branch: true
     version: master
 
 - name: Make sure Alacritty is configured
