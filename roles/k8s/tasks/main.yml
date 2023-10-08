@@ -2,7 +2,6 @@
   community.general.homebrew:
     name: kubernetes-cli
     state: present
-  when: ansible_os_family == "Darwin"
 
 - name: Copy k8s aliases into alias home
   ansible.builtin.copy:

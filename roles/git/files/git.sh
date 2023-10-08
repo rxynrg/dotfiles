@@ -42,8 +42,7 @@ git_update_pat() {
   token=$1
   [ -z "$token" ] && echo "Token cannot be empty" && exit || shift
   repo_url=$(git remote get-url origin)
-  username=$(git config github.user)
-  credentials="${username}:${token}@"
+  credentials="${token}@"
   new_remote="${repo_url/https:\/\//https://$credentials}"
   git remote set-url origin "$new_remote"
 }
