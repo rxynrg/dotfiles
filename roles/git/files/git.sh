@@ -40,9 +40,12 @@ fi
 git_update_pat() {
   # TODO: read from stdin
   token=$1
-  [ -z "$token" ] && echo "Token cannot be empty" && exit || shift
-  repo_url=$(git remote get-url origin)
-  credentials="${token}@"
-  new_remote="${repo_url/https:\/\//https://$credentials}"
-  git remote set-url origin "$new_remote"
+  if [[ "$token" = ghp_* ]]; then
+    repo_url=$(git remote get-url origin)
+    credentials="${token}@"
+    new_remote="${repo_url/https:\/\//https://$credentials}"
+    git remote set-url origin "$new_remote"
+  else
+    echo "Invalid token '$token'. Please provide GH PAT as positional argument"
+  fi
 }
