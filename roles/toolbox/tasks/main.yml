@@ -3,6 +3,7 @@
     name:
       - bat
       # - btop
+      - curlie
       # - duf
       - eza
       # - glances
