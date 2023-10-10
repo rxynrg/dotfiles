@@ -7,4 +7,4 @@ then
 fi
 ROOTDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 ansible-galaxy install -r "$ROOTDIR/requirements.yml"
-make run
+make run -C "$ROOTDIR"
