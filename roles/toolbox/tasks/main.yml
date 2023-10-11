@@ -13,8 +13,8 @@
       # - direnv
       - gh
       # - grpcurl
-       - jq
-       - jless
+      - jq
+      - jless
       # - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
       # - websocat
       # - yq
