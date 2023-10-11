@@ -9,6 +9,7 @@
       # - glances
       - gping
       - helix
+      - htmlq
       - tmux
       # - direnv
       - gh

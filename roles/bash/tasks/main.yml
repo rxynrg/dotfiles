@@ -10,6 +10,12 @@
   community.general.homebrew:
     name: fzf
 
+- name: TODO it is a hotfix, refactor me later
+  community.general.homebrew:
+    name:
+      - starship
+      - zoxide
+
 - name: Check if fzf completion & key-bindings exist
   ansible.builtin.stat:
     path: "{{ user_home_dir }}/.fzf.bash"
