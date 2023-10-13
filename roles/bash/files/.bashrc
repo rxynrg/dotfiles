@@ -36,8 +36,9 @@ if ! shopt -oq posix; then
 fi
 for comp in /home/linuxbrew/.linuxbrew/etc/bash_completion.d/*; do source $comp; done
 
+command -v starship &> /dev/null && eval "$(starship init bash)"
+command -v zoxide &> /dev/null && eval "$(zoxide init bash)"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # OTHERS
 unset PROMPT_COMMAND # Workaround for VSCode Remote SSH Extension + tmux
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-if command -v starship &> /dev/null; then eval "$(starship init bash)"; fi
-if command -v zoxide &> /dev/null; then eval "$(zoxide init bash)"; fi

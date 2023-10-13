@@ -5,6 +5,8 @@
   loop:
     - "for i in $(find {{ alias_home }} -mindepth 1 -maxdepth 1 -type f); do source $i; done"
     - "for comp in {{ brew_prefix }}/etc/bash_completion.d/*; do source $comp; done"
+    - 'command -v starship >/dev/null && eval "$(starship init bash)"'
+    - 'command -v zoxide >/dev/null && eval $(zoxide init bash)'
 
 - name: Make sure fzf is present
   community.general.homebrew:
