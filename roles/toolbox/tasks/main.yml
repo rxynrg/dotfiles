@@ -6,6 +6,7 @@
       - curlie
       # - duf
       - eza
+      - fzf
       # - glances
       - gping
       - helix
@@ -57,3 +58,11 @@
   ansible.builtin.copy:
     src: ".vimrc"
     dest: "{{ user_home_dir }}/.vimrc"
+
+- name: Generate fzf completion & key-bindings idempotently
+  ansible.builtin.shell: |
+    {{ brew_prefix }}/opt/fzf/install \
+      --no-fish \
+      --no-update-rc \
+      --key-bindings --completion
+  changed_when: false
