@@ -1,3 +1,5 @@
+fonts_home: "{{ '~/Library/Fonts' if ansible_os_family == 'Darwin' else '~/.fonts' }}"
+
 alacritty_config_dir: "{{ config_home }}/alacritty"
 
 mac:

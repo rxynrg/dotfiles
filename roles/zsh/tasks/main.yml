@@ -43,7 +43,3 @@
   community.general.homebrew:
     name: zoxide
     state: present
-
-- name: Add custom fonts
-  ansible.builtin.import_tasks: fonts.yml
-  when: ansible_os_family == "Darwin" or ansible_distribution == "Ubuntu"

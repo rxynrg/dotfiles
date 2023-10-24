@@ -1,3 +1,4 @@
+# for gitpod only, maybe will be replaced by files/.bashrc or vice versa will replace it
 - name: Enable aliases & completions in bash
   ansible.builtin.lineinfile:
     path: "{{ user_home_dir }}/.bashrc"
@@ -11,12 +12,6 @@
 - name: Make sure fzf is present
   community.general.homebrew:
     name: fzf
-
-- name: TODO it is a hotfix, refactor me later
-  community.general.homebrew:
-    name:
-      - starship
-      - zoxide
 
 - name: Check if fzf completion & key-bindings exist
   ansible.builtin.stat:

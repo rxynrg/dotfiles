@@ -2,6 +2,10 @@
   ansible.builtin.import_tasks: macos.yml
   when: ansible_os_family == "Darwin"
 
+- name: Add custom fonts
+  ansible.builtin.import_tasks: fonts.yml
+  when: ansible_os_family == "Darwin" or ansible_distribution == "Ubuntu"
+
 - name: Install additional software
   ansible.builtin.import_tasks: software.yml
 
