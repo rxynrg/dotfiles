@@ -32,11 +32,3 @@
     - {uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
     # - {uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
     - {uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
-
-- name: Configure prompt
-  ansible.builtin.import_tasks: starship.yml
-
-- name: Install a smarter cd command, inspired by z and autojump
-  community.general.homebrew:
-    name: zoxide
-    state: present

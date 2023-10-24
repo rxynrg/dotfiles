@@ -1,9 +1,0 @@
-- name: Install prompt
-  community.general.homebrew:
-    name: starship
-    state: present
-
-- name: Copy prompt config
-  ansible.builtin.copy:
-    src: "starship.toml"
-    dest: "{{ config_home }}/starship.toml"

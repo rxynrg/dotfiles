@@ -11,6 +11,7 @@
       - gping
       - helix
       - htmlq
+      - starship
       - tmux
       # - direnv
       - gh
@@ -20,6 +21,7 @@
       # - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
       # - websocat
       # - yq
+      - zoxide
 
 - name: Sync eza completions
   ansible.builtin.get_url:
@@ -66,3 +68,8 @@
       --no-update-rc \
       --key-bindings --completion
   changed_when: false
+
+- name: Copy starship config
+  ansible.builtin.copy:
+    src: "starship.toml"
+    dest: "{{ config_home }}/starship.toml"
