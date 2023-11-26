@@ -1,0 +1,13 @@
+- name: Check go installation
+  ansible.builtin.command: 'go version'
+  register: go_data
+  changed_when: false
+
+- name: Install go SDK
+  community.general.homebrew:
+    name: go
+  when: go_data.rc == 0
+
+- name: Install go LSP server
+  community.general.homebrew:
+    name: gopls

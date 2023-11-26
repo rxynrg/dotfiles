@@ -27,6 +27,7 @@
     - {role: docker, tags: ["docker"]}
     - {role: frontend, tags: ["frontend"]}
     - {role: git, tags: ["git"]}
+    - {role: go, tags: ["go"]}
     - {role: jvm, tags: ["jvm"]}
     - {role: k8s, tags: ["k8s"]}
     - {role: media, tags: ["media"]}

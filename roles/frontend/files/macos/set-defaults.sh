@@ -115,16 +115,12 @@ defaults write com.apple.dock show-process-indicators -bool true
 
 # Wipe all (default) app icons from the Dock
 defaults write com.apple.dock persistent-apps -array
-# Add Safari to the Dock
-defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Safari.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
 # Add Apple Music to the Dock
 defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Music.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
 # Deny Dock size changing
 defaults write com.apple.Dock size-immutable -bool true
 # Deny Dock icon order changing
 defaults write com.apple.dock contents-immutable -bool true
-# Restart the Dock
-# killall Dock
 
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1

@@ -1,9 +1,10 @@
 [init]
 	defaultBranch = main
-{% if ansible_system == "Darwin" %}
 [credential]
+{% if ansible_system == "Darwin" %}
 	helper = osxkeychain
 {% else %}
+	helper = cache --timeout=315569000
 {% endif %}
 [github]
 	user = sildvauresberg
@@ -28,6 +29,8 @@
 	brs = branch -a
 	rn = branch -m
 	stashes = stash list
+
+	forget = !git stash && git stash drop
 	nevermind = !git reset --hard HEAD && git clean -d -f
 	delete-tag="!f() { git push --delete ${2-origin} ${1}; git tag -d ${1}; }; f"
 	up = !git pull --rebase --prune $@ && git submodule update --init --recursive
@@ -84,6 +87,17 @@
 	autosquash = true
 [pager]
 	status = true
+	diff = false
+	commit = false
+	log = false
+	cl = false
+	blame = false
+	merge = false
+	rebase = false
+	help = false
+	show = false
+	reflog = false
+	grep = false
 [help]
 	autocorrect = 1
 [advice]
