@@ -7,12 +7,13 @@ mac:
     cask:
       - alacritty
       # - cloudflare-warp
+      - fsnotes
       - jetbrains-toolbox
       - notion
       - rectangle
-      - rio
+      # - rio
       - telegram
       # - tor-browser
-      # - vlc
       # - visual-studio-code
+      # - vlc
       # - wireshark
