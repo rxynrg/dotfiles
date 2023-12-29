@@ -7,17 +7,16 @@
       # - duf
       - eza
       - fzf
-      # - glances
-      - gping
+      # - gping
       - helix
-      - htmlq
+      # - htmlq
       - starship
       - tmux
       # - direnv
       - gh
       # - grpcurl
-      - jq
-      - jless
+      # - jq
+      # - jless
       # - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
       # - websocat
       # - yq
@@ -60,6 +59,15 @@
   ansible.builtin.copy:
     src: ".vimrc"
     dest: "{{ user_home_dir }}/.vimrc"
+
+- name: Copy bat config
+  block:
+    - ansible.builtin.file:
+        path: "{{ config_home }}/bat"
+        state: directory
+    - ansible.builtin.copy:
+        src: "bat_config"
+        dest: "{{ user_homer_dir }}/bat/config"
 
 - name: Generate fzf completion & key-bindings idempotently
   ansible.builtin.shell: |

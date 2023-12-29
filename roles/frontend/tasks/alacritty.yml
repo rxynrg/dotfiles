@@ -13,5 +13,5 @@
 
 - name: Make sure Alacritty is configured
   ansible.builtin.copy:
-    src: "alacritty.yml"
-    dest: "{{ alacritty_config_dir }}/alacritty.yml"
+    src: "alacritty.toml"
+    dest: "{{ alacritty_config_dir }}/alacritty.toml"

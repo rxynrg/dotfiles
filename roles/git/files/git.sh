@@ -24,6 +24,7 @@ if command -v fzf > /dev/null; then
     local fzf=(
       fzf
       --ansi --no-sort --reverse --tiebreak=index
+      # --preview "bat --color=always --style=numbers --line-range=:500 {}"
       --preview "f() { set -- \$(echo -- \$@ | grep -o '[a-f0-9]\{7\}'); [ \$# -eq 0 ] || git show --color=always \$1 $filter; }; f {}"
       --bind "ctrl-q:abort,ctrl-m:execute:
                   (grep -o '[a-f0-9]\{7\}' | head -1 |
