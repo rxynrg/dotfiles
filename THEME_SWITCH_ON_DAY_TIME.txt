@@ -1,4 +1,0 @@
-https://github.com/cormacrelf/dark-notify
-https://github.com/fatih/dotfiles/tree/main
-https://arslan.io/2021/02/15/automatic-dark-mode-for-terminal-applications/
-	https://github.com/helix-editor/helix/issues/2158
