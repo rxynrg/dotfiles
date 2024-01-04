@@ -1,4 +1,4 @@
-# for gitpod only, maybe will be replaced by files/.bashrc or vice versa will replace it
+# for gitpod only, maybe will be replaced by files/.bashrc
 - name: Enable aliases & completions in bash
   ansible.builtin.lineinfile:
     path: "{{ user_home_dir }}/.bashrc"
