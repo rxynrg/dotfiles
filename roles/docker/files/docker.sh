@@ -6,5 +6,5 @@ docker_remove_image_by_name() {
 }
 
 drm() {
-  docker rmi "$(docker images -f 'dangling=true' | awk '{if ($1 == "<none>") {print $3 } ')"
+  docker rmi $(docker images -f 'dangling=true' | awk '$1 == "<none>" { print $3 }' ORS=' ')
 }
