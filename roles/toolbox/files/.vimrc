@@ -1,9 +1,10 @@
+colorscheme habamax
 syntax on
 
 "-- test
 set termguicolors           "-- Enable 24-bit RGB colors
 set autowrite               "-- Automatically save before :next, :make etc.
-set autochdir               "-- Change CWD when one have opened a fil
+set autochdir               "-- Change CWD when one have opened a file
 set splitbelow              "-- Split windows below to the current window
 set splitright              "-- Split windows right to the current window
 set clipboard=unnamedplus   "-- Copy/paste to system clipboard
