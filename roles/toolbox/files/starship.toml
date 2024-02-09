@@ -15,3 +15,5 @@ disabled = true
 disabled = true
 [kotlin]
 disabled = true
+[golang]
+disabled = true
