@@ -8,3 +8,10 @@ error_symbol = '[\$](bold red)'
 truncate_to_repo = false
 fish_style_pwd_dir_length = 3
 # truncate_symbol = '.../'
+
+[gradle]
+disabled = true
+[java]
+disabled = true
+[kotlin]
+disabled = true

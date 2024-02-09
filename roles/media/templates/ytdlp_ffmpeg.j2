@@ -1,3 +1,5 @@
+# Usage
+# *args - URLs to download files from
 function ytdlp {
   docker run --rm -it -v "$(pwd):/downloads:rw" {{ yt_dlp_image }} "$@"
 }

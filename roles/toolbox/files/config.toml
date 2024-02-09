@@ -1,20 +1,13 @@
-# theme = spacebones_light
-# bogster_light
-# everforest_dark
-# everforest_light
-# gruvbox_light
-# nord
-# penumbra+
-# solarized_dark
-# solarized_light
+theme = "zed_onedark"
 
 [editor]
 line-number = "relative"
 mouse = false
 bufferline = "multiple"
+true-color = true
 
 [editor.file-picker]
-hidden = true
+hidden = false
 
 [editor.lsp]
 display-messages = true
@@ -23,10 +16,9 @@ display-messages = true
 insert = "bar"
 
 [editor.statusline]
-left = ["mode", "spinner"]
-#center = ["file-name"]
-right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
-separator = "│"
+# left = ["mode", "spinner", "version-control", "file-name"]
+center = []
+# right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"

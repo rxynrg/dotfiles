@@ -1,3 +1,13 @@
+## TMUX
+Rectangle Selection
+- Go to the copy mode: C-b [
+- Move where you want
+- Press C-v
+- Press Space
+- Move selection
+- Once you're happy with it, press Enter
+- You can paste the latest copy buffer by C-a ] (or just control + V)
+
 ## VIM
 
 ### Navigation
