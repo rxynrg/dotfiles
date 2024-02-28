@@ -1,3 +1,10 @@
+alias yt-dlp='docker run \
+                  --rm -i \
+                  -e PGID=$(id -g) \
+                  -e PUID=$(id -u) \
+                  -v "$(pwd)":/workdir:rw \
+                  {{ yt_dlp_image }}'
+
 # Usage
 # *args - URLs to download files from
 function ytdlp {

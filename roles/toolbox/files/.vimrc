@@ -10,7 +10,6 @@ set splitright              "-- Split windows right to the current window
 set clipboard=unnamedplus   "-- Copy/paste to system clipboard
 set ignorecase              "-- search case insensitive...
 set smartcase               "-- ... but not if begins with upper case
-"--
 
 set autoindent              "-- Copy indent from current line when starting a new line
 set encoding=utf-8
@@ -30,6 +29,7 @@ set smartindent
 set smarttab
 set softtabstop=2
 set tabstop=2               "-- Number of spaces a TAB counts for
+set viminfofile=NONE        "-- Completely disable .viminfo logging
 set wildmenu
 set wrap
 

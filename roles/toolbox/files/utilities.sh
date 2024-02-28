@@ -11,6 +11,5 @@ if command -v eza > /dev/null; then
   alias lt="eza --icons --git --tree"
 fi
 
-function whereami () {
-  curl https://ifconfig.co/json
-}
+alias whereami="curl https://ifconfig.co/json"
+alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"

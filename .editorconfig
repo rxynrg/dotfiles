@@ -1,5 +1,3 @@
-# https://editorconfig.org
-
 root = true
 
 [*]
@@ -10,11 +8,6 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 
-[{*.bat,*.cmd}]
-end_of_line = crlf
-indent_style = tab
-
-# Makefiles always use tabs for indentation
 [Makefile]
 indent_style = tab
 

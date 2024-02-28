@@ -6,12 +6,12 @@ $ ./install.sh
 ```
 
 ## Roadmap
+- Think about the relevance on having some roles in case of working with devcontainers
 - Add the ability to target a remote environment
 - [Add tests](https://actuated.dev/blog/kvm-in-github-actions)
 - Refactor *zsh* role for Linux target
 	- [Forbid running as root](https://docs.brew.sh/FAQ#why-does-homebrew-say-sudo-is-bad)
 	- `adduser <username>` && `usermod -aG sudo <username>` && `deluser -r <username>`
-- [Measure the performance of the execution](https://www.redhat.com/sysadmin/faster-ansible-playbook-execution)
 
 ## Legal
 Works on My Machine<sup>TM</sup>
