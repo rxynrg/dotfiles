@@ -1,4 +1,6 @@
-theme = "zed_onedark"
+# https://alpha2phi.medium.com/a-walkthrough-on-helix-a-post-modern-modal-text-editor-faf573d16892
+
+theme = "dark_high_contrast"
 
 [editor]
 line-number = "relative"
