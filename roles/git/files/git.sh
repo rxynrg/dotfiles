@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 alias g="git"
 
 if command -v fzf > /dev/null; then

@@ -1,11 +1,4 @@
-# for gitpod only, maybe will be replaced by files/.bashrc
-- name: Enable aliases & completions in bash
-  ansible.builtin.lineinfile:
-    path: "{{ user_home_dir }}/.bashrc"
-    line: "{{ item }}"
-  loop:
-    - "for i in $(find {{ alias_home }} -mindepth 1 -maxdepth 1 -type f); do source $i; done"
-    - "for comp in {{ brew_prefix }}/etc/bash_completion.d/*; do source $comp; done"
-    - 'command -v starship >/dev/null && eval "$(starship init bash)"'
-    - 'command -v zoxide >/dev/null && eval "$(zoxide init bash)"'
-    - '[ -f ~/.fzf.bash ] && source ~/.fzf.bash'
+- name: Copy .bashrc
+  ansible.builtin.copy:
+    src: ".bashrc"
+    dest: "{{ user_home_dir }}/.bashrc"

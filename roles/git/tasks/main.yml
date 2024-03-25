@@ -3,11 +3,6 @@
     src: "{{ roles_parent_dir }}/.editorconfig"
     dest: "{{ user_home_dir }}/.editorconfig"
 
-- name: Copy global gitignore
-  ansible.builtin.copy:
-    src: "{{ roles_parent_dir }}/.gitignore"
-    dest: "{{ user_home_dir }}/.gitignore"
-
 - name: Make sure gitconfig is up to date
   ansible.builtin.template:
     src: "gitconfig.j2"

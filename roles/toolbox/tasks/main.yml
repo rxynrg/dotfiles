@@ -3,7 +3,7 @@
     name:
       - bat
       # - btop
-      - curlie
+      # - curlie
       # - duf
       - eza
       - fzf

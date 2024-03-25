@@ -7,11 +7,9 @@ mac:
     cask:
       - alacritty
       # - cloudflare-warp
-      - fsnotes
-      - jetbrains-toolbox
-      - notion
+      # - jetbrains-toolbox
+      - obsidian
       - rectangle
-      # - rio
       - telegram
       # - tor-browser
       # - visual-studio-code

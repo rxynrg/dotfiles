@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 if command -v kubectl > /dev/null; then
     alias k="kubectl"
     alias kaf="kubectl apply -f"
@@ -14,17 +16,22 @@ if command -v kubectl > /dev/null; then
     alias kgaa="kubectl get all --all-namespaces"
     alias kl="kubectl logs"
     alias kgn="kubectl get nodes"
-    source <(kubectl completion zsh)
+
+    if [[ $SHELL == */zsh ]]
+    then source <(kubectl completion zsh)
+    else source <(kubectl completion bash)
+    fi
 
     list_pods() {
-      for ns in $(kgns | tail -n +2 | awk '{print $1}'); do
-        echo pods in $ns namespace;
-        kgp --namespace $ns;
-        echo '\n';
+      for ns in $(kubectl get namespaces | tail -n +2 | awk '{print $1}'); do
+        echo pods in "$ns" namespace;
+        kubectl get pods --namespace "$ns";
+        printf '\n';
       done
     }
 
     list_resources() {
-      kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found --namespace kube-system
+      kubectl api-resources --verbs=list --namespaced -o name \
+        | xargs -n 1 kubectl get --show-kind --ignore-not-found --namespace kube-system
     }
 fi

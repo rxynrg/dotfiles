@@ -5,7 +5,7 @@
 HISTSIZE=1000
 HISTFILESIZE=2000
 # don't put duplicate lines or lines starting with space in the history.
-HISTCONTROL=ignoreboth:erasedups
+HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -20,11 +20,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # ALIASES
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='la -lhF'
-[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
-for i in $(find ~/.config/aliases -mindepth 1 -maxdepth 1 -type f); do source $i; done
+for i in $(find ~/.config/aliases -mindepth 1 -maxdepth 1 -type f); do source "$i"; done
 
 # COMPLETIONS
 if ! shopt -oq posix; then
@@ -34,7 +30,7 @@ if ! shopt -oq posix; then
         . /etc/bash_completion
     fi
 fi
-for comp in /home/linuxbrew/.linuxbrew/etc/bash_completion.d/*; do source $comp; done
+for cmp in /home/linuxbrew/.linuxbrew/etc/bash_completion.d/*; do source "$cmp"; done
 
 command -v starship &> /dev/null && eval "$(starship init bash)"
 command -v zoxide &> /dev/null && eval "$(zoxide init bash)"
