@@ -13,7 +13,6 @@
       - starship
       - tmux
       # - direnv
-      - gh
       # - grpcurl
       # - jq
       # - jless
@@ -31,12 +30,12 @@
   block:
     - name: Ensure helix config dir exists
       ansible.builtin.file:
-        path: "{{ helix_config_dir }}"
+        path: "{{ config_home }}/helix"
         state: directory
     - name: Copy helix config
       ansible.builtin.copy:
         src: "config.toml"
-        dest: "{{ helix_config_dir }}/config.toml"
+        dest: "{{ config_home }}/helix/config.toml"
 
 - name: Configure tmux
   block:

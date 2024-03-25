@@ -1,1 +1,0 @@
-helix_config_dir: "{{ config_home }}/helix"

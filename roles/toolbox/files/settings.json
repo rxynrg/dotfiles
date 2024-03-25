@@ -1,6 +1,0 @@
-{
-    // VSCode Settings
-    "terminal.integrated.fontFamily": "'JetBrainsMonoNL Nerd Font Mono', monospace",
-    "editor.fontFamily": "'JetBrainsMonoNL Nerd Font Mono', monospace",
-    "editor.fontLigatures": false,
-}

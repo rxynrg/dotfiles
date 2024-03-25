@@ -25,7 +25,7 @@
     # Tag each role so that one can select individual roles to run with ansible-playbook --tags
     - {role: bash, tags: ["bash"]}
     - {role: docker, tags: ["docker"]}
-    - {role: frontend, tags: ["frontend"]}
+    - {role: home, tags: ["home"]}
     - {role: git, tags: ["git"]}
     - {role: go, tags: ["go"]}
     - {role: jvm, tags: ["jvm"]}

@@ -1,14 +1,15 @@
-# mkdir, cd into it (via http://onethingwell.org/post/586977440/mkcd-improved)
+#!/usr/bin/env bash
+
 function mkcd () {
   mkdir -p "$*"
   cd "$*" || return
 }
 
 if command -v eza > /dev/null; then
-  alias ls="eza --icons --git"
-  alias ll="eza --icons --git --long"
-  alias la="eza --icons --git --long --all"
-  alias lt="eza --icons --git --tree"
+  alias ls="eza --icons"
+  alias ll="eza --icons --long --git"
+  alias la="eza --icons --long --git --all"
+  alias lt="eza --icons --tree"
 fi
 
 alias whereami="curl https://ifconfig.co/json"

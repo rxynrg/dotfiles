@@ -3,6 +3,7 @@ set -Eeuo pipefail
 set +o posix
 if ! command -v ansible >/dev/null 2>&1
 then
+    echo "installing ansible"
     pip install ansible
 fi
 ROOTDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
