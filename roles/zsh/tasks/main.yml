@@ -1,34 +1,37 @@
-- name: Setup ZSH on Linux
-  ansible.builtin.include_tasks: setup-zsh.yml
-  when: ansible_system == "Linux"
+- block:
+    - name: Setup ZSH on Linux
+      ansible.builtin.include_tasks: setup-zsh.yml
+      when:
+        - ansible_system == "Linux"
 
-- name: Create directory structure
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-    mode: "0755"
-  loop:
-    - "{{ zsh_home }}"
-    - "{{ zsh.plugin_home }}"
+    - name: Create directory structure
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - "{{ zsh_home }}"
+        - "{{ zsh.plugin_home }}"
 
-- name: Copy history config file
-  ansible.builtin.copy:
-    src: "history.sh"
-    dest: "{{ zsh_home }}/history.sh"
+    - name: Copy history config file
+      ansible.builtin.copy:
+        src: "history.sh"
+        dest: "{{ zsh_home }}/history.sh"
 
-- name: Create .zshrc
-  ansible.builtin.template:
-    src: "zshrc.j2"
-    dest: "{{ '~/.zshrc' | ansible.builtin.expanduser }}"
+    - name: Create .zshrc
+      ansible.builtin.template:
+        src: "zshrc.j2"
+        dest: "{{ '~/.zshrc' | ansible.builtin.expanduser }}"
 
-# TODO: Add auto update support
-- name: Clone plugins
-  ansible.builtin.git:
-    repo: "https://github.com/{{ item.uri }}"
-    dest: "{{ zsh.plugin_home }}/{{ item.name }}"
-    single_branch: true
-    version: master
-  loop:
-    - {uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
-    # - {uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
-    - {uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
+    # TODO: Add auto update support
+    - name: Clone plugins
+      ansible.builtin.git:
+        repo: "https://github.com/{{ item.uri }}"
+        dest: "{{ zsh.plugin_home }}/{{ item.name }}"
+        single_branch: true
+        version: master
+      loop:
+        - {uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
+        # - {uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
+        - {uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
+  when: lookup('ansible.builtin.env', 'SHELL').endswith('zsh')

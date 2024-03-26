@@ -60,7 +60,7 @@
         state: directory
     - ansible.builtin.copy:
         src: "bat_config"
-        dest: "{{ user_homer_dir }}/bat/config"
+        dest: "{{ config_home }}/bat/config"
 
 - name: Generate fzf completion & key-bindings idempotently
   ansible.builtin.shell: |

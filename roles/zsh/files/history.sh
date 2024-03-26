@@ -1,3 +1,5 @@
+#!/usr/bib/env bash
+
 # History settings
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=5000

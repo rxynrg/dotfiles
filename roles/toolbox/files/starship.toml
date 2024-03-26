@@ -6,5 +6,5 @@ error_symbol = '[\$](bold red)'
 
 [directory]
 truncate_to_repo = false
-fish_style_pwd_dir_length = 3
-truncate_symbol = '.../'
+truncation_symbol = '.../'
+# fish_style_pwd_dir_length = 3
