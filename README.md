@@ -10,7 +10,7 @@ $ ./install.sh
 Run playbook
 
 ```bash
-$ ansible-playbook dotfiles.yml [--skip-tags tags,to,skip] [--tags ]
+$ ansible-playbook dotfiles.yml [--skip-tags tags,to,skip] [--tags tags,to,exec]
 ```
 
 List of all the supported tags can be found in the play [definition](./dotfiles.yml)
