@@ -74,3 +74,5 @@
   ansible.builtin.copy:
     src: "starship.toml"
     dest: "{{ config_home }}/starship.toml"
+
+- ansible.builtin.import_tasks: hurl.yml
