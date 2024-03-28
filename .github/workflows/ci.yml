@@ -27,3 +27,4 @@ jobs:
                 .github/workflows/ci.yml
           EOT
       - run: pip install yamllint && yamllint .
+      - run: pip install ansible-lint && ansible-lint dotfiles.yml
