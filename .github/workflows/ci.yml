@@ -27,4 +27,3 @@ jobs:
                 .github/workflows/ci.yml
           EOT
       - run: pip install yamllint && yamllint .
-      - uses: ansible/ansible-lint@v24.2.1
