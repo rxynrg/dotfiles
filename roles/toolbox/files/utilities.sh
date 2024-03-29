@@ -6,9 +6,9 @@ function mkcd () {
 }
 
 if command -v eza > /dev/null; then
-  alias ls="eza --icons"
-  alias ll="eza --icons --long --git"
-  alias la="eza --icons --long --git --all"
+  alias ls="eza"
+  alias ll="eza --long"
+  alias la="eza --long --all"
   alias lt="eza --icons --tree"
 fi
 
