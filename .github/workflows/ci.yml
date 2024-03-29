@@ -26,7 +26,5 @@ jobs:
               ignore: |
                 .github/workflows/ci.yml
           EOT
-      - run: ansible-galaxy collection install community.general
-      - run: ansible-galaxy collection list
       - run: pip install yamllint && yamllint .
-      - run: pip install ansible-lint && ansible-lint dotfiles.yml
+      - uses: ansible/ansible-lint@v24.2.1
