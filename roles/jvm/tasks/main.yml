@@ -1,9 +1,3 @@
-# TODO: migrate from this role because it is no longer maintained
-- name: Install SDKMAN! role from Galaxy
-  community.general.ansible_galaxy_install:
-    type: role
-    name: comcast.sdkman
-
 - name: Install JDKs & SDKs
   ansible.builtin.import_role:
     name: comcast.sdkman
