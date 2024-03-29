@@ -19,7 +19,9 @@
         packages_to_install: |
           {{
             [
-              (docker_data.results[0].rc != 0) | ternary('docker', ''),
+              (docker_data.results[0].rc != 0
+                  and docker_data.results[0].stdout == ""
+                  and docker_data.results[0].stderr != "") | ternary('docker', ''),
               (docker_data.results[1].rc != 0) | ternary('docker-compose', ''),
               (docker_data.results[2].rc != 0) | ternary('docker-buildx','')
             ] | select | list
@@ -32,11 +34,11 @@
 
 - name: Enable compose plugin if it is not already enabled
   ansible.builtin.include_tasks: compose_plugin.yml
-  when: "'docker-compose' in packages_to_install"
+  #when: "'docker-compose' in packages_to_install"
 
 - name: Enable buildx plugin if it is not already enabled
   ansible.builtin.include_tasks: buildx_plugin.yml
-  when: "'docker-buildx' in packages_to_install"
+  #when: "'docker-buildx' in packages_to_install"
 
 - name: Copy docker aliases into alias home
   ansible.builtin.copy:
