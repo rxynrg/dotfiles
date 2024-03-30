@@ -5,7 +5,6 @@
     sdkman_auto_answer: true
     sdkman_update: true
     sdkman_install_packages:
-      - {candidate: java, version: '21-graalce'}
-      - {candidate: gradle, version: '8.5'}
-      - {candidate: maven, version: '3.9.2'}
-#      - {candidate: mvnd, version: '1.0'}
+      - {candidate: java, version: '22-graalce'}
+      - {candidate: gradle, version: '8.7'}
+      - {candidate: maven, version: '3.9.6'}
