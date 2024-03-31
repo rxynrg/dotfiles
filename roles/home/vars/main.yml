@@ -12,6 +12,6 @@ mac:
       - rectangle
       - telegram
       # - tor-browser
-      # - visual-studio-code
+      - visual-studio-code
       # - vlc
       # - wireshark

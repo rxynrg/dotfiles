@@ -1,5 +1,5 @@
 - name: Check if zsh is already installed
-  ansible.builtin.shell: command -v zsh > /dev/null
+  ansible.builtin.shell: command -v zsh
   register: zsh_cmd_data
   changed_when: false
 
@@ -8,7 +8,7 @@
     name: zsh
   when: zsh_cmd_data.rc != 0
 
-- name: Make zsh default shell for current user
+- name: Make zsh is default shell for the current user
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     shell: /home/linuxbrew/.linuxbrew/bin/zsh   # TODO: use output from zsh_cmd_data

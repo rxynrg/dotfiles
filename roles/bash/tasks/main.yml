@@ -1,5 +1,5 @@
-- name: Copy .bashrc
-  ansible.builtin.copy:
-    src: ".bashrc"
+- name: Sync .bashrc
+  ansible.builtin.template:
+    src: "bashrc.j2"
     dest: "{{ user_home_dir }}/.bashrc"
   when: lookup('ansible.builtin.env', 'SHELL').endswith('bash')

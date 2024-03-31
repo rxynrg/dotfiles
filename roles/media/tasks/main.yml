@@ -1,4 +1,0 @@
-- name: Copy yt-dlp & ffmpeg scripts
-  ansible.builtin.copy:
-    src: "media.sh"
-    dest: "{{ alias_home }}/media.sh"

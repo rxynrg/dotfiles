@@ -8,7 +8,7 @@
   when: '"comcast.sdkman" not in role_data.stdout'
 
 - name: Install JDKs & SDKs
-  ansible.builtin.import_role:
+  ansible.builtin.include_role:
     name: comcast.sdkman
   vars:
     sdkman_auto_answer: true

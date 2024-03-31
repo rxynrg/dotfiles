@@ -12,16 +12,17 @@
       loop:
         - "{{ zsh_home }}"
         - "{{ zsh.plugin_home }}"
+        - "{{ completions.zsh }}"
 
     - name: Copy history config file
       ansible.builtin.copy:
         src: "history.sh"
         dest: "{{ zsh_home }}/history.sh"
 
-    - name: Create .zshrc
+    - name: Sync .zshrc
       ansible.builtin.template:
         src: "zshrc.j2"
-        dest: "{{ '~/.zshrc' | ansible.builtin.expanduser }}"
+        dest: "{{ user_home_dir }}/.zshrc"
 
     # TODO: Add auto update support
     - name: Clone plugins

@@ -18,21 +18,16 @@
           loop:
             - "{{ config_home }}"
             - "{{ alias_home }}"
-            - "{{ completions.zsh }}"
       tags:
         - always
   roles:
-    # Tag each role so that one can select individual roles to run with ansible-playbook --tags
     - {role: bash, tags: ["bash"]}
+    - {role: common, tags: ["common"]}
+    - {role: dev, tags: ["dev"]}
     - {role: docker, tags: ["docker"]}
-    - {role: git, tags: ["git"]}
     - {role: go, tags: ["go"]}
     - {role: home, tags: ["home"]}
     - {role: jvm, tags: ["jvm"]}
     - {role: k8s, tags: ["k8s"]}
-    - {role: media, tags: ["media"]}
-    - {role: remote_dev_machine, tags: ["remote_dev_machine"]}
-    - {role: toolbox, tags: ["toolbox"]}
-    - {role: web_server, tags: ["web_server"]}
     - {role: zig, tags: ["zig"]}
     - {role: zsh, tags: ["zsh"]}

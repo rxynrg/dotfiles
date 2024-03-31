@@ -34,9 +34,11 @@ if ! shopt -oq posix; then
 fi
 for cmp in /home/linuxbrew/.linuxbrew/etc/bash_completion.d/*; do source "$cmp"; done
 
-command -v starship &> /dev/null && eval "$(starship init bash)"
-command -v zoxide &> /dev/null && eval "$(zoxide init bash)"
+export FZF_DEFAULT_OPTS='--color=fg+:#ff8dc8,hl+:#ff8dc8 --preview-window="border-sharp"'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# OTHERS
-unset PROMPT_COMMAND # Workaround for VSCode Remote SSH Extension + tmux
+command -v starship > /dev/null && eval "$(starship init bash)"
+command -v zoxide > /dev/null && eval "$(zoxide init bash)"
+
+# Workaround for VSCode Remote SSH Extension + tmux
+unset PROMPT_COMMAND

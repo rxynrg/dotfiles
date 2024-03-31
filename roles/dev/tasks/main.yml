@@ -1,0 +1,17 @@
+- name: Install dev packages
+  community.general.homebrew:
+    name:
+      - btop
+      - curlie
+      - duf
+      - gping
+      - htmlq
+      - direnv
+      - grpcurl
+      - jq
+      - jless
+      - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
+      - websocat
+      - yq
+
+- ansible.builtin.import_tasks: hurl.yml

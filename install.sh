@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
-set -Eeuo pipefail
-set +o posix
-if ! command -v ansible >/dev/null 2>&1
-then
-    echo "installing ansible"
+if ! command -v ansible > /dev/null; then
+    echo "Installing ansible"
     pip install ansible
 fi
 ROOTDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
-ansible-galaxy install -r "$ROOTDIR/requirements.yml"
-make run -C "$ROOTDIR"
+make sync -C "$ROOTDIR"
