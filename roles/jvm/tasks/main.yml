@@ -1,3 +1,12 @@
+- name: Check whether sdkman ansible role is installed or not
+  ansible.builtin.command: ansible-galaxy list comcast.sdkman
+  register: role_data
+  changed_when: false
+
+- name: Install sdkman ansible role
+  ansible.builtin.command: ansible-galaxy role install comcast.sdkman
+  when: '"comcast.sdkman" not in role_data.stdout'
+
 - name: Install JDKs & SDKs
   ansible.builtin.import_role:
     name: comcast.sdkman
