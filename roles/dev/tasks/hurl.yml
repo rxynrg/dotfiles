@@ -12,6 +12,7 @@
     - ansible.builtin.apt:
         update_cache: true
         deb: "./hurl_{{ hurl_version }}_amd64.deb"
+      become: true
     - ansible.builtin.file:
         path: "./hurl_{{ hurl_version }}_amd64.deb"
         state: absent
