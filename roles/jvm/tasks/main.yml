@@ -4,7 +4,12 @@
   changed_when: false
 
 - name: Install sdkman ansible role
-  ansible.builtin.command: ansible-galaxy role install comcast.sdkman
+  block:
+    ansible.builtin.command: ansible-galaxy role install comcast.sdkman
+    ansible.builtin.file:
+      path: "{{ user_home_dir }}/.ansible/roles"
+      state: directory
+      mode: '0755'
   when: '"comcast.sdkman" not in role_data.stdout'
 
 - name: Install JDKs & SDKs
