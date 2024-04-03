@@ -2,4 +2,4 @@
   ansible.builtin.template:
     src: "bashrc.j2"
     dest: "{{ user_home_dir }}/.bashrc"
-  when: lookup('ansible.builtin.env', 'SHELL').endswith('bash')
+  when: ansible_facts['user_shell'].endswith('bash')

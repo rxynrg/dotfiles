@@ -35,4 +35,4 @@
         - {uri: "zsh-users/zsh-autosuggestions.git", name: "zsh-autosuggestions"}
         # - {uri: "zsh-users/zsh-syntax-highlighting.git", name: "zsh-syntax-highlighting"}
         - {uri: "zdharma-continuum/fast-syntax-highlighting.git", name: "fast-syntax-highlighting"}
-  when: lookup('ansible.builtin.env', 'SHELL').endswith('zsh')
+  when: ansible_facts['user_shell'].endswith('zsh')
