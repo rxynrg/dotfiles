@@ -25,11 +25,11 @@ do
   source "$plugin/$(basename $plugin).plugin.zsh"
 done
 
-export FZF_DEFAULT_OPTS='--color=fg+:#ff8dc8,hl+:#ff8dc8 --preview-window="border-sharp"'
-test -f ~/.fzf.zsh && source ~/.fzf.zsh
-
 {% if ansible_system == "Linux" %}
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {% endif %}
+
+export FZF_DEFAULT_OPTS='--color=fg+:#ff8dc8,hl+:#ff8dc8 --preview-window="border-sharp"'
+eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"

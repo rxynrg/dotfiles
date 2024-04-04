@@ -18,15 +18,6 @@
         src: "bat.cfg"
         dest: "{{ config_home }}/bat/config"
 
-# TODO: either bash or zsh, not both
-- name: Generate fzf completion & key-bindings idempotently
-  ansible.builtin.shell: |
-    {{ brew_prefix }}/opt/fzf/install \
-      --no-fish \
-      --no-update-rc \
-      --key-bindings --completion
-  changed_when: false
-
 - name: Configure Helix Editor
   block:
     - name: Ensure helix config dir exists

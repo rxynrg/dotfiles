@@ -39,6 +39,7 @@ export FZF_DEFAULT_OPTS='--color=fg+:#ff8dc8,hl+:#ff8dc8 --preview-window="borde
 
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+command -v fzf > /dev/null && eval "$(fzf --bash)"
 command -v starship > /dev/null && eval "$(starship init bash)"
 command -v zoxide > /dev/null && eval "$(zoxide init bash)"
 
