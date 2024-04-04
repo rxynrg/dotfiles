@@ -9,6 +9,7 @@ docker-rmi-by-name() {
 
 alias docker-rmi-force='docker rmi -f $(docker images -a -q)'
 alias docker-rmc-force='docker ps -q | xargs docker rm -f'
+alias docker-rmc="docker ps -a --filter=status=exited --format='{{ .ID }}' | xargs docker rm"
 
 drm() {
   docker rmi "$(docker images -f 'dangling=true' \
