@@ -8,6 +8,8 @@
       - starship
       - tmux
       - zoxide
+    update_homebrew: true
+    upgrade_all: true
 
 - name: Copy bat config
   block:
