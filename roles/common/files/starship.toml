@@ -21,4 +21,6 @@ disabled = true
 disabled = true
 [perl]
 disabled = true
+[ruby]
+disabled = true
 
