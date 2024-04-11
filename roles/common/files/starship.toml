@@ -19,3 +19,6 @@ disabled = true
 disabled = true
 [nodejs]
 disabled = true
+[perl]
+disabled = true
+
