@@ -1,0 +1,11 @@
+{
+  "name": "universal-workspace",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "USERNAME": "okdev",
+      "USER_ID": "1001"
+    }
+  },
+  "remoteUser": "okdev"
+}
