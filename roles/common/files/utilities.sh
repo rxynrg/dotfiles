@@ -14,3 +14,4 @@ fi
 
 alias whereami="curl https://ifconfig.co/json"
 alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
+alias ghtoken="cat ~/.env | grep GH_TOKEN | cut -d '=' -f 2 | pbcopy"
