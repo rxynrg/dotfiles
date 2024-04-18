@@ -9,6 +9,8 @@ truncate_to_repo = false
 truncation_symbol = '.../'
 # fish_style_pwd_dir_length = 3
 
+[git_status]
+disabled = true
 [golang]
 disabled = true
 [gradle]
