@@ -6,7 +6,7 @@
 - name: Install Go SDK
   community.general.homebrew:
     name: go
-  when: go_data.rc == 0
+  when: go_data.rc != 0
 
 - name: Check Go LSP server installation
   ansible.builtin.command: 'gopls version'
@@ -16,4 +16,4 @@
 - name: Install Go LSP server
   community.general.homebrew:
     name: gopls
-  when: gopls_data.rc == 0
+  when: gopls_data.rc != 0
