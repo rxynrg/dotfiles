@@ -2,6 +2,11 @@ colorscheme murphy
 
 syntax on
 
+set ttyfast
+set laststatus=1            "-- Show status line iff 2+ windows
+set showcmd                 "-- Show last command
+set cursorline              "-- Highlight current line
+
 set termguicolors           "-- Enable 24-bit RGB colors
 set autowrite               "-- Automatically save before :next, :make etc.
 set autochdir               "-- Change CWD when one have opened a file
