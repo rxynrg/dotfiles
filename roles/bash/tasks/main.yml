@@ -13,9 +13,9 @@
     state: present
   loop:
     - {regexp: '^for i in $(find ~/.config/aliases -mindepth 1 -maxdepth 1 -type f); do source "$i"; done', line: 'for i in $(find ~/.config/aliases -mindepth 1 -maxdepth 1 -type f); do source "$i"; done'}
+    - {regexp: '^unset PROMPT_COMMAND', line: 'unset PROMPT_COMMAND'}
     - {regexp: '^export FZF_DEFAULT_OPTS', line: 'export FZF_DEFAULT_OPTS="--color=fg+:#ff8dc8,hl+:#ff8dc8 --preview-window=\"border-sharp\""'}
     - {regexp: '^eval "$(fzf --bash)"', line: 'eval "$(fzf --bash)"'}
-    - {regexp: '^eval "$(starship init bash)"', line: 'eval "$(starship init bash)"'}
     - {regexp: '^eval "$(zoxide init bash)"', line: 'eval "$(zoxide init bash)"'}
-    - {regexp: '^unset PROMPT_COMMAND', line: 'unset PROMPT_COMMAND'}
+    - {regexp: '^eval "$(starship init bash)"', line: 'eval "$(starship init bash)"'}
   when: ansible_facts['user_shell'].endswith('bash')
