@@ -1,5 +1,6 @@
 - name: Install dependencies
   ansible.builtin.apt:
+    force_apt_get: true
     update_cache: true
     name: ca-certificates
 - name: Prepare keyrings
@@ -24,6 +25,7 @@
     state: present
 - name: Install Docker w/ plugins
   ansible.builtin.apt:
+    force_apt_get: true
     update_cache: true
     name: "{{ item }}"
   loop:
