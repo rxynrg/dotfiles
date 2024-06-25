@@ -1,4 +1,4 @@
-- name: Ensure alacritty directory exists
+- name: Ensure Alacritty directory exists
   ansible.builtin.file:
     path: "{{ alacritty_config_dir }}"
     state: directory

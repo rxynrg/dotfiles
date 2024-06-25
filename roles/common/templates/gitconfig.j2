@@ -1,13 +1,5 @@
 [init]
 	defaultBranch = main
-[credential]
-{% if ansible_system == "Darwin" %}
-	helper = osxkeychain
-{% else %}
-	helper = cache --timeout=315569000
-{% endif %}
-[github]
-	user = sildvauresberg
 [user]
 	name = {{ git.name }}
 	email = {{ git.email }}
@@ -15,8 +7,6 @@
 	a = add
 	st = status
 	co = checkout
-	cob = checkout -b
-	cp = cherry-pick
 	cmt = commit
 	noff = merge --no-ff
 	log-pretty = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
@@ -63,7 +53,7 @@
   diff = auto
   status = auto
   branch = auto
-  interactive = auto
+  interactive = true
   ui = true
   pager = true
 [core]
@@ -72,15 +62,6 @@
 	editor = vim
 	pager = less
 	autocrlf = input
-[merge]
-	tool = vimdiff
-	conflictstyle = merge
-[mergetool]
-	keepBackup = false
-[difftool]
-	prompt = false
-[branch]
-	autoSetupRebase = always
 [pull]
 	rebase = true
 [push]
@@ -90,18 +71,16 @@
 	autosquash = true
 [pager]
 	status = true
-	diff = false
+	diff = true
 	commit = false
-	log = false
+	log = true
 	cl = false
 	blame = false
 	merge = false
 	rebase = false
 	help = false
-	show = false
+	show = true
 	reflog = false
 	grep = false
-[help]
-	autocorrect = 1
 [advice]
 	statusHints = false

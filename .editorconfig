@@ -11,11 +11,7 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 
-[*.json]
-indent_size = 2
-insert_final_newline = false
-
-[{*.yml,*.yaml}]
+[{*.json,*.xml,*.yml,*.yaml}]
 indent_size = 2
 
 [*.py]
@@ -24,24 +20,3 @@ max_line_length = 80
 [*.java]
 indent_size = 2
 max_line_length = 80
-ij_any_spaces_around_additive_operators = true
-ij_any_spaces_around_assignment_operators = true
-ij_any_spaces_around_bitwise_operators = true
-ij_any_spaces_around_equality_operators = true
-ij_any_spaces_around_lambda_arrow = true
-ij_any_spaces_around_logical_operators = true
-ij_any_spaces_around_multiplicative_operators = true
-ij_any_spaces_around_relational_operators = true
-ij_any_spaces_around_shift_operators = true
-ij_continuation_indent_size = 4
-ij_java_align_multiline_parameters = false
-ij_java_class_count_to_use_import_on_demand = 999
-ij_java_indent_case_from_switch = false
-ij_java_space_after_colon = true
-ij_java_space_before_colon = true
-ij_java_ternary_operation_signs_on_next_line = true
-ij_java_use_single_class_imports = true
-ij_java_wrap_long_lines = true
-
-[*.xml]
-indent_size = 2

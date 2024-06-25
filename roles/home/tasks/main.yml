@@ -11,3 +11,6 @@
 
 - name: Configure Alacritty terminal
   ansible.builtin.import_tasks: alacritty.yml
+
+- name: Configure WezTerm
+  ansible.builtin.import_tasks: wezterm.yml

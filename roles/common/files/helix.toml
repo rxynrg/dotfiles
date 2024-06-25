@@ -1,6 +1,7 @@
 # https://alpha2phi.medium.com/a-walkthrough-on-helix-a-post-modern-modal-text-editor-faf573d16892
 
-theme = "catppuccin_mocha"
+# theme = "catppuccin_mocha"
+theme = "base16_transparent"
 
 [editor]
 line-number = "relative"
@@ -18,9 +19,9 @@ display-messages = true
 insert = "bar"
 
 [editor.statusline]
-# left = ["mode", "spinner", "version-control", "file-name"]
+left = ["mode", "spinner", "version-control", "file-name"]
 center = []
-# right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+right = ["position", "file-encoding", "file-line-ending", "file-type"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"

@@ -1,0 +1,10 @@
+- name: Ensure WezTerm directory exists
+  ansible.builtin.file:
+    path: "{{ wezterm_config_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Make sure WezTerm is configured
+  ansible.builtin.copy:
+    src: "wezterm.lua"
+    dest: "{{ wezterm_config_dir }}/wezterm.lua"
