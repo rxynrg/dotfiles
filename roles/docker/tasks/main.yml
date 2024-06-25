@@ -1,46 +1,7 @@
-- name: Install colima
-  community.general.homebrew:
-    name: colima
-    state: present
+- name: Install Docker if Debian
+  ansible.builtin.include_tasks: docker_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Install Docker if MacOS
+  ansible.builtin.include_tasks: docker_macos.yml
   when: ansible_os_family == "Darwin"
-
-- block:
-    - name: Check if docker & plugins are installed
-      ansible.builtin.command: "{{ item }}"
-      register: docker_data
-      loop:
-        - 'docker version'
-        - 'docker compose version'
-        - 'docker buildx version'
-      changed_when: false
-      failed_when: false
-    - name: Determine what packages to install
-      ansible.builtin.set_fact:
-        packages_to_install: |
-          {{
-            [
-              (docker_data.results[0].rc != 0
-                  and docker_data.results[0].stdout == ""
-                  and docker_data.results[0].stderr != "") | ternary('docker', ''),
-              (docker_data.results[1].rc != 0) | ternary('docker-compose', ''),
-              (docker_data.results[2].rc != 0) | ternary('docker-buildx','')
-            ] | select | list
-          }}
-
-- name: Install docker stack if it is not already installed
-  community.general.homebrew:
-    name: "{{ item }}"
-  loop: "{{ packages_to_install | flatten(levels=1) }}"
-
-- name: Enable compose plugin if it is not already enabled
-  ansible.builtin.include_tasks: compose_plugin.yml
-  when: "'docker-compose' in packages_to_install"
-
-- name: Enable buildx plugin if it is not already enabled
-  ansible.builtin.include_tasks: buildx_plugin.yml
-  when: "'docker-buildx' in packages_to_install"
-
-- name: Copy docker aliases into alias home
-  ansible.builtin.copy:
-    src: "docker.sh"
-    dest: "{{ alias_home }}/docker.sh"
