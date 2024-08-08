@@ -21,6 +21,7 @@
 	stashes = stash list
 	unstage = restore --staged .
 	diffiles = diff master HEAD --compact-summary
+	undo = reset --soft HEAD^
 
 	forget = !git stash && git stash drop
 	nevermind = !git reset --hard HEAD && git clean -d -f
