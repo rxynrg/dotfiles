@@ -31,6 +31,8 @@ done
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {% endif %}
 
+export GPG_TTY=$(tty)
+
 export FZF_DEFAULT_OPTS='--color=fg+:#ff8dc8,hl+:#ff8dc8 --preview-window="border-sharp"'
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
