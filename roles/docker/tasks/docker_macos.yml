@@ -44,4 +44,3 @@
   ansible.builtin.copy:
     src: "docker.sh"
     dest: "{{ alias_home }}/docker.sh"
-
