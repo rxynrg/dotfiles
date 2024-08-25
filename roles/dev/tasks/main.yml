@@ -11,6 +11,7 @@
       - grpcurl
       - jq
       - jless
+      - lazygit
       - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
       - websocat
       - yq
