@@ -3,14 +3,16 @@
 [user]
 	name = {{ git.name }}
 	email = {{ git.email }}
+{{% if gpg.enabled %}}
+	signingkey = {{ gpg.key }}
+{{% endif %}}
 [alias]
 	a = add
 	st = status
 	co = checkout
 	cmt = commit
 	noff = merge --no-ff
-	log-pretty = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
-	l = log --graph --decorate --oneline --abbrev-commit --all
+	l = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
 	precommit = diff --cached --diff-algorithm=minimal -w
 	plr = pull --rebase
 	amend = commit --amend
@@ -87,3 +89,9 @@
 	grep = false
 [advice]
 	statusHints = false
+{{% if gpg.enabled %}}
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+{{% endif %}}
