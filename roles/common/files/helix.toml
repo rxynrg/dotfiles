@@ -5,9 +5,10 @@ theme = "base16_transparent"
 
 [editor]
 line-number = "relative"
-mouse = false
 bufferline = "multiple"
+mouse = false
 true-color = true
+color-modes = true
 
 [editor.file-picker]
 hidden = false
@@ -20,11 +21,11 @@ insert = "bar"
 
 [editor.statusline]
 left = ["mode", "spinner", "version-control", "file-name"]
-center = []
+center = ["diagnostics"]
 right = ["position", "file-encoding", "file-line-ending", "file-type"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
-mode.select = "SELECT"
+mode.select = "VISUAL"
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
