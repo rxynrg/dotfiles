@@ -19,3 +19,7 @@ Rectangle Selection
 ### Copy/Paste
 - Choose a register using `"` and specify the system register by using `*`
 - Select the text, then type `"*y` to copy to system clipboard
+
+## Helix
+
+- Type `*` to use current selection as the search pattern
