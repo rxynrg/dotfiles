@@ -3,4 +3,4 @@ git:
   email: slickunit4265752@gmail.com
 gpg:
   enabled: true
-  sign: "{{ gpg.signingkey }}"
+  key: "{{ secrets_gpg_signingkey }}"

@@ -40,7 +40,7 @@ if command -v fzf > /dev/null; then
   }
 fi
 
-# Takes in PAT as an argument
+# Takes in a PAT as an argument
 git_update_pat() {
   # TODO: read from stdin
   token=$1

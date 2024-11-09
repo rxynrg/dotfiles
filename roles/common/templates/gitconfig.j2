@@ -3,14 +3,16 @@
 [user]
 	name = {{ git.name }}
 	email = {{ git.email }}
-{{% if gpg.enabled %}}
-	signingkey = {{ gpg.key }}
-{{% endif %}}
+{% if gpg.enabled %}
+	signingKey = {{ gpg.key }}
+{% endif %}
 [alias]
 	a = add
 	st = status
-	co = checkout
-	cmt = commit
+	co = "!echo 'Stop using git checkout! Use git switch or git branch' && false"
+	checkout = "!echo 'Stop using git checkout! Use git switch or git branch' && false"
+	cmt = commit -S -m
+	sw = switch
 	noff = merge --no-ff
 	l = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
 	precommit = diff --cached --diff-algorithm=minimal -w
@@ -49,29 +51,34 @@
 
 	# Copy current branch name to clipboard (macOS only)
 	cb = "!git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
+	currbr = "!git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'"
 
 	# Set up your branch to track a remote branch. Assumes you mean `origin/$branch-name`.
 	track = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); git branch $branch --set-upstream-to origin/$branch }; f"
 [color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = true
-  ui = true
-  pager = true
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = true
+    ui = true
+    pager = true
 [core]
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 	editor = vim
 	pager = less
 	autocrlf = input
-[commit]
-	gpgsign = true
+	hooksPath = /dev/null
+[diff]
+    algorithm = histogram
+    colorMoved = true
+    indentHeuristic = true
 [pull]
 	rebase = true
 [push]
 	default = upstream
 	autoSetupRemote = true
+	followtags = true
 [rebase]
 	autosquash = true
 [pager]
@@ -89,9 +96,10 @@
 	grep = false
 [advice]
 	statusHints = false
-{{% if gpg.enabled %}}
+{% if gpg.enabled %}
 [commit]
-	gpgsign = true
+	gpgSign = true
 [gpg]
 	program = gpg
-{{% endif %}}
+	format = openpgp
+{% endif %}

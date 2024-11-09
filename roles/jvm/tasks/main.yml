@@ -9,7 +9,7 @@
   register: role_data
   changed_when: false
 
-- name: Install sdkman ansible role
+- name: Install sdkman ansible role if needed
   ansible.builtin.command: ansible-galaxy role install comcast.sdkman
   when: '"comcast.sdkman" not in role_data.stdout'
 

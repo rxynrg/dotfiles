@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-alias vmgo="colima start --mount $(dirname $(pwd)):w"
+alias vmgo='colima start --mount $(dirname $(pwd)):w'
 
 alias dis="docker images --format \"{{.ID}}\t{{.Size}}\t{{.Repository}}\" | sort -hk2"
 

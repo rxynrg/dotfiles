@@ -1,7 +1,6 @@
 fonts_home: "{{ '~/Library/Fonts' if ansible_os_family == 'Darwin' else '~/.fonts' }}"
 
 alacritty_config_dir: "{{ config_home }}/alacritty"
-wezterm_config_dir: "{{ config_home }}/wezterm"
 
 mac:
   homebrew:
@@ -16,5 +15,4 @@ mac:
       # - tor-browser
       # - visual-studio-code
       # - vlc
-      # - wezterm
       # - wireshark

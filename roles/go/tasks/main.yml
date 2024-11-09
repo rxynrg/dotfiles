@@ -3,7 +3,7 @@
   register: go_data
   changed_when: false
 
-- name: Install Go SDK
+- name: Install Go SDK if needed
   community.general.homebrew:
     name: go
   when: go_data.rc != 0
@@ -13,7 +13,7 @@
   register: gopls_data
   changed_when: false
 
-- name: Install Go LSP server
+- name: Install Go LSP server if needed
   community.general.homebrew:
     name: gopls
   when: gopls_data.rc != 0

@@ -1,10 +1,10 @@
 {
-  "name": "universal-workspace",
+  "name": "minimal-workspace",
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
       "USERNAME": "okdev",
-      "USER_ID": "1001"
+      "USER_UID": "1001"
     }
   },
   "remoteUser": "okdev"

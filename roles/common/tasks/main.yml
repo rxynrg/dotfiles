@@ -3,6 +3,7 @@
     name:
       - bat
       - eza
+      - fastfetch
       - fzf
       - helix
       - starship

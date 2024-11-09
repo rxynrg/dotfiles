@@ -16,8 +16,8 @@ $ ansible-playbook dotfiles.yml [--skip-tags tags,to,skip] [--tags tags,to,exec]
 List of all the supported tags can be found in the play [definition](./dotfiles.yml)
 
 ## Roadmap
-- Refactor with devcontainers in mind (as a main target)
-- Add the ability to target a remote environment
+- Refactor with devcontainers in mind (as main target)
+- Add the possibility to target a remote environment
 - [Add tests](https://actuated.dev/blog/kvm-in-github-actions)
 - Refactor the *zsh* role for Linux target
 	- [Forbid running as root](https://docs.brew.sh/FAQ#why-does-homebrew-say-sudo-is-bad)
