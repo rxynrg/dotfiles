@@ -22,6 +22,7 @@ autoload -Uz colors && colors
 # Enable ZSH compsys to show hidden files
 _comp_options+=(globdots)
 
+source "{{ zsh_home }}/history.zsh"
 for f in $(find "{{ alias_home }}" -maxdepth 2 -type f -name "*.sh"); do source "$f"; done
 
 PLUGIN_HOME={{ zsh.plugin_home }}

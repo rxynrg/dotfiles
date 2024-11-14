@@ -16,15 +16,14 @@
 
     - name: Copy history config file
       ansible.builtin.copy:
-        src: "history.sh"
-        dest: "{{ zsh_home }}/history.sh"
+        src: "history.zsh"
+        dest: "{{ zsh_home }}/history.zsh"
 
     - name: Sync .zshrc
       ansible.builtin.template:
         src: "zshrc.j2"
         dest: "{{ user_home_dir }}/.zshrc"
 
-    # TODO: Add auto update support
     - name: Clone plugins
       ansible.builtin.git:
         repo: "https://github.com/{{ item.uri }}"
