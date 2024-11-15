@@ -39,17 +39,3 @@ if command -v fzf > /dev/null; then
     "${gitlog[@]}" | "${fzf[@]}"
   }
 fi
-
-# Takes in a PAT as an argument
-git_update_pat() {
-  # TODO: read from stdin
-  token=$1
-  if [[ "$token" = ghp_* ]]; then
-    repo_url=$(git remote get-url origin)
-    credentials="${token}@"
-    new_remote="${repo_url/https:\/\//https://$credentials}"
-    git remote set-url origin "$new_remote"
-  else
-    echo "Invalid token '$token'. Please provide GH PAT as positional argument"
-  fi
-}
