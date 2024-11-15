@@ -12,7 +12,6 @@
       loop:
         - "{{ zsh_home }}"
         - "{{ zsh.plugin_home }}"
-        - "{{ completions.zsh }}"
 
     - name: Copy history config file
       ansible.builtin.copy:
