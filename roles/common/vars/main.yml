@@ -1,6 +1,6 @@
 git:
   name: Kirill Osintsev
-  email: slickunit4265752@gmail.com
+  email: kosintsev.dev@gmail.com
 gpg:
   enabled: true
   key: "{{ secrets_gpg_signingkey }}"

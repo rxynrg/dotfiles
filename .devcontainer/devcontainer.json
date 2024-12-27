@@ -3,9 +3,9 @@
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
-      "USERNAME": "okdev",
+      "USERNAME": "rxynrg",
       "USER_UID": "1001"
     }
   },
-  "remoteUser": "okdev"
+  "remoteUser": "rxynrg"
 }

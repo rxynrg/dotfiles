@@ -15,3 +15,4 @@ fi
 alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
 alias uuid_to_clipboard="uuidgen | tr '[:upper:]' '[:lower:]' | pbcopy"
 alias whereami="curl https://ifconfig.co/json"
+alias java_print_all_flags="java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -XX:+JVMCIPrintProperties --version"

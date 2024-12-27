@@ -14,6 +14,9 @@
         - 'docker buildx version'
       changed_when: false
       failed_when: false
+    - debug:
+        var: docker_data
+#      failed_when: docker_data.results[0].rc != 0 or docker_data.results[1].rc != 0 or docker_data.results[2].rc != 0
     - name: Determine what packages to install
       ansible.builtin.set_fact:
         packages_to_install: |
