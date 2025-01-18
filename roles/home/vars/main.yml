@@ -5,8 +5,8 @@ alacritty_config_dir: "{{ config_home }}/alacritty"
 mac:
   homebrew:
     cask:
-      # - alacritty
       # - cloudflare-warp
+      - ghostty
       # - intellij-idea
       # - jetbrains-toolbox
       - obsidian
@@ -16,3 +16,4 @@ mac:
       # - visual-studio-code
       # - vlc
       # - wireshark
+      # - zed
