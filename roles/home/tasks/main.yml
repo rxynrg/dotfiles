@@ -9,8 +9,5 @@
 - name: Install homebrew casks
   ansible.builtin.import_tasks: homebrew-casks.yml
 
-- name: Configure Alacritty terminal
-  ansible.builtin.import_tasks: alacritty.yml
-
 - name: Configure VSCode
   ansible.builtin.import_tasks: vscode.yml
