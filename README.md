@@ -4,16 +4,16 @@
 
 2. Install dependencies
 
-```bash
-$ ./install.sh
-```
+    ```bash
+    $ ./install.sh
+    ```
 
 3. Run playbook
 
-```bash
-$ ansible-playbook dotfiles.yml [--skip-tags tags,to,skip] [--tags tags,to,exec]
-```
-
+    ```bash
+    $ ansible-playbook dotfiles.yml [--skip-tags tags,to,exclude] [--tags tags,to,include]
+    ```
+---
 List of all tags can be found in the play [definition](./dotfiles.yml)
 
 
