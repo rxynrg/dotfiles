@@ -1,0 +1,11 @@
+cask cloudflare-warp
+cask ghostty
+cask intellij-idea
+cask obsidian
+cask rectangle
+cask telegram
+cask tor-browser
+cask visual-studio-code
+cask vlc
+cask wireshark
+cask zed

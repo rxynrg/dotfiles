@@ -1,6 +1,0 @@
-git:
-  name: Kirill Osintsev
-  email: kosintsev.dev@gmail.com
-gpg:
-  enabled: true
-  key: "{{ secrets_gpg_signingkey }}"

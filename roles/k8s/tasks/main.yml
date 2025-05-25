@@ -1,9 +1,0 @@
-- name: Install Kubernetes CLI
-  community.general.homebrew:
-    name: kubernetes-cli
-    state: present
-
-- name: Copy k8s aliases into alias home
-  ansible.builtin.copy:
-    src: "k8s.sh"
-    dest: "{{ alias_home }}/k8s.sh"

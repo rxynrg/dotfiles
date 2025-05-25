@@ -1,21 +1,23 @@
-## Usage
+# Usage
 
 1. Clone the repository to the machine you want to configure
 
-2. Install dependencies
+    `git clone --recurse-submodules https://github.com/rxynrg/dotfiles ~/github/dotfiles`
 
-```bash
-$ ./install.sh
-```
+2. Apply configurations
 
-3. Run playbook
+    `./apply.sh`
 
-```bash
-$ ansible-playbook dotfiles.yml [--skip-tags tags,to,skip] [--tags tags,to,exec]
-```
+3. Install specific kits if needed
 
-List of all tags can be found in the play [definition](./dotfiles.yml)
+    `./install.sh vscode docker zsh fonts`
 
+4. Edit secrets if needed
 
-## Legal
+---
+
+Ignore local changes
+`git update-index --assume-unchanged <files>`
+
+# Legal
 Works on My Machine<sup>TM</sup>

@@ -1,5 +1,0 @@
-- name: Install applications with homebrew cask
-  community.general.homebrew_cask:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ mac.homebrew.cask | flatten(levels=1) }}"

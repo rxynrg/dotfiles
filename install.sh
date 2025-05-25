@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
-if ! command -v ansible > /dev/null; then
-    echo "Installing ansible"
-    pip install ansible
-fi
-ROOTDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
-make sync -C "$ROOTDIR"
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        docker) installation_scripts/docker/install.sh ;;
+        vscode) installation_scripts/vsc/configure.sh ;;
+        fonts) installation_scripts/fonts.sh ;;
+        zsh) installation_scripts/zsh.sh ;;
+        *) echo "error: unexpected $1";;
+    esac
+    shift
+done

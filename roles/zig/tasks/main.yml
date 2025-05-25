@@ -1,5 +1,0 @@
-- name: Install zig lang toolchain
-  community.general.homebrew:
-    name:
-      - zig
-      - zls
