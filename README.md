@@ -6,7 +6,7 @@
 
 2. Apply configurations
 
-    `./sync.sh`
+    `./apply.sh`
 
 3. Edit secrets if needed
 

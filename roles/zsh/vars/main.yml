@@ -1,3 +1,0 @@
-zsh_home: "{{ config_home }}/zsh"
-zsh:
-  plugin_home: "{{ zsh_home }}/plugins"

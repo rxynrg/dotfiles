@@ -1,13 +1,27 @@
 #!/usr/bin/env bash
 
-# 1. copy common dotfiles (including aliases, ...)
-# 2. copy application specific configurations
-# 3. install packages (cli utilities, terminal-based apps)
-# 4. install apps (Brewfile or an alternative for mise)
+# https://wiki.archlinux.org/title/XDG_Base_Directory
+XDG_CONFIG_HOME="$HOME/.config"
+# mkdir -p "$XDG_CONFIG_HOME" "$HOME/.cache" "$HOME/.data" "$HOME/.data/state" 2>/dev/null || true
+
+cp -R bat   "$XDG_CONFIG_HOME"
+cp -R git   "$XDG_CONFIG_HOME"
+cp -R helix "$XDG_CONFIG_HOME"
+cp -R tmux  "$XDG_CONFIG_HOME"
+cp -R vim   "$XDG_CONFIG_HOME"
+cp starship.toml "$XDG_CONFIG_HOME"
+cp .editorconfig ~
+cp common_aliases_and_functions.sh "${XDG_CONFIG_HOME}/common_aliases_and_functions.sh"
+# cp bashrc ~
+# cp -R zsh "$XDG_CONFIG_HOME"
+
+# TODO: all below
+
+# install packages (cli utilities, terminal-based apps)
+# install apps (Brewfile or an alternative for mise)
 
 # download fonts ./dotfiles_home/installation_scripts/fonts.sh
 # set up VSCode ./dotfiles_home/installation_scripts/vsc/configure.sh
-# cp ./dotfiles_home/bashrc $HOME/.bashrc
 
 # were installed with brew
 ## common
@@ -49,16 +63,6 @@
 ### - wireshark
 ### - zed
 
-cp -R ./dotfiles_home/bat               ~/.config
-cp -R ./dotfiles_home/git               ~/.config
-cp -R ./dotfiles_home/helix             ~/.config
-cp -R ./dotfiles_home/tmux              ~/.config
-cp -R ./dotfiles_home/vim               ~/.config
-cp    ./dotfiles_home/starship.toml     ~/.config
-
-cp    ./.editorconfig          ~/.editorconfig
-
-# install docker
 # ./dotfiles_home/installation_scripts/docker/install.sh
 
 # brew install go gopls

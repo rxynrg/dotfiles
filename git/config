@@ -71,8 +71,6 @@
 	pager = less
 	autocrlf = input
 	hooksPath = /dev/null
-[log]
-    date = iso
 [diff]
     algorithm = histogram
     colorMoved = true

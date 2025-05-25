@@ -22,8 +22,8 @@ $character"""
 success_symbol = '[\$](bold green)'
 error_symbol = '[\$](bold red)'
 
-# [git_branch]
-# symbol = ''
+#[git_branch]
+#symbol = ''
 
 [docker_context]
 only_with_files = false

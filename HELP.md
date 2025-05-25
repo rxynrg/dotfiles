@@ -1,3 +1,10 @@
+# ZSH
+
+How to recursively rename files (change extension)?
+Remove `-n` to actually perform renaming.
+
+`autoload zmv && zmv -n '(**/)(*).yaml' '$1$2.yml'`
+
 # TMUX
 
 ## Rectangle Selection
