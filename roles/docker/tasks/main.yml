@@ -1,7 +1,0 @@
-- name: Install Docker if Debian
-  ansible.builtin.include_tasks: docker_debian.yml
-  when: ansible_os_family == "Debian"
-
-- name: Install Docker if MacOS
-  ansible.builtin.include_tasks: docker_macos.yml
-  when: ansible_os_family == "Darwin"

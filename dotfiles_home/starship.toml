@@ -1,0 +1,32 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$username\
+$hostname\
+$container\
+$shlvl\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$status\
+$shell\
+$character"""
+
+[character]
+success_symbol = '[\$](bold green)'
+error_symbol = '[\$](bold red)'
+
+# [git_branch]
+# symbol = ''
+
+[docker_context]
+only_with_files = false
+
+[container]
+format = '[$symbol]($style) '

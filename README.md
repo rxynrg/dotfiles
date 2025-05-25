@@ -1,21 +1,19 @@
-## Usage
+# Usage
 
 1. Clone the repository to the machine you want to configure
 
-2. Install dependencies
+    `git clone https://github.com/rxynrg/dotfiles ~/github/dotfiles`
 
-    ```bash
-    $ ./install.sh
-    ```
+2. Apply configurations
 
-3. Run playbook
+    `./sync.sh`
 
-    ```bash
-    $ ansible-playbook dotfiles.yml [--skip-tags tags,to,exclude] [--tags tags,to,include]
-    ```
+3. Edit secrets if needed
+
 ---
-List of all tags can be found in the play [definition](./dotfiles.yml)
 
+Ignore local changes
+`git update-index --assume-unchanged <files>`
 
-## Legal
+# Legal
 Works on My Machine<sup>TM</sup>

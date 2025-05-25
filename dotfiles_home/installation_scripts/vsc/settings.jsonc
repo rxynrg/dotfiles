@@ -1,0 +1,54 @@
+{
+  "breadcrumbs.enabled": false,
+  "breadcrumbs.filePath": "off",
+  "breadcrumbs.symbolPath": "last",
+  "dev.containers.copyGitConfig": false,
+  "dev.containers.defaultExtensions": [
+    "editorconfig.editorconfig",
+    "timonwong.shellcheck"
+  ],
+  "editor.fontFamily": "'JetBrainsMonoNL Nerd Font Mono'",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 20,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": true,
+  "explorer.confirmDelete": false,
+  "files.autoSave": "onFocusChange",
+  "terminal.integrated.fontFamily": "'JetBrainsMonoNL Nerd Font Mono'",
+  "terminal.integrated.fontSize": 20,
+  "apc.electron": {
+    "titleBarStyle": "hiddenInset",
+    "trafficLightPosition": {
+      "x": 11,
+      "y": 10
+    }
+  },
+  "apc.header": {
+    "height": 36
+  },
+  // Remove unnecessary controls from primary bar and tabs list
+  "apc.stylesheet": {
+    // Remove primary sidebar title
+    ".title-label > h2": "display: none",
+    // Remove primary sidebar action icons
+    // ".title-actions": "display: none",
+    // Remove editor action icons
+    ".editor-actions": "display: none",
+    // Align tabs to not overlap window controls when primary bar is hidden
+    ".nosidebar .inline-tabs-placeholder": "width: 75px"
+  },
+  "window.autoDetectColorScheme": true,
+  "window.commandCenter": false,
+  "window.confirmSaveUntitledWorkspace": false,
+  "window.titleBarStyle": "custom",
+  "workbench.activityBar.location": "hidden",
+  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.editor.showTabs": "none",
+  "workbench.iconTheme": null,
+  "workbench.layoutControl.enabled": false,
+  "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
+  "workbench.preferredLightColorTheme": "Solarized Light",
+  "workbench.startupEditor": "none",
+  "workbench.statusBar.visible": false
+}
