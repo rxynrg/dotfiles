@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 
-apt-get update && apt-get instsall ca-certificates
-# prepare keyrings
-install -m 0755 -d /etc/apt/keyrings
-# download docker's official GPG key
-curl -sSLo /etc/apt/keyrings/docker.asc https://download.docker.com/linux/ubuntu/gpg
-# update permissions
-chmod +r /etc/apt/keyrings/docker.asc
+sudo apt-get update && sudo apt-get install -y ca-certificates curl
+# prepare Docker keyring directory
+sudo install -m 0755 -d /etc/apt/keyrings
+# download Docker's official GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+    sudo tee /etc/apt/keyrings/docker.asc >/dev/null
+# update key file permissions
+sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+# add Docker's APT repository
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
     sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 
-apt-get update && apt-get install \
+sudo apt-get update && apt-get install -y \
     docker-ce \
     docker-ce-cli \
     containerd.io \
     docker-compose-plugin \
-    docker-compose-buildx
+    docker-buildx-plugin

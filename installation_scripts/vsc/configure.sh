@@ -2,7 +2,7 @@
 
 vsc_settings_home=$( [[ "$(uname)" == "Darwin" ]] && echo "$HOME/Library/Application Support/Code/User/settings.json" || echo "$HOME/.config/Code/User/settings.json" )
 mkdir -p "$vsc_settings_home"
-cp ./dotfiles_home/installation_scripts/vsc/settings.jsonc "$vsc_settings_home/settings.json"
+cp "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/settings.jsonc" "$vsc_settings_home/settings.json"
 
 extensions=(
     "drcika.apc-extension"

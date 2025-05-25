@@ -14,13 +14,12 @@ function _sudo_cmdline() {
 
 bindkey -e
 bindkey '^[^[' _sudo_cmdline # esc esc
-bindkey '\ew' vi-forward-word # alt w
 bindkey '^[[1;5D' vi-backward-word # ctrl-left
 bindkey '^[[1;5C' vi-forward-word # ctrl-right
-bindkey '^[[A' history-substring-search-up # up
-bindkey '^[[B' history-substring-search-down # down
-bindkey '^[[H' beginning-of-line # home
-bindkey '^[[F' end-of-line # end
+bindkey '^[OA' history-substring-search-up # up
+bindkey '^[OB' history-substring-search-down # down
+bindkey '^[OH' beginning-of-line # home
+bindkey '^[OF' end-of-line # end
 
 zstyle ':completion:*:make:*:targets' call-command true # exec make to get targets
 zstyle ':completion:*:make:*' tag-order targets # ignore make variables

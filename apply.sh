@@ -18,18 +18,6 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv ~/.zshenv
 
 # TODO: all below
 
-# download fonts ./installation_scripts/fonts.sh
-# set up VSCode ./installation_scripts/vsc/configure.sh
-
-## common
-### bat
-### helix
-### eza
-### tmux
-### fzf
-### starship
-### zoxide
-
 ## dev
 ### btop
 ### curlie
@@ -46,13 +34,11 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv ~/.zshenv
 ### websocat
 ### yq
 
-# ./installation_scripts/docker/install.sh
+# mise use bat eza fzf helix ripgrep starship zoxide
 
 # brew install go gopls
 # brew install zig zls
-# sdk/mise install java gradle maven
-# brew install kubectl
-# brew install colima
-
-# mise use bat eza fzf helix ripgrep starship zoxide
 # mise use kotlin
+# mise install java gradle maven
+# brew install colima
+# brew install kubectl
