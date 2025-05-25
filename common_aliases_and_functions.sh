@@ -8,7 +8,7 @@ alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
 alias whereami="curl https://ifconfig.co/json"
 alias java_print_all="java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -XX:+JVMCIPrintProperties --version"
 
-if command -v eza > /dev/null; then
+if command -v eza >/dev/null; then
     alias ls="eza --icons --group-directories-first"
     alias ll="eza --long --group-directories-first"
     alias la="eza --long --all --group-directories-first"
@@ -87,7 +87,7 @@ docker-clean() {
 }
 
 ########## K8S
-if command -v kubectl > /dev/null; then
+if command -v kubectl >/dev/null; then
     alias k='kubectl'
     alias kaf="kubectl apply -f"
     alias kcgc="kubectl config get-contexts"
