@@ -10,11 +10,11 @@ cp -R helix "$XDG_CONFIG_HOME"
 cp -R tmux  "$XDG_CONFIG_HOME"
 cp -R vim   "$XDG_CONFIG_HOME"
 cp starship.toml "$XDG_CONFIG_HOME"
-cp .editorconfig ~
+cp .editorconfig "$HOME"
 
 cp common_aliases_and_functions.sh "${XDG_CONFIG_HOME}/common_aliases_and_functions.sh"
-cp profile ~/.profile && cp bashrc ~/.bashrc
-cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv ~/.zshenv
+cp profile "$HOME/.profile" && cp bashrc "$HOME/.bashrc"
+cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
 
 # TODO: all below
 
