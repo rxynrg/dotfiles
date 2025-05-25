@@ -1,57 +1,57 @@
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [user]
-	name = Kirill Osintsev
-	email = kosintsev.dev@gmail.com
-	signingKey = ~/.ssh/id_ed25519
+    name = Kirill Osintsev
+    email = kosintsev.dev@gmail.com
+    signingKey = ~/.ssh/id_ed25519
 [alias]
     c = clone --recursive
     p = push
-	a = add
-	st = status
-	sw = switch
-	br = branch
-	brs = branch -a
-	del = branch -D
-	rn = branch -m
-	amend = commit --amend
-	cmt = commit
-	stashes = stash list
-	l = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
-	lo = log --all --graph --format='%C(auto)%h %d %s %C(black)%ar/%cr %C(blue)<%an>'
+    a = add
+    st = status
+    sw = switch
+    br = branch
+    brs = branch -a
+    del = branch -D
+    rn = branch -m
+    amend = commit --amend
+    cmt = commit
+    stashes = stash list
+    l = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
+    lo = log --all --graph --format='%C(auto)%h %d %s %C(black)%ar/%cr %C(blue)<%an>'
     lob = log --graph --format='%C(auto)%h %d %s %C(black)%ar/%cr %C(blue)<%an>'
     los = log --all --graph --simplify-by-decoration --format='%C(auto)%h %d %s %C(black)%ar/%cr %C(blue)<%an>'
-	co = "!echo 'Stop using git checkout! Use either switch or branch command' && false"
-	checkout = "!echo 'Stop using git checkout! Use either switch or branch command' && false"
+    co = "!echo 'Stop using git checkout! Use either switch or branch command' && false"
+    checkout = "!echo 'Stop using git checkout! Use either switch or branch command' && false"
 
-	noff = merge --no-ff
-	precommit = diff --cached --diff-algorithm=minimal -w
-	plr = pull --rebase --autostash
-	wip = !git add -A && git commit -m "WIP" --no-verify
-	unstage = restore --staged .
-	diffiles = diff main HEAD --compact-summary
-	undo = reset --soft HEAD^
-	forget = !git stash && git stash drop
-	nevermind = !git reset --hard HEAD && git clean -d -f
-	delete-tag="!f() { git push --delete ${2-origin} ${1}; git tag -d ${1}; }; f"
-	up = !git pull --rebase --prune $@ && git submodule update --init --recursive
-	please = push --force-with-lease
-	# publish current branch
-	publish = "!f() { git push -u ${1:-origin} $(git rev-parse --abbrev-ref HEAD); }; f"
-	# Nukes a branch locally and on the origin remote.
-	nuke = "!f() { git branch -D $1 && git push origin :$1; }; f"
-	# Remove local branches that have been removed upstream
-	cleanup = "!git fetch --all -p && git branch -vv | grep \": gone]\" | awk '{ print $1 }' | xargs -n 1 git branch -D"
-	clear = "git branch | grep -v 'main' | xargs git branch -D"
-	# http://gggritso.com/human-git-aliases
-	unstage = reset -q HEAD --
-	discard = checkout --
-	uncommit = reset --mixed HEAD~
-	# Copy current branch name to clipboard (macOS only)
-	cb = "!git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
-	currbr = "!git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'"
-	# Set up your branch to track a remote branch. Assumes you mean `origin/$branch-name`.
-	track = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); git branch $branch --set-upstream-to origin/$branch }; f"
+    noff = merge --no-ff
+    precommit = diff --cached --diff-algorithm=minimal -w
+    plr = pull --rebase --autostash
+    wip = !git add -A && git commit -m "WIP" --no-verify
+    unstage = restore --staged .
+    diffiles = diff main HEAD --compact-summary
+    undo = reset --soft HEAD^
+    forget = !git stash && git stash drop
+    nevermind = !git reset --hard HEAD && git clean -d -f
+    delete-tag="!f() { git push --delete ${2-origin} ${1}; git tag -d ${1}; }; f"
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+    please = push --force-with-lease
+    # publish current branch
+    publish = "!f() { git push -u ${1:-origin} $(git rev-parse --abbrev-ref HEAD); }; f"
+    # Nukes a branch locally and on the origin remote.
+    nuke = "!f() { git branch -D $1 && git push origin :$1; }; f"
+    # Remove local branches that have been removed upstream
+    cleanup = "!git fetch --all -p && git branch -vv | grep \": gone]\" | awk '{ print $1 }' | xargs -n 1 git branch -D"
+    clear = "git branch | grep -v 'main' | xargs git branch -D"
+    # http://gggritso.com/human-git-aliases
+    unstage = reset -q HEAD --
+    discard = checkout --
+    uncommit = reset --mixed HEAD~
+    # Copy current branch name to clipboard (macOS only)
+    cb = "!git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
+    currbr = "!git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'"
+    # Set up your branch to track a remote branch. Assumes you mean `origin/$branch-name`.
+    track = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); git branch $branch --set-upstream-to origin/$branch }; f"
 # [color]
 #     diff = auto
 #     status = auto
@@ -60,28 +60,28 @@
 #     ui = true
 #     pager = true
 [color "branch"]
-	current = yellow reverse
-	local   = yellow
-	remote  = green
+    current = yellow reverse
+    local   = yellow
+    remote  = green
 [color "status"]
-	added = green
-	changed = yellow
+    added = green
+    changed = yellow
     untracked = red
 [core]
     editor = vim
-	pager = less
-	autocrlf = input
-	hooksPath = /dev/null
+    pager = less
+    autocrlf = input
+    hooksPath = /dev/null
 [diff]
     algorithm = histogram
     colorMoved = true
     indentHeuristic = true
 [pull]
-	rebase = true
+    rebase = true
 [push]
-	default = upstream
-	autoSetupRemote = true
-	followtags = true
+    default = upstream
+    autoSetupRemote = true
+    followtags = true
 [rebase]
     autoStash           = true
     autosquash          = true
@@ -91,22 +91,22 @@
     sort = version:refname
     gpgSign = true
 [pager]
-	status = true
-	diff = true
-	commit = false
-	log = true
-	cl = false
-	blame = false
-	merge = false
-	rebase = false
-	help = false
-	show = true
-	reflog = false
-	grep = false
+    status = true
+    diff = true
+    commit = false
+    log = true
+    cl = false
+    blame = false
+    merge = false
+    rebase = false
+    help = false
+    show = true
+    reflog = false
+    grep = false
 [advice]
-	statusHints = false
+    statusHints = false
 [commit]
-	gpgSign = true
-	verbose = true
+    gpgSign = true
+    verbose = true
 [gpg]
-	format = ssh
+    format = ssh
