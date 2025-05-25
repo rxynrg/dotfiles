@@ -27,6 +27,7 @@ zstyle ':completion:*:make:*' tag-order targets # ignore make variables
 
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' gain-privileges true
+# shellcheck disable=SC2296
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true

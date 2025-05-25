@@ -15,7 +15,7 @@
 	del = branch -D
 	rn = branch -m
 	amend = commit --amend
-	cmt = commit -S -m
+	cmt = commit
 	stashes = stash list
 	l = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
 	lo = log --all --graph --format='%C(auto)%h %d %s %C(black)%ar/%cr %C(blue)<%an>'
@@ -68,6 +68,7 @@
 	changed = yellow
     untracked = red
 [core]
+    editor = vim
 	pager = less
 	autocrlf = input
 	hooksPath = /dev/null

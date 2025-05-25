@@ -11,64 +11,48 @@ cp -R tmux  "$XDG_CONFIG_HOME"
 cp -R vim   "$XDG_CONFIG_HOME"
 cp starship.toml "$XDG_CONFIG_HOME"
 cp .editorconfig ~
+
 cp common_aliases_and_functions.sh "${XDG_CONFIG_HOME}/common_aliases_and_functions.sh"
-cp profile ~/.profile
-cp bashrc ~/.bashrc
-#cp -R zsh "$XDG_CONFIG_HOME"
-#cp zshrc ~/.zshrc
+cp profile ~/.profile && cp bashrc ~/.bashrc
+cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv ~/.zshenv
 
 # TODO: all below
 
-# install packages (cli utilities, terminal-based apps)
-# install apps (Brewfile or an alternative for mise)
+# download fonts ./installation_scripts/fonts.sh
+# set up VSCode ./installation_scripts/vsc/configure.sh
 
-# download fonts ./dotfiles_home/installation_scripts/fonts.sh
-# set up VSCode ./dotfiles_home/installation_scripts/vsc/configure.sh
-
-# were installed with brew
 ## common
-### - bat
-### - helix
-### - eza
-### - tmux
-### - fzf
-### - starship
-### - zoxide
+### bat
+### helix
+### eza
+### tmux
+### fzf
+### starship
+### zoxide
 
 ## dev
-### - btop
-### - curlie
-### - duf
-### - gnupg
-### - gping
-### - htmlq
-### - direnv
-### - grpcurl
-### - jq
-### - jless
-### - lazygit
-### - mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
-### - step
-### - websocat
-### - yq
+### btop
+### curlie
+### duf
+### gping
+### htmlq
+### direnv
+### grpcurl
+### jq
+### jless
+### lazygit
+### mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
+### step
+### websocat
+### yq
 
-## home
-### - cloudflare-warp
-### - ghostty
-### - intellij-idea
-### - obsidian
-### - rectangle
-### - telegram
-### - tor-browser
-### - visual-studio-code
-### - vlc
-### - wireshark
-### - zed
-
-# ./dotfiles_home/installation_scripts/docker/install.sh
+# ./installation_scripts/docker/install.sh
 
 # brew install go gopls
 # brew install zig zls
 # sdk/mise install java gradle maven
-# brew install kubernetes-cli
+# brew install kubectl
 # brew install colima
+
+# mise use bat eza fzf helix ripgrep starship zoxide
+# mise use kotlin
