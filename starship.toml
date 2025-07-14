@@ -9,24 +9,17 @@ $directory\
 $git_branch\
 $git_commit\
 $git_state\
-$git_metrics\
-$sudo\
 $cmd_duration\
 $line_break\
 $jobs\
-$status\
-$shell\
 $character"""
+
+[git_branch]
+symbol = ''
+
+[container]
+format = '[$symbol]($style) '
 
 [character]
 success_symbol = '[\$](bold green)'
 error_symbol = '[\$](bold red)'
-
-#[git_branch]
-#symbol = ''
-
-[docker_context]
-only_with_files = false
-
-[container]
-format = '[$symbol]($style) '
