@@ -21,6 +21,7 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
 ## dev
 ### btop
 ### curlie
+### dive
 ### duf
 ### gping
 ### htmlq
@@ -34,11 +35,10 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
 ### websocat
 ### yq
 
-# mise use bat eza fzf helix ripgrep starship zoxide
+# mise install bat eza fzf helix ripgrep starship zoxide
 
-# brew install go gopls
-# brew install zig zls
-# mise use kotlin
-# mise install java gradle maven
+# mise install go gopls
+# mise install zig zls
+# mise install java gradle maven kotlin
 # brew install colima
 # brew install kubectl
