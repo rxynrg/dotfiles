@@ -10,9 +10,9 @@ color-modes = true
 scrolloff = 10
 
 [editor.file-picker]
-hidden = false
+hidden = true
 parents = false
-git-ignore = false
+git-ignore = true
 
 [editor.lsp]
 display-messages = true
