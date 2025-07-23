@@ -14,7 +14,7 @@ cp .editorconfig "$HOME"
 
 cp common_aliases_and_functions.sh "${XDG_CONFIG_HOME}/common_aliases_and_functions.sh"
 cp profile "$HOME/.profile" && cp bashrc "$HOME/.bashrc"
-cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
+cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv" && mkdir -p "${XDG_CONFIG_HOME}/zsh/completions"
 
 # TODO: all below
 

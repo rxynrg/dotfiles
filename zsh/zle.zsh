@@ -36,5 +36,6 @@ zstyle ':completion:*' matcher-list '' \
     'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
     'r:|?=** m:{a-z\-}={A-Z\_}'
 
+fpath=($XDG_CONFIG_HOME/zsh/completions $fpath)
 _comp_options+=('globdots')
-compinit -C -d "${XDG_CACHE_HOME}/.zcompdump"
+compinit
