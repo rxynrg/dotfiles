@@ -37,8 +37,9 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
 
 # mise install bat eza fzf helix ripgrep starship zoxide
 
-# mise install go gopls
+# mise install go
 # mise install zig zls
 # mise install java gradle maven kotlin
-# brew install colima
-# brew install kubectl
+# mise install colima # macos only
+# mise install kubectl
+# mise install kind
