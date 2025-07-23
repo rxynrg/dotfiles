@@ -25,7 +25,7 @@ mkcd() {
 
 ########## GIT
 alias g='git'
-alias rr='cd $(git rev-parse --show-toplevel)'
+alias rr='cd $(git rev-parse --show-toplevel)' # go to repo root
 gli() {
     # param validation
     [[ ! $(git log -n 1 "$@" | head -n 1) ]] && return
