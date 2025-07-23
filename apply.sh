@@ -28,7 +28,7 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv" && mkdir -p "${XDG_CON
 ### direnv
 ### grpcurl
 ### jq
-### jless
+### jless (depends on X11 lib, so consider stop using this)
 ### lazygit
 ### mkcert # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
 ### step
