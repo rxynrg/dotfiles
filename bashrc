@@ -23,7 +23,5 @@ command -v mise >/dev/null && eval "$(mise activate bash)"
 source "${XDG_CONFIG_HOME}/common_aliases_and_functions.sh"
 
 command -v fzf >/dev/null && eval "$(fzf --bash)"
-command -v starship >/dev/null && eval "$(starship init bash)"
 command -v zoxide >/dev/null && eval "$(zoxide init bash)"
-
-cd "$HOME"
+command -v starship >/dev/null && eval "$(starship init bash)"

@@ -9,6 +9,7 @@ cp -R git   "$XDG_CONFIG_HOME"
 cp -R helix "$XDG_CONFIG_HOME"
 cp -R tmux  "$XDG_CONFIG_HOME"
 cp -R vim   "$XDG_CONFIG_HOME"
+cp -R yazi  "$XDG_CONFIG_HOME"
 cp starship.toml "$XDG_CONFIG_HOME"
 cp .editorconfig "$HOME"
 
@@ -35,7 +36,7 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv" && mkdir -p "${XDG_CON
 ### websocat
 ### yq
 
-# mise install bat eza fzf helix ripgrep starship zoxide
+# mise install bat eza fzf helix ripgrep starship yazi zoxide
 
 # mise install go
 # mise install zig zls
