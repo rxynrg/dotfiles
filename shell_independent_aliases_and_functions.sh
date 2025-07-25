@@ -6,6 +6,7 @@ alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
 alias whereami="curl https://ifconfig.co/json"
 alias java_print_all="java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -XX:+EnableJVMCI -XX:+JVMCIPrintProperties --version"
+alias y='yazi'
 
 if command -v eza >/dev/null; then
     alias ls="eza --icons --group-directories-first"
