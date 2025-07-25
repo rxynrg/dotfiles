@@ -1,24 +1,19 @@
 zle -N self-insert url-quote-magic
-
-zle -N _sudo_cmdline
-
 # depend on the presence of zsh-history-substring-search plugin
 zle -N history-substring-search-up
 zle -N history-substring-search-down
 
-# toggle for quickly prefixing with sudo
-function _sudo_cmdline() {
+_sudo_prefix() {
     [[ -z ${BUFFER} ]] && zle up-history
     [[ ${BUFFER} == sudo\ * ]] && BUFFER=${BUFFER#sudo } || BUFFER="sudo ${BUFFER}"
 }
+zle -N _sudo_prefix
 
-bindkey '^[^[' _sudo_cmdline # esc esc
+bindkey '^[^[' _sudo_prefix # esc esc
 bindkey '^[[1;5D' vi-backward-word # ctrl-left
 bindkey '^[[1;5C' vi-forward-word # ctrl-right
 bindkey '^[OA' history-substring-search-up # up
 bindkey '^[OB' history-substring-search-down # down
-bindkey '^[OH' beginning-of-line # home
-bindkey '^[OF' end-of-line # end
 
 zstyle ':completion:*:make:*:targets' call-command true # exec make to get targets
 zstyle ':completion:*:make:*' tag-order targets # ignore make variables

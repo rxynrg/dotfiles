@@ -8,6 +8,7 @@ alias whereami="curl https://ifconfig.co/json"
 alias java_print_all="java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -XX:+EnableJVMCI -XX:+JVMCIPrintProperties --version"
 alias y='yazi'
 
+alias ts='tmux-sessionizer'
 tmux-sessionizer() {
     tmux has-session 2>/dev/null || { echo "no tmux server is running"; return; }
     local session_desc=$(tmux list-sessions | fzf --reverse)
