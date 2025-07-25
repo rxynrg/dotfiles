@@ -18,23 +18,18 @@
     cmt = commit
     stashes = stash list
     l = log --graph --date=short --branches --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]'
-    lo = log --all --graph --format='%C(auto)%h %d %s %C(black)%ar/%cr %C(blue)<%an>'
-    lob = log --graph --format='%C(auto)%h %d %s %C(black)%ar/%cr %C(blue)<%an>'
-    los = log --all --graph --simplify-by-decoration --format='%C(auto)%h %d %s %C(black)%ar/%cr %C(blue)<%an>'
     co = "!echo 'Stop using git checkout! Use either switch or branch command' && false"
     checkout = "!echo 'Stop using git checkout! Use either switch or branch command' && false"
-
+    authors = shortlog -sn
     noff = merge --no-ff
-    precommit = diff --cached --diff-algorithm=minimal -w
+    precommit-overview = "!f() { while true; do file=$(git diff --cached --name-only | fzf --height=20% --reverse --prompt='Staged file: '); [ -z \"$file\" ] && break; git diff --cached --color --diff-algorithm=minimal --unified=5 -W --patch-with-stat -- \"$file\" | less -R; done }; f"
+    precommit-stat = diff --cached --compact-summary
     plr = pull --rebase --autostash
     wip = !git add -A && git commit -m "WIP" --no-verify
     unstage = restore --staged .
-    diffiles = diff main HEAD --compact-summary
     undo = reset --soft HEAD^
     forget = !git stash && git stash drop
-    nevermind = !git reset --hard HEAD && git clean -d -f
     delete-tag="!f() { git push --delete ${2-origin} ${1}; git tag -d ${1}; }; f"
-    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
     please = push --force-with-lease
     # publish current branch
     publish = "!f() { git push -u ${1:-origin} $(git rev-parse --abbrev-ref HEAD); }; f"
@@ -42,22 +37,19 @@
     nuke = "!f() { git branch -D $1 && git push origin :$1; }; f"
     # Remove local branches that have been removed upstream
     cleanup = "!git fetch --all -p && git branch -vv | grep \": gone]\" | awk '{ print $1 }' | xargs -n 1 git branch -D"
-    clear = "git branch | grep -v 'main' | xargs git branch -D"
-    # http://gggritso.com/human-git-aliases
-    unstage = reset -q HEAD --
+    delete-all-branches = "git branch | grep -v 'main' | xargs git branch -D"
+    nevermind = !git reset --hard HEAD && git clean -d -f
     discard = checkout --
     uncommit = reset --mixed HEAD~
-    # Copy current branch name to clipboard (macOS only)
-    cb = "!git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
     # Set up your branch to track a remote branch. Assumes you mean `origin/$branch-name`.
     track = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); git branch $branch --set-upstream-to origin/$branch }; f"
-# [color]
-#     diff = auto
-#     status = auto
-#     branch = auto
-#     interactive = true
-#     ui = true
-#     pager = true
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = true
+    ui = true
+    pager = true
 [color "branch"]
     current = yellow reverse
     local   = yellow
@@ -106,6 +98,6 @@
     statusHints = false
 [commit]
     gpgSign = true
-    verbose = true
+    verbose = false
 [gpg]
     format = ssh

@@ -8,7 +8,7 @@
 
     `./apply.sh`
 
-3. Install specific kits if needed
+3. Install specific toolkits if needed
 
     `./install.sh vscode docker zsh fonts`
 
