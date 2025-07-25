@@ -2,7 +2,6 @@
 alias cp='cp -v'
 alias ln='ln -v'
 alias mv='mv -v'
-alias fhx='fzf --bind "enter:become(hx {})"'
 alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
 alias whereami="curl https://ifconfig.co/json"
@@ -125,4 +124,12 @@ if command -v kubectl >/dev/null; then
         kubectl api-resources --verbs=list --namespaced -o name \
             | xargs -n 1 kubectl get --show-kind --ignore-not-found --namespace "$ns"
     }
+fi
+
+if command -v kind >/dev/null; then
+    if [[ "$0" == *zsh ]]; then
+        source <(kind completion zsh)
+    elif [[ "$0" == *bash ]]; then
+        source <(kind completion bash)
+    fi
 fi
