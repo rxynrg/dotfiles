@@ -12,12 +12,12 @@
 
     `./install.sh vscode docker zsh fonts`
 
-4. Edit secrets if needed
-
 ---
 
-Ignore local changes
-`git update-index --assume-unchanged <files>`
+> [!TIP]
+> Make git ignore some of the local changes
+> 
+> `git update-index --assume-unchanged <files>`
 
 # Legal
 Works on My Machine<sup>TM</sup>
