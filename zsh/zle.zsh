@@ -12,7 +12,6 @@ function _sudo_cmdline() {
     [[ ${BUFFER} == sudo\ * ]] && BUFFER=${BUFFER#sudo } || BUFFER="sudo ${BUFFER}"
 }
 
-bindkey -e
 bindkey '^[^[' _sudo_cmdline # esc esc
 bindkey '^[[1;5D' vi-backward-word # ctrl-left
 bindkey '^[[1;5C' vi-forward-word # ctrl-right
@@ -36,6 +35,5 @@ zstyle ':completion:*' matcher-list '' \
     'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
     'r:|?=** m:{a-z\-}={A-Z\_}'
 
-fpath=($XDG_CONFIG_HOME/zsh/completions $fpath)
 _comp_options+=('globdots')
 compinit

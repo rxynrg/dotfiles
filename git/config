@@ -3,7 +3,7 @@
 [user]
     name = Kirill Osintsev
     email = kosintsev.dev@gmail.com
-    signingKey = ~/.ssh/id_ed25519
+    signingKey = ~/.ssh/windows_git_signing.pub
 [alias]
     c = clone --recursive
     p = push
