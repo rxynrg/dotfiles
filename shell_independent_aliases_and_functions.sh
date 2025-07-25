@@ -8,6 +8,27 @@ alias whereami="curl https://ifconfig.co/json"
 alias java_print_all="java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -XX:+EnableJVMCI -XX:+JVMCIPrintProperties --version"
 alias y='yazi'
 
+tmux-sessionizer() {
+    tmux has-session 2>/dev/null || { echo "no tmux server is running"; return; }
+    local session_desc=$(tmux list-sessions | fzf --reverse)
+    local session="${session_desc%%:*}"
+    if [ -n "$TMUX" ]; then
+        tmux switch-client -t "$session"
+    else
+        tmux attach -t "$session"
+    fi
+}
+
+review_precommit() {
+    local stagedfiles=$(git diff --cached --name-only "$@")
+    [[ -n $stagedfiles ]] || { echo "no staged files found"; return; }
+    echo "$stagedfiles" | fzf \
+        --no-sort \
+        --preview-window=right:60% \
+        --preview "git diff --cached --color=always {}" \
+        --bind "ctrl-q:abort,ctrl-m:execute:git diff --cached --color=always {} | less -R"
+}
+
 if command -v eza >/dev/null; then
     alias ls="eza --icons --group-directories-first"
     alias ll="eza --long --group-directories-first"
@@ -26,16 +47,17 @@ mkcd() {
 ########## GIT
 alias g='git'
 alias rr='cd $(git rev-parse --show-toplevel)' # go to repo root
+
+# Examples:
+#   gli                  # Inspect full log of current branch
+#   gli main             # Log of the main branch
+#   gli HEAD~10          # Log starting from 10 commits ago
+#   gli src/utils.sh     # Log of commits touching that file
+#   gli v1.0..v2.0       # Log between two tags
 gli() {
-    # param validation
-    [[ ! $(git log -n 1 "$@" | head -n 1) ]] && return
-    # filter by file string
+    ! git log -n 1 "$@" &>/dev/null && return
     local filter
-    # param existed, git log for file if existed
-    if [ -n "$*" ] && [ -f "$*" ]; then
-        filter="-- $*"
-    fi
-    # git command
+    [[ $# -eq 1 && -f "$1" ]] && filter="-- $1"
     local gitlog=(
         git log
         --graph --color=always
@@ -43,20 +65,16 @@ gli() {
         --format='%C(auto)%h%d %an %C(blue)%s %C(yellow)%C(bold)%cr'
         "$@"
     )
-    # fzf command
     local fzf=(
-        fzf
-        --ansi --no-sort --reverse --tiebreak=index
-        --preview "bat --color=always --style=numbers --line-range=:500 {}"
-        --preview "f() { set -- \$(echo -- \$@ | grep -o '[a-f0-9]\{7\}'); [ \$# -eq 0 ] || git show --color=always \$1 $filter; }; f {}"
+        fzf --ansi --no-sort --tiebreak=index
+        --preview-window=right:40%
+        --preview "commit=\$(echo {} | grep -oE '[a-f0-9]{7,}'); [ -n \"\$commit\" ] && git show --color=always \$commit $filter"
         --bind "ctrl-q:abort,ctrl-m:execute:
-                    (grep -o '[a-f0-9]\{7\}' | head -1 |
+                    (grep -oE '\b[0-9a-f]{7,}\b' | head -1 |
                     xargs -I % sh -c 'git show --color=always % $filter | less -R') << 'FZF-EOF'
                     {}
                     FZF-EOF"
-        --preview-window=right:60%
     )
-    # piping them
     "${gitlog[@]}" | "${fzf[@]}"
 }
 

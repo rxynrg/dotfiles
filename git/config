@@ -22,8 +22,6 @@
     checkout = "!echo 'Stop using git checkout! Use either switch or branch command' && false"
     authors = shortlog -sn
     noff = merge --no-ff
-    precommit-overview = "!f() { while true; do file=$(git diff --cached --name-only | fzf --height=20% --reverse --prompt='Staged file: '); [ -z \"$file\" ] && break; git diff --cached --color --diff-algorithm=minimal --unified=5 -W --patch-with-stat -- \"$file\" | less -R; done }; f"
-    precommit-stat = diff --cached --compact-summary
     plr = pull --rebase --autostash
     wip = !git add -A && git commit -m "WIP" --no-verify
     unstage = restore --staged .
