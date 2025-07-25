@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 if grep -qiE 'microsoft|wsl' /proc/version; then
-  echo "Please, install fonts manually since you're insice WSL."
-  echo "Follow the instruction here https://learn.microsoft.com/en-us/windows/terminal/tutorials/custom-prompt-setup#install-a-nerd-font"
-  return
+  echo "Please install the required fonts manually, as you're running inside WSL."
+  echo "Follow the instruction here:"
+  echo "https://learn.microsoft.com/en-us/windows/terminal/tutorials/custom-prompt-setup#install-a-nerd-font"
+  exit 0
 fi
 
 fonts_home=$( [[ "$(uname)" == "Darwin" ]] && echo "$HOME/Library/Fonts" || echo "$HOME/.fonts" )
