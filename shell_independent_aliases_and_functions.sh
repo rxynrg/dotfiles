@@ -11,6 +11,7 @@ alias y='yazi'
 alias ts='tmux-sessionizer'
 tmux-sessionizer() {
     tmux has-session 2>/dev/null || { echo "no tmux server is running"; return; }
+    [ -n "$TMUX" ] && echo "Use <leader> + s to inspect sessions as you're in tmux" && return
     local session_desc=$(tmux list-sessions | fzf --reverse)
     local session="${session_desc%%:*}"
     if [ -n "$TMUX" ]; then
