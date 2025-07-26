@@ -20,8 +20,8 @@ export XDG_STATE_HOME="${HOME}/.data/state"
 
 command -v mise >/dev/null && eval "$(mise activate bash)"
 
-source "${XDG_CONFIG_HOME}/common_aliases_and_functions.sh"
+source "${XDG_CONFIG_HOME}/shell_independent_aliases_and_functions.sh"
 
-command -v fzf >/dev/null && eval "$(fzf --bash)"
+command -v fzf >/dev/null && source <(fzf --bash)
 command -v zoxide >/dev/null && eval "$(zoxide init bash)"
 command -v starship >/dev/null && eval "$(starship init bash)"
