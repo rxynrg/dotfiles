@@ -133,7 +133,7 @@ if command -v kubectl >/dev/null; then
     klist_pods() {
         kubectl get namespaces -o jsonpath='{.items[*].metadata.name}' | \
         tr ' ' '\n' | \
-        while read -r ns; do
+        while read -r ns || [ -n "$ns" ]; do
             echo "pods in $ns namespace:"
             kubectl get pods --namespace "$ns"
             printf '\n'
