@@ -124,9 +124,9 @@ if command -v kubectl >/dev/null; then
     alias kl="kubectl logs"
     alias kgn="kubectl get nodes"
 
-    if [ "$shell" = "zsh" ]; then
+    if [ -v ZSH_VERSION ]; then
         source <(kubectl completion zsh)
-    elif [ "$shell" = "bash" ]; then
+    elif [ -v BASH_VERSION ]; then
         source <(kubectl completion bash)
     fi
 
@@ -148,9 +148,9 @@ if command -v kubectl >/dev/null; then
 fi
 
 if command -v kind >/dev/null; then
-    if [ "$shell" = "zsh" ]; then
+    if [ -v ZSH_VERSION ]; then
         source <(kind completion zsh)
-    elif [ "$shell" = "bash" ]; then
+    elif [ -v BASH_VERSION ]; then
         source <(kind completion bash)
     fi
 fi
