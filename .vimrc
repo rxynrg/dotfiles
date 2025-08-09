@@ -2,12 +2,11 @@ set autochdir               " Change CWD when one have opened a file
 set autoindent              " Copy indent from current line when starting a new line
 set autowrite               " Automatically save before :next, :make etc.
 set clipboard=unnamedplus   " Copy & paste to the system clipboard
-set cursorline              " Highlight current line
 set encoding=utf-8
 set expandtab               " Expand tabs into spaces
 set fencs=utf-8
 set fileformat=unix
-set history=10
+set history=100
 set hlsearch
 set ignorecase              " Search case insensitively
 set incsearch
@@ -33,5 +32,6 @@ set wrap
 
 autocmd FileType make setlocal noexpandtab
 
-colorscheme habamax
+" colorscheme habamax
+" colorscheme quiet
 syntax on
