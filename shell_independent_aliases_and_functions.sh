@@ -154,3 +154,17 @@ if command -v kind >/dev/null; then
         source <(kind completion bash)
     fi
 fi
+
+iosify() {
+    ffmpeg -i "$1" \
+        -vf "scale='if(gt(iw,1920),1920,iw)':'if(gt(ih,1080),1080,ih)'" \
+        -c:v libx264 -preset fast -crf 20 \
+        -c:a copy \
+        "${2:-${1:0:-4}}-x264.mp4"
+}
+
+ytdlp_wrapper() {
+    ./yt-dlp.sh --enable-file-urls --force-ipv4 \
+        --downloader-args "http:--http1.1" \
+        --limit-rate '1.5M' "$1"
+}

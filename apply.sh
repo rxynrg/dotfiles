@@ -17,11 +17,12 @@ cp shell_independent_aliases_and_functions.sh "${XDG_CONFIG_HOME}/shell_independ
 cp profile "$HOME/.profile" && cp bashrc "$HOME/.bashrc"
 cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
 
-## dev
+# == DEV
 ### btop
 ### curlie
 ### dive
 ### duf
+### glow
 ### gping
 ### htmlq
 ### direnv
@@ -40,11 +41,11 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
 # mise install go
 # mise install zig zls
 # mise install java gradle maven kotlin
+
 # mise install colima # macos only (consider native containers)
 # mise install kind kubectl
 
-# Casks
-# cloudflare-warp
+# == Casks
 # ghostty
 # intellij-idea
 # obsidian
