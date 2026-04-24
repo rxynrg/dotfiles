@@ -24,11 +24,8 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
 ### duf
 ### glow
 ### gping
-### htmlq
-### direnv
 ### grpcurl
 ### jq
-### jless       # depends on X11 lib, so consider stop using this
 ### lazygit
 ### mkcert      # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
 ### ripgrep
@@ -42,7 +39,7 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
 # mise install zig zls
 # mise install java gradle maven kotlin
 
-# mise install colima # macos only (consider native containers)
+# mise install colima
 # mise install kind kubectl
 
 # == Casks
