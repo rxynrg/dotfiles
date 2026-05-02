@@ -1,15 +1,14 @@
-########## GENERAL
 alias cp='cp -v'
-alias ln='ln -v'
 alias mv='mv -v'
+alias ln='ln -v'
 alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
 alias whereami="curl https://ifconfig.co/json"
 alias java_print_all="java -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -XX:+PrintFlagsFinal -XX:+EnableJVMCI -XX:+JVMCIPrintProperties --version"
 alias y='yazi'
 
-alias ts='tmux-sessionizer'
-tmux-sessionizer() {
+alias ts='tmux_sessionizer'
+tmux_sessionizer() {
     tmux has-session 2>/dev/null || { echo "no tmux server is running"; return; }
     [ -n "$TMUX" ] && echo "Use <leader> + s to inspect sessions as you're in tmux" && return
     local session_desc=$(tmux list-sessions | fzf --reverse)
@@ -46,7 +45,6 @@ mkcd() {
     cd "$1" || return
 }
 
-########## GIT
 alias g='git'
 alias rr='cd $(git rev-parse --show-toplevel)' # go to repo root
 
@@ -80,33 +78,31 @@ gli() {
     "${gitlog[@]}" | "${fzf[@]}"
 }
 
-########## DOCKER
 alias vmgo='colima start --mount $(dirname $(pwd)):w'
 
 alias d='docker'
 alias dis="docker images --format \"{{.ID}}\t{{.Size}}\t{{.Repository}}\" | sort -hk2"
-alias docker-rmi-force='docker rmi -f $(docker images -a -q)'
-alias docker-rmc-force='docker ps -q | xargs docker rm -f'
-alias docker-rmc="docker ps -a --filter=status=exited --format='{{ .ID }}' | xargs docker rm"
+alias docker_rmi_force='docker rmi -f $(docker images -a -q)'
+alias docker_rmc_force='docker ps -q | xargs docker rm -f'
+alias docker_rmc="docker ps -a --filter=status=exited --format='{{ .ID }}' | xargs docker rm"
 
 drm() {
     docker rmi "$(docker images -f 'dangling=true' \
         | awk '$1 == "<none>" { print $3 }' ORS=' ')"
 }
 
-docker-rmi-by-name() {
+docker_rmi_by_name() {
     id=$(docker images --filter=reference="$1:*" --format "{{ .ID }}")
     [ -n "$id" ] && docker rmi "$id"
 }
 
-docker-clean() {
+docker_clean() {
     docker image prune --force
     docker container prune --force
     docker volume prune --force
     docker network prune --force
 }
 
-########## K8S
 if command -v kubectl >/dev/null; then
     alias k='kubectl'
     alias kaf="kubectl apply -f"
@@ -155,15 +151,7 @@ if command -v kind >/dev/null; then
     fi
 fi
 
-iosify() {
-    ffmpeg -i "$1" \
-        -vf "scale='if(gt(iw,1920),1920,iw)':'if(gt(ih,1080),1080,ih)'" \
-        -c:v libx264 -preset fast -crf 20 \
-        -c:a copy \
-        "${2:-${1:0:-4}}-x264.mp4"
-}
-
-ytdlp_wrapper() {
+ytdlp() {
     ./yt-dlp.sh --enable-file-urls --force-ipv4 \
         --downloader-args "http:--http1.1" \
         --limit-rate '1.5M' "$1"
