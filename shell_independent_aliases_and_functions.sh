@@ -153,6 +153,7 @@ fi
 
 ytdlp() {
     ./yt-dlp.sh --enable-file-urls --force-ipv4 \
-        --downloader-args "http:--http1.1" \
+        --downloader-args 'http:--http1.1' \
+        --format 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' \
         --limit-rate '1.5M' "$1"
 }
