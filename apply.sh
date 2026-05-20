@@ -34,6 +34,7 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
 ### yq
 
 # mise install bat eza fzf helix starship yazi zoxide
+# mise install ollama opencode pi
 
 # mise install go
 # mise install zig zls
