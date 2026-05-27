@@ -10,13 +10,13 @@
 
 3. Install specific toolkits if needed
 
-    `./install.sh vscode docker zsh fonts`
+    `./install.sh mise gopls vscode docker zsh fonts`
 
 ---
 
 > [!TIP]
 > Make git ignore some of the local changes
-> 
+>
 > `git update-index --assume-unchanged <files>`
 
 # Legal

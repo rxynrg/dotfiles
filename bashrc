@@ -2,9 +2,9 @@
 
 shopt -s checkwinsize
 shopt -s histappend
-HISTCONTROL=ignoreboth
-HISTSIZE=1000
-HISTFILESIZE=2000
+export HISTCONTROL=ignoreboth
+export HISTSIZE=1000
+export HISTFILESIZE=2000
 export LESSHISTFILE=-
 
 # enable programmable completion features if in not POSIX mode
@@ -15,8 +15,9 @@ export LESSHISTFILE=-
 
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_DATA_HOME="${HOME}/.data"
-export XDG_STATE_HOME="${HOME}/.data/state"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
+export XDG_BIN_DIR="${HOME}/.local/bin"
 
 command -v mise >/dev/null && eval "$(mise activate bash)"
 

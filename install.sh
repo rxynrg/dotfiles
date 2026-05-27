@@ -6,6 +6,8 @@ while [[ $# -gt 0 ]]; do
         vscode) installation_scripts/vsc/configure.sh ;;
         fonts) installation_scripts/fonts.sh ;;
         zsh) installation_scripts/zsh.sh ;;
+        gopls) mise use -g go:golang.org/x/tools/gopls@latest ;;
+        mise) echo "go to https://mise.jdx.dev" ;;
         *) echo "error: unexpected $1";;
     esac
     shift

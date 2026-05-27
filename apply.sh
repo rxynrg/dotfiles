@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-# https://wiki.archlinux.org/title/XDG_Base_Directory
 XDG_CONFIG_HOME="$HOME/.config"
-mkdir -p "$XDG_CONFIG_HOME" "$HOME/.cache" "$HOME/.data" "$HOME/.data/state" 2>/dev/null || true
+mkdir -p "$XDG_CONFIG_HOME" "$HOME/.cache" "$HOME/.local/share" "$HOME/.local/state" "$HOME/.local/bin" 2>/dev/null || true
 
 cp -R bat   "$XDG_CONFIG_HOME"
 cp -R git   "$XDG_CONFIG_HOME"
@@ -30,6 +29,7 @@ cp -R zsh "$XDG_CONFIG_HOME" && cp zshenv "$HOME/.zshenv"
 ### mkcert      # https://github.com/FiloSottile/mkcert see PiterJS #50 on youtube
 ### ripgrep
 ### step
+### sqlite
 ### websocat
 ### yq
 

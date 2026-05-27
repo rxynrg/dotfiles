@@ -13,8 +13,9 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 # XDG dirs
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_DATA_HOME="${HOME}/.data"
-export XDG_STATE_HOME="${HOME}/.data/state"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
+export XDG_BIN_DIR="${HOME}/.local/bin"
 
 # XDG DATA
 export HISTFILE="${XDG_DATA_HOME}/zsh_history"
